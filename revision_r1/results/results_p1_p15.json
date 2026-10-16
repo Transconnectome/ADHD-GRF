@@ -1,0 +1,550 @@
+{
+  "P1_cbcl_sd": {
+    "multiethnic": {
+      "sample_name": "Multiethnic (data_multi_env_gen)",
+      "n_total": 1244,
+      "mean_total": 55.7605,
+      "sd_total": 7.5362,
+      "n_control": 622,
+      "mean_control": 52.5981,
+      "sd_control": 4.9173,
+      "n_exposed": 622,
+      "mean_exposed": 58.9228,
+      "sd_exposed": 8.3346,
+      "ate_sd_units": 0.5352,
+      "ate_cbcl_points": 4.0337
+    },
+    "european_post_smote": {
+      "sample_name": "European post-SMOTE (data_eur_env_gen)",
+      "n_total": 1239,
+      "mean_total": 55.5012,
+      "sd_total": 7.1175,
+      "n_control": 619,
+      "mean_control": 52.2585,
+      "sd_control": 4.4628,
+      "n_exposed": 620,
+      "mean_exposed": 58.7387,
+      "sd_exposed": 7.773,
+      "ate_sd_units": 0.5205,
+      "ate_cbcl_points_post_smote_sd": 3.7047
+    },
+    "european_pre_smote_observed": {
+      "sample_name": "European pre-SMOTE observed (first 982 rows of data_eur_env_gen)",
+      "n_total": 982,
+      "mean_total": 54.6864,
+      "sd_total": 6.9293,
+      "n_control": 619,
+      "mean_control": 52.2585,
+      "sd_control": 4.4628,
+      "n_exposed_observed": 363,
+      "mean_exposed_observed": 58.8264,
+      "sd_exposed_observed": 8.2977,
+      "ate_cbcl_points_pre_smote_sd": 3.6068
+    },
+    "full_sample": {
+      "sample_name": "Full ABCD analytic cohort (non-missing child_adhd)",
+      "n_total": 11868,
+      "mean_total": 53.226,
+      "sd_total": 5.6339,
+      "n_control": 11103,
+      "mean_control": 52.8922,
+      "sd_control": 5.2495,
+      "n_exposed": 663,
+      "mean_exposed": 58.9336,
+      "sd_exposed": 8.3282
+    }
+  },
+  "P2_cate_ci_pos_pct": {
+    "multiethnic": {
+      "n": 1244,
+      "ci_gt_zero_count": 1233,
+      "ci_gt_zero_pct": 99.1158,
+      "ci_lt_zero_count": 0,
+      "ci_lt_zero_pct": 0,
+      "ci_excludes_zero_count": 1233,
+      "ci_excludes_zero_pct": 99.1158
+    },
+    "european_post_smote": {
+      "n": 1239,
+      "ci_gt_zero_count": 1172,
+      "ci_gt_zero_pct": 94.5924,
+      "ci_lt_zero_count": 0,
+      "ci_lt_zero_pct": 0,
+      "ci_excludes_zero_count": 1172,
+      "ci_excludes_zero_pct": 94.5924
+    },
+    "european_pre_smote_observed": {
+      "n": 982,
+      "ci_gt_zero_count": 928,
+      "ci_gt_zero_pct": 94.501,
+      "ci_lt_zero_count": 0,
+      "ci_lt_zero_pct": 0,
+      "ci_excludes_zero_count": 928,
+      "ci_excludes_zero_pct": 94.501
+    }
+  },
+  "P3_pdp_contrasts": {
+    "multiethnic_baseline": {
+      "sleep_prob": {
+        "feature": "sleep_prob",
+        "Q0": 0.3266,
+        "Q1": 0.3265,
+        "Q2": 0.3571,
+        "Q3": 0.4181,
+        "Q4": 0.4451,
+        "q1_q3_contrast": 0.0916,
+        "q0_q4_contrast": 0.1185,
+        "trend": "none"
+      },
+      "SMOKERauto": {
+        "feature": "SMOKERauto",
+        "Q0": 0.3603,
+        "Q1": 0.3581,
+        "Q2": 0.3571,
+        "Q3": 0.3717,
+        "Q4": 0.4811,
+        "q1_q3_contrast": 0.0136,
+        "q0_q4_contrast": 0.1209,
+        "trend": "none"
+      },
+      "BMImulti": {
+        "feature": "BMImulti",
+        "Q0": 0.3463,
+        "Q1": 0.3429,
+        "Q2": 0.3571,
+        "Q3": 0.4068,
+        "Q4": 0.4909,
+        "q1_q3_contrast": 0.0639,
+        "q0_q4_contrast": 0.1446,
+        "trend": "none"
+      },
+      "SCZ_METAauto": {
+        "feature": "SCZ_METAauto",
+        "Q0": 0.3963,
+        "Q1": 0.3641,
+        "Q2": 0.3571,
+        "Q3": 0.3557,
+        "Q4": 0.3777,
+        "q1_q3_contrast": -0.0084,
+        "q0_q4_contrast": -0.0186,
+        "trend": "none"
+      },
+      "WORRYauto": {
+        "feature": "WORRYauto",
+        "Q0": 0.3961,
+        "Q1": 0.376,
+        "Q2": 0.3571,
+        "Q3": 0.3403,
+        "Q4": 0.3675,
+        "q1_q3_contrast": -0.0357,
+        "q0_q4_contrast": -0.0286,
+        "trend": "none"
+      }
+    },
+    "european_baseline": {
+      "sleep_prob": {
+        "feature": "sleep_prob",
+        "Q0": 0.4592,
+        "Q1": 0.4587,
+        "Q2": 0.468,
+        "Q3": 0.5113,
+        "Q4": 0.7698,
+        "q1_q3_contrast": 0.0526,
+        "q0_q4_contrast": 0.3106,
+        "trend": "none"
+      },
+      "SMOKERauto": {
+        "feature": "SMOKERauto",
+        "Q0": 0.4462,
+        "Q1": 0.4523,
+        "Q2": 0.468,
+        "Q3": 0.4768,
+        "Q4": 0.5853,
+        "q1_q3_contrast": 0.0244,
+        "q0_q4_contrast": 0.1391,
+        "trend": "asc"
+      },
+      "RISKTOLauto": {
+        "feature": "RISKTOLauto",
+        "Q0": 0.4516,
+        "Q1": 0.4545,
+        "Q2": 0.468,
+        "Q3": 0.4856,
+        "Q4": 0.4966,
+        "q1_q3_contrast": 0.031,
+        "q0_q4_contrast": 0.0451,
+        "trend": "asc"
+      }
+    },
+    "multiethnic_1y": {
+      "BMImulti": {
+        "feature": "BMImulti",
+        "Q0": 0.379,
+        "Q1": 0.3785,
+        "Q2": 0.3948,
+        "Q3": 0.4832,
+        "Q4": 0.5754,
+        "q1_q3_contrast": 0.1048,
+        "q0_q4_contrast": 0.1963,
+        "trend": "none"
+      },
+      "sleep_prob": {
+        "feature": "sleep_prob",
+        "Q0": 0.3858,
+        "Q1": 0.3856,
+        "Q2": 0.3948,
+        "Q3": 0.4486,
+        "Q4": 0.5633,
+        "q1_q3_contrast": 0.063,
+        "q0_q4_contrast": 0.1775,
+        "trend": "none"
+      },
+      "EDauto": {
+        "feature": "EDauto",
+        "Q0": 0.4546,
+        "Q1": 0.41,
+        "Q2": 0.3948,
+        "Q3": 0.3909,
+        "Q4": 0.3883,
+        "q1_q3_contrast": -0.019,
+        "q0_q4_contrast": -0.0663,
+        "trend": "des"
+      }
+    }
+  },
+  "P4_preprocessing_spec": {
+    "multiethnic": {
+      "sample_dataset": "data_multi_env_gen",
+      "n_total": 1244,
+      "n_control": 622,
+      "n_exposed": 622,
+      "imputation_method": "KNN",
+      "imputation_k": 10,
+      "imputation_package": "Bioconductor::impute (v1.72.3)",
+      "imputation_rng_seed": 362436069,
+      "imputation_parameters": {
+        "rowmax": 0.5,
+        "colmax": 0.5,
+        "maxp": 1500
+      },
+      "imputation_target": "622 exposed children with parental ADHD (parent_adhd == 1)",
+      "control_selection_method": "Sex-matched downsampling from complete-case controls with set.seed(1)",
+      "control_male_count": 351,
+      "control_female_count": 271,
+      "synthetic_observations": 0,
+      "smote_used": false,
+      "description": "Multiethnic sample (N=1,244) used Bioconductor KNN imputation (k=10) on exposed cases and sex-matched control downsampling without SMOTE (0 synthetic rows)."
+    },
+    "european": {
+      "sample_dataset": "data_eur_env_gen",
+      "n_total": 1239,
+      "n_control": 619,
+      "n_exposed_total": 620,
+      "n_exposed_original": 363,
+      "n_exposed_synthetic": 257,
+      "oversampling_method": "SMOTE",
+      "oversampling_package": "DMwR (v0.4.1)",
+      "smote_used": true,
+      "synthetic_observations": 257,
+      "description": "European sample (N=1,239) contains 619 complete-case downsampled controls + 363 original exposed + 257 DMwR::SMOTE synthetic exposed rows (=620 exposed total)."
+    }
+  },
+  "P5_eur_corr_sample": {
+    "eur_corr": {
+      "dataset_name": "eur_corr",
+      "n_rows": 725,
+      "n_cols": 101,
+      "unique_subjects": 684,
+      "duplicate_rows": 41,
+      "duplicate_unique_subjects": 39,
+      "n_male": 367,
+      "n_female": 358,
+      "degrees_of_freedom_overall": 723,
+      "degrees_of_freedom_male": 365,
+      "degrees_of_freedom_female": 356,
+      "source_explanation": "The N=725 European correlation dataset arose from joining brain sMRI metrics (abcd_smrip10201.txt), where 39 participants had multiple scan sessions (yielding 41 duplicate rows: 684 unique subjects + 41 repeated scans = 725 rows). Degrees of freedom in Table S11 r(723) overall, r(365) males, and r(356) females match exactly."
+    },
+    "multi_corr": {
+      "dataset_name": "multi_corr",
+      "n_rows": 1072,
+      "n_cols": 101,
+      "unique_subjects": 1071,
+      "duplicate_rows": 1,
+      "degrees_of_freedom_overall": 1070,
+      "source_explanation": "The N=1,072 Multiethnic correlation dataset matches Table S10 degrees of freedom r(1070) exactly."
+    }
+  },
+  "P6_pgs_discovery_rho": {
+    "multiethnic": {
+      "n_pgs_tested": 29,
+      "spearman_rho": 0.2581,
+      "spearman_p": 0.1758,
+      "s_statistic": 3012,
+      "interpretation": "Multiethnic sample shows weak, non-significant rank correlation (rho = 0.258, p = 0.176), refuting GWAS discovery power artifact conjecture."
+    },
+    "european": {
+      "n_pgs_tested": 29,
+      "spearman_rho": 0.1389,
+      "spearman_p": 0.4707,
+      "s_statistic": 3496,
+      "interpretation": "European sample shows weak, non-significant rank correlation (rho = 0.139, p = 0.471), refuting GWAS discovery power artifact conjecture."
+    },
+    "cp_gwas_n_used": 257841,
+    "excluded_pgs": "anxiety (ANXIETYauto: discovery GWAS N unconfirmed in source list)"
+  },
+  "P7_labels": {
+    "total_pgs_count": 30,
+    "mapped_pgs_count": 30,
+    "discovery_source": "Joo et al. (2025) Nat Commun 16:8467 Supplementary Data 1",
+    "formatting_artifacts_identified": [
+      "Line 3652 in Supplementary_R1.md: 'mapping to be confirmed'",
+      "Line 3654 in Supplementary_R1.md: 'unconfirmed — no anxiety trait in the source list'",
+      "Line 3658 in Supplementary_R1.md: 'mapping to be confirmed'"
+    ],
+    "cp_vs_ea_correction": "Cognitive Performance (CP) GWAS discovery N in Joo et al. SD1 was misreported as 1,131,881 (the EA N); true Lee et al. (2018) CP discovery N is 257,841.",
+    "pgs_traits": [
+      {
+        "id": 1,
+        "trait": "general happiness (health)",
+        "multi_column": "GHappiHealth6",
+        "eur_column": "GHappiHealth6",
+        "discovery_N": 125870
+      },
+      {
+        "id": 2,
+        "trait": "general happiness (meaningful)",
+        "multi_column": "GHappiMeaneur1",
+        "eur_column": "GHappiMeaneur1",
+        "discovery_N": 123223
+      },
+      {
+        "id": 3,
+        "trait": "general happiness",
+        "multi_column": "GHappieur2",
+        "eur_column": "GHappieur2",
+        "discovery_N": 125527
+      },
+      {
+        "id": 4,
+        "trait": "happiness",
+        "multi_column": "Happieur4",
+        "eur_column": "Happieur4",
+        "discovery_N": 128049
+      },
+      {
+        "id": 5,
+        "trait": "risk tolerance",
+        "multi_column": "RISKTOLauto",
+        "eur_column": "RISKTOLauto",
+        "discovery_N": 466571
+      },
+      {
+        "id": 6,
+        "trait": "anxiety",
+        "multi_column": "ANXIETYauto",
+        "eur_column": "ANXIETYauto",
+        "discovery_N": {}
+      },
+      {
+        "id": 7,
+        "trait": "worry",
+        "multi_column": "WORRYauto",
+        "eur_column": "WORRYauto",
+        "discovery_N": 348219
+      },
+      {
+        "id": 8,
+        "trait": "smoker",
+        "multi_column": "SMOKERauto",
+        "eur_column": "SMOKERauto",
+        "discovery_N": 518633
+      },
+      {
+        "id": 9,
+        "trait": "schizophrenia",
+        "multi_column": "SCZ_METAauto",
+        "eur_column": "SCZ_EURauto",
+        "discovery_N": 65967
+      },
+      {
+        "id": 10,
+        "trait": "risky behavior",
+        "multi_column": "RISK4PCauto",
+        "eur_column": "RISK4PCauto",
+        "discovery_N": 315894
+      },
+      {
+        "id": 11,
+        "trait": "OCD",
+        "multi_column": "OCDauto",
+        "eur_column": "OCDauto",
+        "discovery_N": 6518
+      },
+      {
+        "id": 12,
+        "trait": "neuroticism",
+        "multi_column": "NEUROTICISMauto",
+        "eur_column": "NEUROTICISMauto",
+        "discovery_N": 390278
+      },
+      {
+        "id": 13,
+        "trait": "eating disorder",
+        "multi_column": "EDauto",
+        "eur_column": "EDauto",
+        "discovery_N": 72517
+      },
+      {
+        "id": 14,
+        "trait": "drinking",
+        "multi_column": "DRINKauto",
+        "eur_column": "DRINKauto",
+        "discovery_N": 414343
+      },
+      {
+        "id": 15,
+        "trait": "cross disorder",
+        "multi_column": "CROSSauto",
+        "eur_column": "CROSSauto",
+        "discovery_N": 61220
+      },
+      {
+        "id": 16,
+        "trait": "cannabis",
+        "multi_column": "CANNABISauto",
+        "eur_column": "CANNABISauto",
+        "discovery_N": 162082
+      },
+      {
+        "id": 17,
+        "trait": "bipolar disorder",
+        "multi_column": "BIPauto",
+        "eur_column": "BIPauto",
+        "discovery_N": 51710
+      },
+      {
+        "id": 18,
+        "trait": "automobile speeding propensity",
+        "multi_column": "ASPauto",
+        "eur_column": "ASPauto",
+        "discovery_N": 404291
+      },
+      {
+        "id": 19,
+        "trait": "autism spectrum disorder",
+        "multi_column": "ASDauto",
+        "eur_column": "ASDauto",
+        "discovery_N": 46350
+      },
+      {
+        "id": 20,
+        "trait": "alcohol dependence",
+        "multi_column": "ALCDEP_METAauto",
+        "eur_column": "ALCDEP_EURauto",
+        "discovery_N": 46568
+      },
+      {
+        "id": 21,
+        "trait": "BMI",
+        "multi_column": "BMImulti",
+        "eur_column": "BMIeur4",
+        "discovery_N": 339224
+      },
+      {
+        "id": 22,
+        "trait": "depression",
+        "multi_column": "DEPmulti",
+        "eur_column": "DEPeur4",
+        "discovery_N": 500199
+      },
+      {
+        "id": 23,
+        "trait": "PTSD",
+        "multi_column": "PTSDmeta6",
+        "eur_column": "PTSDeur4",
+        "discovery_N": 174659
+      },
+      {
+        "id": 24,
+        "trait": "IQ",
+        "multi_column": "IQeur2",
+        "eur_column": "IQeur2",
+        "discovery_N": 269867
+      },
+      {
+        "id": 25,
+        "trait": "snoring",
+        "multi_column": "SNORINGeur1",
+        "eur_column": "SNORINGeur1",
+        "discovery_N": 359916
+      },
+      {
+        "id": 26,
+        "trait": "insomnia",
+        "multi_column": "INSOMNIAeur6",
+        "eur_column": "INSOMNIAeur6",
+        "discovery_N": 386533
+      },
+      {
+        "id": 27,
+        "trait": "major depressive disorder",
+        "multi_column": "MDDeur6",
+        "eur_column": "MDDeur6",
+        "discovery_N": 480359
+      },
+      {
+        "id": 28,
+        "trait": "educational attainment",
+        "multi_column": "EAeur1",
+        "eur_column": "EAeur1",
+        "discovery_N": 1131881
+      },
+      {
+        "id": 29,
+        "trait": "cognitive performance",
+        "multi_column": "CPeur2",
+        "eur_column": "CPeur2",
+        "discovery_N": 257841
+      },
+      {
+        "id": 30,
+        "trait": "ADHD",
+        "multi_column": "ADHDeur6",
+        "eur_column": "ADHDeur6",
+        "discovery_N": 53293
+      }
+    ]
+  },
+  "P9_waves": {
+    "baseline_eventname": "baseline_year_1_arm_1",
+    "baseline_covariates_filter_confirmed": true,
+    "tables_checked": ["pdem02", "acspsw03", "dhx01", "abcd_mx01", "abcd_lt01", "abcd_ssphp01", "abcd_sscey01", "abcd_fhxssp01", "abcd_asrs01", "abcd_rhds01", "abcd_ant01", "abcd_cbcls01"],
+    "longitudinal_outcomes_filter": "eventname != 'baseline_year_1_arm_1' (1_year_follow_up_y_arm_1, 2_year_follow_up_y_arm_1, 3_year_follow_up_y_arm_1)",
+    "post_baseline_covariates_used": false,
+    "summary": "All baseline predictors and covariates were measured strictly at baseline_year_1_arm_1. No post-baseline covariates were used."
+  },
+  "P13_fdr_family": {
+    "n_tests_per_family": 98,
+    "tested_brain_structures": 98,
+    "eur_fdr_max_abs_diff": 0,
+    "eur_bonf_max_abs_diff": 0,
+    "multi_fdr_max_abs_diff": 0,
+    "multi_bonf_max_abs_diff": 0,
+    "pooling_across_analyses": false,
+    "summary": "FDR and Bonferroni corrections in Tables S10 and S11 were computed across exactly 98 brain regions per analysis column, not pooled across analyses or sex strata."
+  },
+  "P14_trees": {
+    "trees_tested": [100, 500, 1000, 2000, 5000, 10000],
+    "primary_num_trees": 5000,
+    "was_200_trees_run": false,
+    "workspace_objects_found": ["eur_env_gen_10000tr", "eur_env_gen_1000tr", "eur_env_gen_100tr", "eur_env_gen_2000tr", "eur_env_gen_500tr", "multi_env_gen_10000tr", "multi_env_gen_1000tr", "multi_env_gen_100tr", "multi_env_gen_2000tr", "multi_env_gen_500tr"],
+    "summary": "200-tree sensitivity model was never executed; text mentioning 200 trees was a typographical error. Complete set of tested trees is 100, 500, 1000, 2000, 5000, 10000."
+  },
+  "P15_package_versions": {
+    "grf": "2.3.2",
+    "caret": "6.0-93",
+    "impute": "1.72.3",
+    "DMwR": "0.4.1",
+    "source_file": "analysis/first_author/readme.md"
+  }
+}

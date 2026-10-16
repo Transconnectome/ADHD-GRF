@@ -1,0 +1,7046 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-15T11:41:49Z",
+    "script": "analysis/run_refit_grf_models.R",
+    "r_version": "R version 4.4.3 (2025-02-28)",
+    "grf_version": "2.6.1",
+    "ensemble_seeds": [
+      101,
+      102,
+      103,
+      104,
+      105
+    ],
+    "trees_per_seed": 5000,
+    "total_trees": 25000,
+    "target_sample": "all",
+    "ate_method": "AIPW",
+    "p8_updated_at": "2026-10-16T01:00:33Z",
+    "p8_script": "analysis/run_p8_bmi_refit.R"
+  },
+  "primary_reference": {
+    "multiethnic_primary": {
+      "sample": "Multiethnic (data_multi_env_gen)",
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "ate": {
+        "estimate": 0.5352,
+        "std_error": 0.0333,
+        "t_stat": 16.056,
+        "p_value": 0,
+        "ci_95_lower": 0.4699,
+        "ci_95_upper": 0.6006
+      },
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0019,
+          "std_error": 0.1106,
+          "p_value": 2.5136e-19
+        },
+        "differential_prediction": {
+          "estimate": 2.1693,
+          "std_error": 0.7298,
+          "p_value": 0.0015
+        }
+      }
+    },
+    "european_smote_secondary": {
+      "sample": "European post-SMOTE (data_eur_env_gen)",
+      "n": 1239,
+      "n_treated": 620,
+      "n_control": 619,
+      "ate": {
+        "estimate": 0.5205,
+        "std_error": 0.0545,
+        "t_stat": 9.5482,
+        "p_value": 0,
+        "ci_95_lower": 0.4137,
+        "ci_95_upper": 0.6274
+      },
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0471,
+          "std_error": 0.1665,
+          "p_value": 2.2194e-10
+        },
+        "differential_prediction": {
+          "estimate": 2.545,
+          "std_error": 0.672,
+          "p_value": 0.0001
+        }
+      }
+    }
+  },
+  "P12_eur_non_oversampled": {
+    "sex_matched": {
+      "n": 726,
+      "n_treated": 363,
+      "n_control": 363,
+      "num_covariates": 62,
+      "elapsed_seconds": 20.2,
+      "ate": 0.5719,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 0.9668,
+          "std_error": 0.1209,
+          "t_stat": 7.9989,
+          "p_value": 2.4895e-15
+        },
+        "differential_prediction": {
+          "estimate": 1.8439,
+          "std_error": 0.9253,
+          "t_stat": 1.9928,
+          "p_value_one_sided": 0.0233,
+          "p_value_two_sided": 0.0467
+        }
+      },
+      "mde": 2.5908,
+      "heterogeneity_detected_p05": true,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.1009
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.039
+        },
+        {
+          "rank": 3,
+          "variable": "DRINKauto",
+          "importance": 0.038
+        },
+        {
+          "rank": 4,
+          "variable": "BMIeur4",
+          "importance": 0.0373
+        },
+        {
+          "rank": 5,
+          "variable": "DEPeur4",
+          "importance": 0.0363
+        },
+        {
+          "rank": 6,
+          "variable": "SNORINGeur1",
+          "importance": 0.0352
+        },
+        {
+          "rank": 7,
+          "variable": "EAeur1",
+          "importance": 0.0331
+        },
+        {
+          "rank": 8,
+          "variable": "BIPauto",
+          "importance": 0.0308
+        },
+        {
+          "rank": 9,
+          "variable": "ANXIETYauto",
+          "importance": 0.0303
+        },
+        {
+          "rank": 10,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0302
+        },
+        {
+          "rank": 11,
+          "variable": "PTSDeur4",
+          "importance": 0.0279
+        },
+        {
+          "rank": 12,
+          "variable": "CROSSauto",
+          "importance": 0.027
+        },
+        {
+          "rank": 13,
+          "variable": "maternal_age",
+          "importance": 0.0269
+        },
+        {
+          "rank": 14,
+          "variable": "SCZ_EURauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 15,
+          "variable": "neo_illness",
+          "importance": 0.0261
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.1009
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.039
+        },
+        {
+          "rank": 3,
+          "variable": "DRINKauto",
+          "importance": 0.038
+        },
+        {
+          "rank": 4,
+          "variable": "BMIeur4",
+          "importance": 0.0373
+        },
+        {
+          "rank": 5,
+          "variable": "DEPeur4",
+          "importance": 0.0363
+        },
+        {
+          "rank": 6,
+          "variable": "SNORINGeur1",
+          "importance": 0.0352
+        },
+        {
+          "rank": 7,
+          "variable": "EAeur1",
+          "importance": 0.0331
+        },
+        {
+          "rank": 8,
+          "variable": "BIPauto",
+          "importance": 0.0308
+        },
+        {
+          "rank": 9,
+          "variable": "ANXIETYauto",
+          "importance": 0.0303
+        },
+        {
+          "rank": 10,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0302
+        },
+        {
+          "rank": 11,
+          "variable": "PTSDeur4",
+          "importance": 0.0279
+        },
+        {
+          "rank": 12,
+          "variable": "CROSSauto",
+          "importance": 0.027
+        },
+        {
+          "rank": 13,
+          "variable": "maternal_age",
+          "importance": 0.0269
+        },
+        {
+          "rank": 14,
+          "variable": "SCZ_EURauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 15,
+          "variable": "neo_illness",
+          "importance": 0.0261
+        },
+        {
+          "rank": 16,
+          "variable": "OCDauto",
+          "importance": 0.0256
+        },
+        {
+          "rank": 17,
+          "variable": "IQeur2",
+          "importance": 0.0243
+        },
+        {
+          "rank": 18,
+          "variable": "pollution",
+          "importance": 0.0241
+        },
+        {
+          "rank": 19,
+          "variable": "WORRYauto",
+          "importance": 0.0236
+        },
+        {
+          "rank": 20,
+          "variable": "ADHDeur6",
+          "importance": 0.023
+        },
+        {
+          "rank": 21,
+          "variable": "MDDeur6",
+          "importance": 0.0229
+        },
+        {
+          "rank": 22,
+          "variable": "EDauto",
+          "importance": 0.0222
+        },
+        {
+          "rank": 23,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0217
+        },
+        {
+          "rank": 24,
+          "variable": "CANNABISauto",
+          "importance": 0.0213
+        },
+        {
+          "rank": 25,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0206
+        },
+        {
+          "rank": 26,
+          "variable": "paternal_age",
+          "importance": 0.0189
+        },
+        {
+          "rank": 27,
+          "variable": "ASPauto",
+          "importance": 0.0171
+        },
+        {
+          "rank": 28,
+          "variable": "GHappiHealth6",
+          "importance": 0.0169
+        },
+        {
+          "rank": 29,
+          "variable": "ALCDEP_EURauto",
+          "importance": 0.0162
+        },
+        {
+          "rank": 30,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0161
+        },
+        {
+          "rank": 31,
+          "variable": "RISK4PCauto",
+          "importance": 0.0159
+        },
+        {
+          "rank": 32,
+          "variable": "breastfeeding",
+          "importance": 0.0141
+        },
+        {
+          "rank": 33,
+          "variable": "CPeur2",
+          "importance": 0.0127
+        },
+        {
+          "rank": 34,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0126
+        },
+        {
+          "rank": 35,
+          "variable": "Happieur4",
+          "importance": 0.0103
+        },
+        {
+          "rank": 36,
+          "variable": "RISKTOLauto",
+          "importance": 0.0088
+        },
+        {
+          "rank": 37,
+          "variable": "ASDauto",
+          "importance": 0.0079
+        },
+        {
+          "rank": 38,
+          "variable": "GHappieur2",
+          "importance": 0.0075
+        },
+        {
+          "rank": 39,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0072
+        },
+        {
+          "rank": 40,
+          "variable": "allergies",
+          "importance": 0.0069
+        },
+        {
+          "rank": 41,
+          "variable": "interview_age",
+          "importance": 0.0066
+        },
+        {
+          "rank": 42,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0065
+        },
+        {
+          "rank": 43,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0057
+        },
+        {
+          "rank": 44,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0048
+        },
+        {
+          "rank": 45,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0027
+        },
+        {
+          "rank": 46,
+          "variable": "head_injury",
+          "importance": 0.0023
+        },
+        {
+          "rank": 47,
+          "variable": "sex",
+          "importance": 0.0018
+        },
+        {
+          "rank": 48,
+          "variable": "preg_comp",
+          "importance": 0.0017
+        },
+        {
+          "rank": 49,
+          "variable": "alcohol",
+          "importance": 0.0013
+        },
+        {
+          "rank": 50,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0012
+        },
+        {
+          "rank": 51,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0009
+        },
+        {
+          "rank": 52,
+          "variable": "tobacco",
+          "importance": 0.0003
+        },
+        {
+          "rank": 53,
+          "variable": "preterm_birth",
+          "importance": 0.0003
+        },
+        {
+          "rank": 54,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0001
+        },
+        {
+          "rank": 55,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0001
+        },
+        {
+          "rank": 56,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0001
+        },
+        {
+          "rank": 57,
+          "variable": "marijuana",
+          "importance": 6e-06
+        },
+        {
+          "rank": 58,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 4e-06
+        },
+        {
+          "rank": 59,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 60,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 61,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        }
+      ],
+      "model_name": "European Non-Oversampled: Sex-Matched Controls",
+      "sampling_seed": 1,
+      "ate_details": {
+        "estimate": 0.5719,
+        "std_error": 0.0462,
+        "t_stat": 12.3861,
+        "p_value": 0,
+        "ci_95_lower": 0.4814,
+        "ci_95_upper": 0.6624
+      },
+      "se": 0.0462
+    },
+    "full_controls": {
+      "n": 6106,
+      "n_treated": 363,
+      "n_control": 5743,
+      "num_covariates": 62,
+      "elapsed_seconds": 145.49,
+      "ate": 0.5298,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0984,
+          "std_error": 0.1354,
+          "t_stat": 8.1132,
+          "p_value": 2.9553e-16
+        },
+        "differential_prediction": {
+          "estimate": 1.1038,
+          "std_error": 0.5395,
+          "t_stat": 2.0459,
+          "p_value_one_sided": 0.0204,
+          "p_value_two_sided": 0.0408
+        }
+      },
+      "mde": 1.5106,
+      "heterogeneity_detected_p05": true,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.2595
+        },
+        {
+          "rank": 2,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0999
+        },
+        {
+          "rank": 3,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0805
+        },
+        {
+          "rank": 4,
+          "variable": "pollution",
+          "importance": 0.0424
+        },
+        {
+          "rank": 5,
+          "variable": "SCZ_EURauto",
+          "importance": 0.041
+        },
+        {
+          "rank": 6,
+          "variable": "CPeur2",
+          "importance": 0.0328
+        },
+        {
+          "rank": 7,
+          "variable": "BIPauto",
+          "importance": 0.0237
+        },
+        {
+          "rank": 8,
+          "variable": "ASPauto",
+          "importance": 0.0217
+        },
+        {
+          "rank": 9,
+          "variable": "neo_illness",
+          "importance": 0.0217
+        },
+        {
+          "rank": 10,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0195
+        },
+        {
+          "rank": 11,
+          "variable": "paternal_age",
+          "importance": 0.0192
+        },
+        {
+          "rank": 12,
+          "variable": "maternal_age",
+          "importance": 0.0189
+        },
+        {
+          "rank": 13,
+          "variable": "BMIeur4",
+          "importance": 0.0183
+        },
+        {
+          "rank": 14,
+          "variable": "WORRYauto",
+          "importance": 0.0171
+        },
+        {
+          "rank": 15,
+          "variable": "RISKTOLauto",
+          "importance": 0.0164
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.2595
+        },
+        {
+          "rank": 2,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0999
+        },
+        {
+          "rank": 3,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0805
+        },
+        {
+          "rank": 4,
+          "variable": "pollution",
+          "importance": 0.0424
+        },
+        {
+          "rank": 5,
+          "variable": "SCZ_EURauto",
+          "importance": 0.041
+        },
+        {
+          "rank": 6,
+          "variable": "CPeur2",
+          "importance": 0.0328
+        },
+        {
+          "rank": 7,
+          "variable": "BIPauto",
+          "importance": 0.0237
+        },
+        {
+          "rank": 8,
+          "variable": "ASPauto",
+          "importance": 0.0217
+        },
+        {
+          "rank": 9,
+          "variable": "neo_illness",
+          "importance": 0.0217
+        },
+        {
+          "rank": 10,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0195
+        },
+        {
+          "rank": 11,
+          "variable": "paternal_age",
+          "importance": 0.0192
+        },
+        {
+          "rank": 12,
+          "variable": "maternal_age",
+          "importance": 0.0189
+        },
+        {
+          "rank": 13,
+          "variable": "BMIeur4",
+          "importance": 0.0183
+        },
+        {
+          "rank": 14,
+          "variable": "WORRYauto",
+          "importance": 0.0171
+        },
+        {
+          "rank": 15,
+          "variable": "RISKTOLauto",
+          "importance": 0.0164
+        },
+        {
+          "rank": 16,
+          "variable": "GHappiHealth6",
+          "importance": 0.0157
+        },
+        {
+          "rank": 17,
+          "variable": "RISK4PCauto",
+          "importance": 0.0147
+        },
+        {
+          "rank": 18,
+          "variable": "SMOKERauto",
+          "importance": 0.0146
+        },
+        {
+          "rank": 19,
+          "variable": "IQeur2",
+          "importance": 0.0138
+        },
+        {
+          "rank": 20,
+          "variable": "EDauto",
+          "importance": 0.0133
+        },
+        {
+          "rank": 21,
+          "variable": "OCDauto",
+          "importance": 0.0133
+        },
+        {
+          "rank": 22,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.013
+        },
+        {
+          "rank": 23,
+          "variable": "breastfeeding",
+          "importance": 0.0118
+        },
+        {
+          "rank": 24,
+          "variable": "CANNABISauto",
+          "importance": 0.0111
+        },
+        {
+          "rank": 25,
+          "variable": "DEPeur4",
+          "importance": 0.0089
+        },
+        {
+          "rank": 26,
+          "variable": "ALCDEP_EURauto",
+          "importance": 0.0088
+        },
+        {
+          "rank": 27,
+          "variable": "ASDauto",
+          "importance": 0.0085
+        },
+        {
+          "rank": 28,
+          "variable": "PTSDeur4",
+          "importance": 0.008
+        },
+        {
+          "rank": 29,
+          "variable": "marijuana",
+          "importance": 0.0079
+        },
+        {
+          "rank": 30,
+          "variable": "ADHDeur6",
+          "importance": 0.0079
+        },
+        {
+          "rank": 31,
+          "variable": "Happieur4",
+          "importance": 0.0073
+        },
+        {
+          "rank": 32,
+          "variable": "SNORINGeur1",
+          "importance": 0.007
+        },
+        {
+          "rank": 33,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0066
+        },
+        {
+          "rank": 34,
+          "variable": "MDDeur6",
+          "importance": 0.0064
+        },
+        {
+          "rank": 35,
+          "variable": "ANXIETYauto",
+          "importance": 0.0063
+        },
+        {
+          "rank": 36,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0057
+        },
+        {
+          "rank": 37,
+          "variable": "GHappieur2",
+          "importance": 0.0051
+        },
+        {
+          "rank": 38,
+          "variable": "DRINKauto",
+          "importance": 0.0045
+        },
+        {
+          "rank": 39,
+          "variable": "coc_crack",
+          "importance": 0.0044
+        },
+        {
+          "rank": 40,
+          "variable": "CROSSauto",
+          "importance": 0.0044
+        },
+        {
+          "rank": 41,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0041
+        },
+        {
+          "rank": 42,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0036
+        },
+        {
+          "rank": 43,
+          "variable": "head_injury",
+          "importance": 0.0036
+        },
+        {
+          "rank": 44,
+          "variable": "EAeur1",
+          "importance": 0.0033
+        },
+        {
+          "rank": 45,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0033
+        },
+        {
+          "rank": 46,
+          "variable": "tobacco",
+          "importance": 0.0031
+        },
+        {
+          "rank": 47,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0028
+        },
+        {
+          "rank": 48,
+          "variable": "preg_comp",
+          "importance": 0.0026
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0024
+        },
+        {
+          "rank": 50,
+          "variable": "interview_age",
+          "importance": 0.0024
+        },
+        {
+          "rank": 51,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0024
+        },
+        {
+          "rank": 52,
+          "variable": "allergies",
+          "importance": 0.0012
+        },
+        {
+          "rank": 53,
+          "variable": "sex",
+          "importance": 0.0008
+        },
+        {
+          "rank": 54,
+          "variable": "preeclampsia",
+          "importance": 0.0007
+        },
+        {
+          "rank": 55,
+          "variable": "preterm_birth",
+          "importance": 0.0006
+        },
+        {
+          "rank": 56,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0005
+        },
+        {
+          "rank": 57,
+          "variable": "alcohol",
+          "importance": 0.0005
+        },
+        {
+          "rank": 58,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0003
+        },
+        {
+          "rank": 59,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0002
+        },
+        {
+          "rank": 60,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0.0002
+        },
+        {
+          "rank": 61,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 2e-06
+        },
+        {
+          "rank": 62,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        }
+      ],
+      "model_name": "European Non-Oversampled: Full Controls",
+      "ate_details": {
+        "estimate": 0.5298,
+        "std_error": 0.0557,
+        "t_stat": 9.5166,
+        "p_value": 0,
+        "ci_95_lower": 0.4207,
+        "ci_95_upper": 0.6389
+      },
+      "se": 0.0557
+    }
+  },
+  "P10_longitudinal_1y_2y_3y": {
+    "model_1y": {
+      "n": 1173,
+      "n_treated": 582,
+      "n_control": 591,
+      "num_covariates": 67,
+      "elapsed_seconds": 28,
+      "ate": 0.1503,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.2301,
+          "std_error": 0.4414,
+          "t_stat": 2.787,
+          "p_value": 0.0027
+        },
+        "differential_prediction": {
+          "estimate": 1.7579,
+          "std_error": 0.9981,
+          "t_stat": 1.7612,
+          "p_value_one_sided": 0.0392,
+          "p_value_two_sided": 0.0785
+        }
+      },
+      "mde": 2.7947,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "child_adhd_baseline",
+          "importance": 0.1318
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0847
+        },
+        {
+          "rank": 3,
+          "variable": "sleep_prob",
+          "importance": 0.0706
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0373
+        },
+        {
+          "rank": 5,
+          "variable": "EDauto",
+          "importance": 0.0358
+        },
+        {
+          "rank": 6,
+          "variable": "pollution",
+          "importance": 0.0347
+        },
+        {
+          "rank": 7,
+          "variable": "OCDauto",
+          "importance": 0.0342
+        },
+        {
+          "rank": 8,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0341
+        },
+        {
+          "rank": 9,
+          "variable": "GHappiHealth6",
+          "importance": 0.0315
+        },
+        {
+          "rank": 10,
+          "variable": "Happieur4",
+          "importance": 0.031
+        },
+        {
+          "rank": 11,
+          "variable": "WORRYauto",
+          "importance": 0.0273
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0246
+        },
+        {
+          "rank": 13,
+          "variable": "CANNABISauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.0237
+        },
+        {
+          "rank": 15,
+          "variable": "paternal_age",
+          "importance": 0.0234
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "child_adhd_baseline",
+          "importance": 0.1318
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0847
+        },
+        {
+          "rank": 3,
+          "variable": "sleep_prob",
+          "importance": 0.0706
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0373
+        },
+        {
+          "rank": 5,
+          "variable": "EDauto",
+          "importance": 0.0358
+        },
+        {
+          "rank": 6,
+          "variable": "pollution",
+          "importance": 0.0347
+        },
+        {
+          "rank": 7,
+          "variable": "OCDauto",
+          "importance": 0.0342
+        },
+        {
+          "rank": 8,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0341
+        },
+        {
+          "rank": 9,
+          "variable": "GHappiHealth6",
+          "importance": 0.0315
+        },
+        {
+          "rank": 10,
+          "variable": "Happieur4",
+          "importance": 0.031
+        },
+        {
+          "rank": 11,
+          "variable": "WORRYauto",
+          "importance": 0.0273
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0246
+        },
+        {
+          "rank": 13,
+          "variable": "CANNABISauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.0237
+        },
+        {
+          "rank": 15,
+          "variable": "paternal_age",
+          "importance": 0.0234
+        },
+        {
+          "rank": 16,
+          "variable": "IQeur2",
+          "importance": 0.0229
+        },
+        {
+          "rank": 17,
+          "variable": "breastfeeding",
+          "importance": 0.022
+        },
+        {
+          "rank": 18,
+          "variable": "SMOKERauto",
+          "importance": 0.0198
+        },
+        {
+          "rank": 19,
+          "variable": "CPeur2",
+          "importance": 0.0185
+        },
+        {
+          "rank": 20,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0183
+        },
+        {
+          "rank": 21,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0183
+        },
+        {
+          "rank": 22,
+          "variable": "RISKTOLauto",
+          "importance": 0.0163
+        },
+        {
+          "rank": 23,
+          "variable": "SNORINGeur1",
+          "importance": 0.0161
+        },
+        {
+          "rank": 24,
+          "variable": "ASPauto",
+          "importance": 0.0159
+        },
+        {
+          "rank": 25,
+          "variable": "neo_illness",
+          "importance": 0.0147
+        },
+        {
+          "rank": 26,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.013
+        },
+        {
+          "rank": 27,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0125
+        },
+        {
+          "rank": 28,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0116
+        },
+        {
+          "rank": 29,
+          "variable": "PTSDmeta6",
+          "importance": 0.0114
+        },
+        {
+          "rank": 30,
+          "variable": "DRINKauto",
+          "importance": 0.0113
+        },
+        {
+          "rank": 31,
+          "variable": "ADHDeur6",
+          "importance": 0.0112
+        },
+        {
+          "rank": 32,
+          "variable": "ASDauto",
+          "importance": 0.0109
+        },
+        {
+          "rank": 33,
+          "variable": "ANXIETYauto",
+          "importance": 0.0102
+        },
+        {
+          "rank": 34,
+          "variable": "BIPauto",
+          "importance": 0.0101
+        },
+        {
+          "rank": 35,
+          "variable": "maternal_age",
+          "importance": 0.0095
+        },
+        {
+          "rank": 36,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0093
+        },
+        {
+          "rank": 37,
+          "variable": "CROSSauto",
+          "importance": 0.0074
+        },
+        {
+          "rank": 38,
+          "variable": "RISK4PCauto",
+          "importance": 0.0062
+        },
+        {
+          "rank": 39,
+          "variable": "EAeur1",
+          "importance": 0.0061
+        },
+        {
+          "rank": 40,
+          "variable": "interview_age",
+          "importance": 0.0059
+        },
+        {
+          "rank": 41,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0055
+        },
+        {
+          "rank": 42,
+          "variable": "preg_comp",
+          "importance": 0.0037
+        },
+        {
+          "rank": 43,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0022
+        },
+        {
+          "rank": 44,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0017
+        },
+        {
+          "rank": 45,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0016
+        },
+        {
+          "rank": 46,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0012
+        },
+        {
+          "rank": 47,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.001
+        },
+        {
+          "rank": 48,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0008
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0007
+        },
+        {
+          "rank": 50,
+          "variable": "sex",
+          "importance": 0.0007
+        },
+        {
+          "rank": 51,
+          "variable": "head_injury",
+          "importance": 0.0006
+        },
+        {
+          "rank": 52,
+          "variable": "alcohol",
+          "importance": 0.0004
+        },
+        {
+          "rank": 53,
+          "variable": "allergies",
+          "importance": 0.0004
+        },
+        {
+          "rank": 54,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0003
+        },
+        {
+          "rank": 55,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0003
+        },
+        {
+          "rank": 56,
+          "variable": "preterm_birth",
+          "importance": 0.0002
+        },
+        {
+          "rank": 57,
+          "variable": "tobacco",
+          "importance": 0.0001
+        },
+        {
+          "rank": 58,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0001
+        },
+        {
+          "rank": 59,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0001
+        },
+        {
+          "rank": 60,
+          "variable": "marijuana",
+          "importance": 0.0001
+        },
+        {
+          "rank": 61,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 63,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 1e-06
+        },
+        {
+          "rank": 64,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 67,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "year": "1y",
+      "ate_details": {
+        "estimate": 0.1503,
+        "std_error": 0.037,
+        "t_stat": 4.0588,
+        "p_value": 0,
+        "ci_95_lower": 0.0777,
+        "ci_95_upper": 0.2229
+      },
+      "se": 0.037
+    },
+    "model_2y": {
+      "n": 872,
+      "n_treated": 414,
+      "n_control": 458,
+      "num_covariates": 67,
+      "elapsed_seconds": 20.24,
+      "ate": 0.1673,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0912,
+          "std_error": 0.4504,
+          "t_stat": 2.4229,
+          "p_value": 0.0078
+        },
+        "differential_prediction": {
+          "estimate": 0.9972,
+          "std_error": 1.4815,
+          "t_stat": 0.6731,
+          "p_value_one_sided": 0.2505,
+          "p_value_two_sided": 0.501
+        }
+      },
+      "mde": 4.1481,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "SMOKERauto",
+          "importance": 0.0754
+        },
+        {
+          "rank": 2,
+          "variable": "sleep_prob",
+          "importance": 0.0577
+        },
+        {
+          "rank": 3,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0564
+        },
+        {
+          "rank": 4,
+          "variable": "EDauto",
+          "importance": 0.0539
+        },
+        {
+          "rank": 5,
+          "variable": "OCDauto",
+          "importance": 0.0489
+        },
+        {
+          "rank": 6,
+          "variable": "SNORINGeur1",
+          "importance": 0.0413
+        },
+        {
+          "rank": 7,
+          "variable": "GHappieur2",
+          "importance": 0.0331
+        },
+        {
+          "rank": 8,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0328
+        },
+        {
+          "rank": 9,
+          "variable": "RISK4PCauto",
+          "importance": 0.0308
+        },
+        {
+          "rank": 10,
+          "variable": "ASDauto",
+          "importance": 0.0279
+        },
+        {
+          "rank": 11,
+          "variable": "ASPauto",
+          "importance": 0.0248
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0236
+        },
+        {
+          "rank": 13,
+          "variable": "MDDeur6",
+          "importance": 0.023
+        },
+        {
+          "rank": 14,
+          "variable": "Happieur4",
+          "importance": 0.0226
+        },
+        {
+          "rank": 15,
+          "variable": "WORRYauto",
+          "importance": 0.0223
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "SMOKERauto",
+          "importance": 0.0754
+        },
+        {
+          "rank": 2,
+          "variable": "sleep_prob",
+          "importance": 0.0577
+        },
+        {
+          "rank": 3,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0564
+        },
+        {
+          "rank": 4,
+          "variable": "EDauto",
+          "importance": 0.0539
+        },
+        {
+          "rank": 5,
+          "variable": "OCDauto",
+          "importance": 0.0489
+        },
+        {
+          "rank": 6,
+          "variable": "SNORINGeur1",
+          "importance": 0.0413
+        },
+        {
+          "rank": 7,
+          "variable": "GHappieur2",
+          "importance": 0.0331
+        },
+        {
+          "rank": 8,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0328
+        },
+        {
+          "rank": 9,
+          "variable": "RISK4PCauto",
+          "importance": 0.0308
+        },
+        {
+          "rank": 10,
+          "variable": "ASDauto",
+          "importance": 0.0279
+        },
+        {
+          "rank": 11,
+          "variable": "ASPauto",
+          "importance": 0.0248
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0236
+        },
+        {
+          "rank": 13,
+          "variable": "MDDeur6",
+          "importance": 0.023
+        },
+        {
+          "rank": 14,
+          "variable": "Happieur4",
+          "importance": 0.0226
+        },
+        {
+          "rank": 15,
+          "variable": "WORRYauto",
+          "importance": 0.0223
+        },
+        {
+          "rank": 16,
+          "variable": "maternal_age",
+          "importance": 0.0221
+        },
+        {
+          "rank": 17,
+          "variable": "DRINKauto",
+          "importance": 0.0218
+        },
+        {
+          "rank": 18,
+          "variable": "CANNABISauto",
+          "importance": 0.0217
+        },
+        {
+          "rank": 19,
+          "variable": "BIPauto",
+          "importance": 0.0209
+        },
+        {
+          "rank": 20,
+          "variable": "ADHDeur6",
+          "importance": 0.0195
+        },
+        {
+          "rank": 21,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0189
+        },
+        {
+          "rank": 22,
+          "variable": "GHappiHealth6",
+          "importance": 0.0186
+        },
+        {
+          "rank": 23,
+          "variable": "preg_comp",
+          "importance": 0.0174
+        },
+        {
+          "rank": 24,
+          "variable": "EAeur1",
+          "importance": 0.0173
+        },
+        {
+          "rank": 25,
+          "variable": "PTSDmeta6",
+          "importance": 0.0169
+        },
+        {
+          "rank": 26,
+          "variable": "IQeur2",
+          "importance": 0.0168
+        },
+        {
+          "rank": 27,
+          "variable": "interview_age",
+          "importance": 0.0167
+        },
+        {
+          "rank": 28,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0157
+        },
+        {
+          "rank": 29,
+          "variable": "paternal_age",
+          "importance": 0.0138
+        },
+        {
+          "rank": 30,
+          "variable": "pollution",
+          "importance": 0.0137
+        },
+        {
+          "rank": 31,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0134
+        },
+        {
+          "rank": 32,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0122
+        },
+        {
+          "rank": 33,
+          "variable": "RISKTOLauto",
+          "importance": 0.0117
+        },
+        {
+          "rank": 34,
+          "variable": "CROSSauto",
+          "importance": 0.0115
+        },
+        {
+          "rank": 35,
+          "variable": "BMImulti",
+          "importance": 0.0114
+        },
+        {
+          "rank": 36,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0112
+        },
+        {
+          "rank": 37,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0092
+        },
+        {
+          "rank": 38,
+          "variable": "DEPmulti",
+          "importance": 0.0089
+        },
+        {
+          "rank": 39,
+          "variable": "ANXIETYauto",
+          "importance": 0.0078
+        },
+        {
+          "rank": 40,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0062
+        },
+        {
+          "rank": 41,
+          "variable": "breastfeeding",
+          "importance": 0.006
+        },
+        {
+          "rank": 42,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0054
+        },
+        {
+          "rank": 43,
+          "variable": "neo_illness",
+          "importance": 0.0053
+        },
+        {
+          "rank": 44,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0047
+        },
+        {
+          "rank": 45,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0044
+        },
+        {
+          "rank": 46,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0038
+        },
+        {
+          "rank": 47,
+          "variable": "allergies",
+          "importance": 0.0034
+        },
+        {
+          "rank": 48,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0033
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.003
+        },
+        {
+          "rank": 50,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.003
+        },
+        {
+          "rank": 51,
+          "variable": "sex",
+          "importance": 0.0025
+        },
+        {
+          "rank": 52,
+          "variable": "alcohol",
+          "importance": 0.0013
+        },
+        {
+          "rank": 53,
+          "variable": "marijuana",
+          "importance": 0.001
+        },
+        {
+          "rank": 54,
+          "variable": "preeclampsia",
+          "importance": 0.0006
+        },
+        {
+          "rank": 55,
+          "variable": "head_injury",
+          "importance": 0.0005
+        },
+        {
+          "rank": 56,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0005
+        },
+        {
+          "rank": 57,
+          "variable": "preterm_birth",
+          "importance": 0.0004
+        },
+        {
+          "rank": 58,
+          "variable": "tobacco",
+          "importance": 0.0004
+        },
+        {
+          "rank": 59,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0004
+        },
+        {
+          "rank": 60,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0.0003
+        },
+        {
+          "rank": 61,
+          "variable": "ethnic_g_AFR",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "ethnic_g_EUR",
+          "importance": 0
+        },
+        {
+          "rank": 63,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 1e-06
+        },
+        {
+          "rank": 64,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 67,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "year": "2y",
+      "ate_details": {
+        "estimate": 0.1673,
+        "std_error": 0.0431,
+        "t_stat": 3.8822,
+        "p_value": 0.0001,
+        "ci_95_lower": 0.0829,
+        "ci_95_upper": 0.2518
+      },
+      "se": 0.0431
+    },
+    "model_3y": {
+      "n": 687,
+      "n_treated": 328,
+      "n_control": 359,
+      "num_covariates": 67,
+      "elapsed_seconds": 19.35,
+      "ate": 0.1345,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.1735,
+          "std_error": 0.482,
+          "t_stat": 2.4349,
+          "p_value": 0.0076
+        },
+        "differential_prediction": {
+          "estimate": -7.1769,
+          "std_error": 2.4226,
+          "t_stat": -2.9624,
+          "p_value_one_sided": 0.9984,
+          "p_value_two_sided": 0.0032
+        }
+      },
+      "mde": 6.7834,
+      "heterogeneity_detected_p05": true,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0503
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0501
+        },
+        {
+          "rank": 3,
+          "variable": "RISKTOLauto",
+          "importance": 0.0477
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0463
+        },
+        {
+          "rank": 5,
+          "variable": "pollution",
+          "importance": 0.0441
+        },
+        {
+          "rank": 6,
+          "variable": "OCDauto",
+          "importance": 0.0382
+        },
+        {
+          "rank": 7,
+          "variable": "Happieur4",
+          "importance": 0.0349
+        },
+        {
+          "rank": 8,
+          "variable": "EDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 9,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.028
+        },
+        {
+          "rank": 10,
+          "variable": "SNORINGeur1",
+          "importance": 0.0273
+        },
+        {
+          "rank": 11,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0265
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0254
+        },
+        {
+          "rank": 13,
+          "variable": "BIPauto",
+          "importance": 0.0249
+        },
+        {
+          "rank": 14,
+          "variable": "ASPauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 15,
+          "variable": "SCZ_METAauto",
+          "importance": 0.024
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0503
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0501
+        },
+        {
+          "rank": 3,
+          "variable": "RISKTOLauto",
+          "importance": 0.0477
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0463
+        },
+        {
+          "rank": 5,
+          "variable": "pollution",
+          "importance": 0.0441
+        },
+        {
+          "rank": 6,
+          "variable": "OCDauto",
+          "importance": 0.0382
+        },
+        {
+          "rank": 7,
+          "variable": "Happieur4",
+          "importance": 0.0349
+        },
+        {
+          "rank": 8,
+          "variable": "EDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 9,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.028
+        },
+        {
+          "rank": 10,
+          "variable": "SNORINGeur1",
+          "importance": 0.0273
+        },
+        {
+          "rank": 11,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0265
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0254
+        },
+        {
+          "rank": 13,
+          "variable": "BIPauto",
+          "importance": 0.0249
+        },
+        {
+          "rank": 14,
+          "variable": "ASPauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 15,
+          "variable": "SCZ_METAauto",
+          "importance": 0.024
+        },
+        {
+          "rank": 16,
+          "variable": "WORRYauto",
+          "importance": 0.0234
+        },
+        {
+          "rank": 17,
+          "variable": "DEPmulti",
+          "importance": 0.0232
+        },
+        {
+          "rank": 18,
+          "variable": "RISK4PCauto",
+          "importance": 0.0221
+        },
+        {
+          "rank": 19,
+          "variable": "ADHDeur6",
+          "importance": 0.0204
+        },
+        {
+          "rank": 20,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0203
+        },
+        {
+          "rank": 21,
+          "variable": "IQeur2",
+          "importance": 0.0201
+        },
+        {
+          "rank": 22,
+          "variable": "ASDauto",
+          "importance": 0.0196
+        },
+        {
+          "rank": 23,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0192
+        },
+        {
+          "rank": 24,
+          "variable": "interview_age",
+          "importance": 0.0189
+        },
+        {
+          "rank": 25,
+          "variable": "CANNABISauto",
+          "importance": 0.0187
+        },
+        {
+          "rank": 26,
+          "variable": "paternal_age",
+          "importance": 0.0183
+        },
+        {
+          "rank": 27,
+          "variable": "BMImulti",
+          "importance": 0.0168
+        },
+        {
+          "rank": 28,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0151
+        },
+        {
+          "rank": 29,
+          "variable": "EAeur1",
+          "importance": 0.0148
+        },
+        {
+          "rank": 30,
+          "variable": "CROSSauto",
+          "importance": 0.0148
+        },
+        {
+          "rank": 31,
+          "variable": "neo_illness",
+          "importance": 0.0147
+        },
+        {
+          "rank": 32,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0133
+        },
+        {
+          "rank": 33,
+          "variable": "breastfeeding",
+          "importance": 0.0131
+        },
+        {
+          "rank": 34,
+          "variable": "PTSDmeta6",
+          "importance": 0.0123
+        },
+        {
+          "rank": 35,
+          "variable": "GHappiHealth6",
+          "importance": 0.012
+        },
+        {
+          "rank": 36,
+          "variable": "maternal_age",
+          "importance": 0.0116
+        },
+        {
+          "rank": 37,
+          "variable": "preeclampsia",
+          "importance": 0.0114
+        },
+        {
+          "rank": 38,
+          "variable": "MDDeur6",
+          "importance": 0.0104
+        },
+        {
+          "rank": 39,
+          "variable": "DRINKauto",
+          "importance": 0.0101
+        },
+        {
+          "rank": 40,
+          "variable": "ANXIETYauto",
+          "importance": 0.0092
+        },
+        {
+          "rank": 41,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0084
+        },
+        {
+          "rank": 42,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0082
+        },
+        {
+          "rank": 43,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0072
+        },
+        {
+          "rank": 44,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0071
+        },
+        {
+          "rank": 45,
+          "variable": "preg_comp",
+          "importance": 0.0069
+        },
+        {
+          "rank": 46,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0063
+        },
+        {
+          "rank": 47,
+          "variable": "allergies",
+          "importance": 0.0047
+        },
+        {
+          "rank": 48,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0045
+        },
+        {
+          "rank": 49,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0042
+        },
+        {
+          "rank": 50,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0033
+        },
+        {
+          "rank": 51,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.003
+        },
+        {
+          "rank": 52,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.002
+        },
+        {
+          "rank": 53,
+          "variable": "head_injury",
+          "importance": 0.0018
+        },
+        {
+          "rank": 54,
+          "variable": "preterm_birth",
+          "importance": 0.0017
+        },
+        {
+          "rank": 55,
+          "variable": "sex",
+          "importance": 0.0012
+        },
+        {
+          "rank": 56,
+          "variable": "alcohol",
+          "importance": 0.0011
+        },
+        {
+          "rank": 57,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0006
+        },
+        {
+          "rank": 58,
+          "variable": "tobacco",
+          "importance": 0.0005
+        },
+        {
+          "rank": 59,
+          "variable": "marijuana",
+          "importance": 0.0001
+        },
+        {
+          "rank": 60,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0
+        },
+        {
+          "rank": 61,
+          "variable": "ethnic_g_EUR",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "ethnic_g_AFR",
+          "importance": 0
+        },
+        {
+          "rank": 63,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 64,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 67,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "year": "3y",
+      "ate_details": {
+        "estimate": 0.1345,
+        "std_error": 0.0718,
+        "t_stat": 1.8726,
+        "p_value": 0.0611,
+        "ci_95_lower": -0.0063,
+        "ci_95_upper": 0.2753
+      },
+      "se": 0.0718
+    },
+    "unadjusted_reference": {
+      "unadjusted_1y": {
+        "n": 1173,
+        "ate": 0.5203,
+        "se": 0.048,
+        "cal_diff": 1.8269,
+        "cal_diff_se": 0.8198
+      },
+      "unadjusted_2y": {
+        "n": 872,
+        "ate": 0.4551,
+        "se": 0.0594,
+        "cal_diff": 1.2662,
+        "cal_diff_se": 1.4238
+      },
+      "unadjusted_3y": {
+        "n": 687,
+        "ate": 0.3923,
+        "se": 0.094,
+        "cal_diff": -4.6622,
+        "cal_diff_se": 2.2452
+      }
+    },
+    "1y": {
+      "n": 1173,
+      "n_treated": 582,
+      "n_control": 591,
+      "num_covariates": 67,
+      "elapsed_seconds": 28,
+      "ate": 0.1503,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.2301,
+          "std_error": 0.4414,
+          "t_stat": 2.787,
+          "p_value": 0.0027
+        },
+        "differential_prediction": {
+          "estimate": 1.7579,
+          "std_error": 0.9981,
+          "t_stat": 1.7612,
+          "p_value_one_sided": 0.0392,
+          "p_value_two_sided": 0.0785
+        }
+      },
+      "mde": 2.7947,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "child_adhd_baseline",
+          "importance": 0.1318
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0847
+        },
+        {
+          "rank": 3,
+          "variable": "sleep_prob",
+          "importance": 0.0706
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0373
+        },
+        {
+          "rank": 5,
+          "variable": "EDauto",
+          "importance": 0.0358
+        },
+        {
+          "rank": 6,
+          "variable": "pollution",
+          "importance": 0.0347
+        },
+        {
+          "rank": 7,
+          "variable": "OCDauto",
+          "importance": 0.0342
+        },
+        {
+          "rank": 8,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0341
+        },
+        {
+          "rank": 9,
+          "variable": "GHappiHealth6",
+          "importance": 0.0315
+        },
+        {
+          "rank": 10,
+          "variable": "Happieur4",
+          "importance": 0.031
+        },
+        {
+          "rank": 11,
+          "variable": "WORRYauto",
+          "importance": 0.0273
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0246
+        },
+        {
+          "rank": 13,
+          "variable": "CANNABISauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.0237
+        },
+        {
+          "rank": 15,
+          "variable": "paternal_age",
+          "importance": 0.0234
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "child_adhd_baseline",
+          "importance": 0.1318
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0847
+        },
+        {
+          "rank": 3,
+          "variable": "sleep_prob",
+          "importance": 0.0706
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0373
+        },
+        {
+          "rank": 5,
+          "variable": "EDauto",
+          "importance": 0.0358
+        },
+        {
+          "rank": 6,
+          "variable": "pollution",
+          "importance": 0.0347
+        },
+        {
+          "rank": 7,
+          "variable": "OCDauto",
+          "importance": 0.0342
+        },
+        {
+          "rank": 8,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0341
+        },
+        {
+          "rank": 9,
+          "variable": "GHappiHealth6",
+          "importance": 0.0315
+        },
+        {
+          "rank": 10,
+          "variable": "Happieur4",
+          "importance": 0.031
+        },
+        {
+          "rank": 11,
+          "variable": "WORRYauto",
+          "importance": 0.0273
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0246
+        },
+        {
+          "rank": 13,
+          "variable": "CANNABISauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.0237
+        },
+        {
+          "rank": 15,
+          "variable": "paternal_age",
+          "importance": 0.0234
+        },
+        {
+          "rank": 16,
+          "variable": "IQeur2",
+          "importance": 0.0229
+        },
+        {
+          "rank": 17,
+          "variable": "breastfeeding",
+          "importance": 0.022
+        },
+        {
+          "rank": 18,
+          "variable": "SMOKERauto",
+          "importance": 0.0198
+        },
+        {
+          "rank": 19,
+          "variable": "CPeur2",
+          "importance": 0.0185
+        },
+        {
+          "rank": 20,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0183
+        },
+        {
+          "rank": 21,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0183
+        },
+        {
+          "rank": 22,
+          "variable": "RISKTOLauto",
+          "importance": 0.0163
+        },
+        {
+          "rank": 23,
+          "variable": "SNORINGeur1",
+          "importance": 0.0161
+        },
+        {
+          "rank": 24,
+          "variable": "ASPauto",
+          "importance": 0.0159
+        },
+        {
+          "rank": 25,
+          "variable": "neo_illness",
+          "importance": 0.0147
+        },
+        {
+          "rank": 26,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.013
+        },
+        {
+          "rank": 27,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0125
+        },
+        {
+          "rank": 28,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0116
+        },
+        {
+          "rank": 29,
+          "variable": "PTSDmeta6",
+          "importance": 0.0114
+        },
+        {
+          "rank": 30,
+          "variable": "DRINKauto",
+          "importance": 0.0113
+        },
+        {
+          "rank": 31,
+          "variable": "ADHDeur6",
+          "importance": 0.0112
+        },
+        {
+          "rank": 32,
+          "variable": "ASDauto",
+          "importance": 0.0109
+        },
+        {
+          "rank": 33,
+          "variable": "ANXIETYauto",
+          "importance": 0.0102
+        },
+        {
+          "rank": 34,
+          "variable": "BIPauto",
+          "importance": 0.0101
+        },
+        {
+          "rank": 35,
+          "variable": "maternal_age",
+          "importance": 0.0095
+        },
+        {
+          "rank": 36,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0093
+        },
+        {
+          "rank": 37,
+          "variable": "CROSSauto",
+          "importance": 0.0074
+        },
+        {
+          "rank": 38,
+          "variable": "RISK4PCauto",
+          "importance": 0.0062
+        },
+        {
+          "rank": 39,
+          "variable": "EAeur1",
+          "importance": 0.0061
+        },
+        {
+          "rank": 40,
+          "variable": "interview_age",
+          "importance": 0.0059
+        },
+        {
+          "rank": 41,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0055
+        },
+        {
+          "rank": 42,
+          "variable": "preg_comp",
+          "importance": 0.0037
+        },
+        {
+          "rank": 43,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0022
+        },
+        {
+          "rank": 44,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0017
+        },
+        {
+          "rank": 45,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0016
+        },
+        {
+          "rank": 46,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0012
+        },
+        {
+          "rank": 47,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.001
+        },
+        {
+          "rank": 48,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0008
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0007
+        },
+        {
+          "rank": 50,
+          "variable": "sex",
+          "importance": 0.0007
+        },
+        {
+          "rank": 51,
+          "variable": "head_injury",
+          "importance": 0.0006
+        },
+        {
+          "rank": 52,
+          "variable": "alcohol",
+          "importance": 0.0004
+        },
+        {
+          "rank": 53,
+          "variable": "allergies",
+          "importance": 0.0004
+        },
+        {
+          "rank": 54,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0003
+        },
+        {
+          "rank": 55,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0003
+        },
+        {
+          "rank": 56,
+          "variable": "preterm_birth",
+          "importance": 0.0002
+        },
+        {
+          "rank": 57,
+          "variable": "tobacco",
+          "importance": 0.0001
+        },
+        {
+          "rank": 58,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0001
+        },
+        {
+          "rank": 59,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0001
+        },
+        {
+          "rank": 60,
+          "variable": "marijuana",
+          "importance": 0.0001
+        },
+        {
+          "rank": 61,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 63,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 1e-06
+        },
+        {
+          "rank": 64,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 67,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "year": "1y",
+      "ate_details": {
+        "estimate": 0.1503,
+        "std_error": 0.037,
+        "t_stat": 4.0588,
+        "p_value": 0,
+        "ci_95_lower": 0.0777,
+        "ci_95_upper": 0.2229
+      },
+      "se": 0.037
+    },
+    "2y": {
+      "n": 872,
+      "n_treated": 414,
+      "n_control": 458,
+      "num_covariates": 67,
+      "elapsed_seconds": 20.24,
+      "ate": 0.1673,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0912,
+          "std_error": 0.4504,
+          "t_stat": 2.4229,
+          "p_value": 0.0078
+        },
+        "differential_prediction": {
+          "estimate": 0.9972,
+          "std_error": 1.4815,
+          "t_stat": 0.6731,
+          "p_value_one_sided": 0.2505,
+          "p_value_two_sided": 0.501
+        }
+      },
+      "mde": 4.1481,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "SMOKERauto",
+          "importance": 0.0754
+        },
+        {
+          "rank": 2,
+          "variable": "sleep_prob",
+          "importance": 0.0577
+        },
+        {
+          "rank": 3,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0564
+        },
+        {
+          "rank": 4,
+          "variable": "EDauto",
+          "importance": 0.0539
+        },
+        {
+          "rank": 5,
+          "variable": "OCDauto",
+          "importance": 0.0489
+        },
+        {
+          "rank": 6,
+          "variable": "SNORINGeur1",
+          "importance": 0.0413
+        },
+        {
+          "rank": 7,
+          "variable": "GHappieur2",
+          "importance": 0.0331
+        },
+        {
+          "rank": 8,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0328
+        },
+        {
+          "rank": 9,
+          "variable": "RISK4PCauto",
+          "importance": 0.0308
+        },
+        {
+          "rank": 10,
+          "variable": "ASDauto",
+          "importance": 0.0279
+        },
+        {
+          "rank": 11,
+          "variable": "ASPauto",
+          "importance": 0.0248
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0236
+        },
+        {
+          "rank": 13,
+          "variable": "MDDeur6",
+          "importance": 0.023
+        },
+        {
+          "rank": 14,
+          "variable": "Happieur4",
+          "importance": 0.0226
+        },
+        {
+          "rank": 15,
+          "variable": "WORRYauto",
+          "importance": 0.0223
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "SMOKERauto",
+          "importance": 0.0754
+        },
+        {
+          "rank": 2,
+          "variable": "sleep_prob",
+          "importance": 0.0577
+        },
+        {
+          "rank": 3,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0564
+        },
+        {
+          "rank": 4,
+          "variable": "EDauto",
+          "importance": 0.0539
+        },
+        {
+          "rank": 5,
+          "variable": "OCDauto",
+          "importance": 0.0489
+        },
+        {
+          "rank": 6,
+          "variable": "SNORINGeur1",
+          "importance": 0.0413
+        },
+        {
+          "rank": 7,
+          "variable": "GHappieur2",
+          "importance": 0.0331
+        },
+        {
+          "rank": 8,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0328
+        },
+        {
+          "rank": 9,
+          "variable": "RISK4PCauto",
+          "importance": 0.0308
+        },
+        {
+          "rank": 10,
+          "variable": "ASDauto",
+          "importance": 0.0279
+        },
+        {
+          "rank": 11,
+          "variable": "ASPauto",
+          "importance": 0.0248
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0236
+        },
+        {
+          "rank": 13,
+          "variable": "MDDeur6",
+          "importance": 0.023
+        },
+        {
+          "rank": 14,
+          "variable": "Happieur4",
+          "importance": 0.0226
+        },
+        {
+          "rank": 15,
+          "variable": "WORRYauto",
+          "importance": 0.0223
+        },
+        {
+          "rank": 16,
+          "variable": "maternal_age",
+          "importance": 0.0221
+        },
+        {
+          "rank": 17,
+          "variable": "DRINKauto",
+          "importance": 0.0218
+        },
+        {
+          "rank": 18,
+          "variable": "CANNABISauto",
+          "importance": 0.0217
+        },
+        {
+          "rank": 19,
+          "variable": "BIPauto",
+          "importance": 0.0209
+        },
+        {
+          "rank": 20,
+          "variable": "ADHDeur6",
+          "importance": 0.0195
+        },
+        {
+          "rank": 21,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0189
+        },
+        {
+          "rank": 22,
+          "variable": "GHappiHealth6",
+          "importance": 0.0186
+        },
+        {
+          "rank": 23,
+          "variable": "preg_comp",
+          "importance": 0.0174
+        },
+        {
+          "rank": 24,
+          "variable": "EAeur1",
+          "importance": 0.0173
+        },
+        {
+          "rank": 25,
+          "variable": "PTSDmeta6",
+          "importance": 0.0169
+        },
+        {
+          "rank": 26,
+          "variable": "IQeur2",
+          "importance": 0.0168
+        },
+        {
+          "rank": 27,
+          "variable": "interview_age",
+          "importance": 0.0167
+        },
+        {
+          "rank": 28,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0157
+        },
+        {
+          "rank": 29,
+          "variable": "paternal_age",
+          "importance": 0.0138
+        },
+        {
+          "rank": 30,
+          "variable": "pollution",
+          "importance": 0.0137
+        },
+        {
+          "rank": 31,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0134
+        },
+        {
+          "rank": 32,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0122
+        },
+        {
+          "rank": 33,
+          "variable": "RISKTOLauto",
+          "importance": 0.0117
+        },
+        {
+          "rank": 34,
+          "variable": "CROSSauto",
+          "importance": 0.0115
+        },
+        {
+          "rank": 35,
+          "variable": "BMImulti",
+          "importance": 0.0114
+        },
+        {
+          "rank": 36,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0112
+        },
+        {
+          "rank": 37,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0092
+        },
+        {
+          "rank": 38,
+          "variable": "DEPmulti",
+          "importance": 0.0089
+        },
+        {
+          "rank": 39,
+          "variable": "ANXIETYauto",
+          "importance": 0.0078
+        },
+        {
+          "rank": 40,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0062
+        },
+        {
+          "rank": 41,
+          "variable": "breastfeeding",
+          "importance": 0.006
+        },
+        {
+          "rank": 42,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0054
+        },
+        {
+          "rank": 43,
+          "variable": "neo_illness",
+          "importance": 0.0053
+        },
+        {
+          "rank": 44,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0047
+        },
+        {
+          "rank": 45,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0044
+        },
+        {
+          "rank": 46,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0038
+        },
+        {
+          "rank": 47,
+          "variable": "allergies",
+          "importance": 0.0034
+        },
+        {
+          "rank": 48,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0033
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.003
+        },
+        {
+          "rank": 50,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.003
+        },
+        {
+          "rank": 51,
+          "variable": "sex",
+          "importance": 0.0025
+        },
+        {
+          "rank": 52,
+          "variable": "alcohol",
+          "importance": 0.0013
+        },
+        {
+          "rank": 53,
+          "variable": "marijuana",
+          "importance": 0.001
+        },
+        {
+          "rank": 54,
+          "variable": "preeclampsia",
+          "importance": 0.0006
+        },
+        {
+          "rank": 55,
+          "variable": "head_injury",
+          "importance": 0.0005
+        },
+        {
+          "rank": 56,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0005
+        },
+        {
+          "rank": 57,
+          "variable": "preterm_birth",
+          "importance": 0.0004
+        },
+        {
+          "rank": 58,
+          "variable": "tobacco",
+          "importance": 0.0004
+        },
+        {
+          "rank": 59,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0004
+        },
+        {
+          "rank": 60,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0.0003
+        },
+        {
+          "rank": 61,
+          "variable": "ethnic_g_AFR",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "ethnic_g_EUR",
+          "importance": 0
+        },
+        {
+          "rank": 63,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 1e-06
+        },
+        {
+          "rank": 64,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 67,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "year": "2y",
+      "ate_details": {
+        "estimate": 0.1673,
+        "std_error": 0.0431,
+        "t_stat": 3.8822,
+        "p_value": 0.0001,
+        "ci_95_lower": 0.0829,
+        "ci_95_upper": 0.2518
+      },
+      "se": 0.0431
+    },
+    "3y": {
+      "n": 687,
+      "n_treated": 328,
+      "n_control": 359,
+      "num_covariates": 67,
+      "elapsed_seconds": 19.35,
+      "ate": 0.1345,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.1735,
+          "std_error": 0.482,
+          "t_stat": 2.4349,
+          "p_value": 0.0076
+        },
+        "differential_prediction": {
+          "estimate": -7.1769,
+          "std_error": 2.4226,
+          "t_stat": -2.9624,
+          "p_value_one_sided": 0.9984,
+          "p_value_two_sided": 0.0032
+        }
+      },
+      "mde": 6.7834,
+      "heterogeneity_detected_p05": true,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0503
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0501
+        },
+        {
+          "rank": 3,
+          "variable": "RISKTOLauto",
+          "importance": 0.0477
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0463
+        },
+        {
+          "rank": 5,
+          "variable": "pollution",
+          "importance": 0.0441
+        },
+        {
+          "rank": 6,
+          "variable": "OCDauto",
+          "importance": 0.0382
+        },
+        {
+          "rank": 7,
+          "variable": "Happieur4",
+          "importance": 0.0349
+        },
+        {
+          "rank": 8,
+          "variable": "EDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 9,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.028
+        },
+        {
+          "rank": 10,
+          "variable": "SNORINGeur1",
+          "importance": 0.0273
+        },
+        {
+          "rank": 11,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0265
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0254
+        },
+        {
+          "rank": 13,
+          "variable": "BIPauto",
+          "importance": 0.0249
+        },
+        {
+          "rank": 14,
+          "variable": "ASPauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 15,
+          "variable": "SCZ_METAauto",
+          "importance": 0.024
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0503
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0501
+        },
+        {
+          "rank": 3,
+          "variable": "RISKTOLauto",
+          "importance": 0.0477
+        },
+        {
+          "rank": 4,
+          "variable": "GHappieur2",
+          "importance": 0.0463
+        },
+        {
+          "rank": 5,
+          "variable": "pollution",
+          "importance": 0.0441
+        },
+        {
+          "rank": 6,
+          "variable": "OCDauto",
+          "importance": 0.0382
+        },
+        {
+          "rank": 7,
+          "variable": "Happieur4",
+          "importance": 0.0349
+        },
+        {
+          "rank": 8,
+          "variable": "EDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 9,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.028
+        },
+        {
+          "rank": 10,
+          "variable": "SNORINGeur1",
+          "importance": 0.0273
+        },
+        {
+          "rank": 11,
+          "variable": "child_adhd_baseline",
+          "importance": 0.0265
+        },
+        {
+          "rank": 12,
+          "variable": "CPeur2",
+          "importance": 0.0254
+        },
+        {
+          "rank": 13,
+          "variable": "BIPauto",
+          "importance": 0.0249
+        },
+        {
+          "rank": 14,
+          "variable": "ASPauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 15,
+          "variable": "SCZ_METAauto",
+          "importance": 0.024
+        },
+        {
+          "rank": 16,
+          "variable": "WORRYauto",
+          "importance": 0.0234
+        },
+        {
+          "rank": 17,
+          "variable": "DEPmulti",
+          "importance": 0.0232
+        },
+        {
+          "rank": 18,
+          "variable": "RISK4PCauto",
+          "importance": 0.0221
+        },
+        {
+          "rank": 19,
+          "variable": "ADHDeur6",
+          "importance": 0.0204
+        },
+        {
+          "rank": 20,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0203
+        },
+        {
+          "rank": 21,
+          "variable": "IQeur2",
+          "importance": 0.0201
+        },
+        {
+          "rank": 22,
+          "variable": "ASDauto",
+          "importance": 0.0196
+        },
+        {
+          "rank": 23,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0192
+        },
+        {
+          "rank": 24,
+          "variable": "interview_age",
+          "importance": 0.0189
+        },
+        {
+          "rank": 25,
+          "variable": "CANNABISauto",
+          "importance": 0.0187
+        },
+        {
+          "rank": 26,
+          "variable": "paternal_age",
+          "importance": 0.0183
+        },
+        {
+          "rank": 27,
+          "variable": "BMImulti",
+          "importance": 0.0168
+        },
+        {
+          "rank": 28,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0151
+        },
+        {
+          "rank": 29,
+          "variable": "EAeur1",
+          "importance": 0.0148
+        },
+        {
+          "rank": 30,
+          "variable": "CROSSauto",
+          "importance": 0.0148
+        },
+        {
+          "rank": 31,
+          "variable": "neo_illness",
+          "importance": 0.0147
+        },
+        {
+          "rank": 32,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0133
+        },
+        {
+          "rank": 33,
+          "variable": "breastfeeding",
+          "importance": 0.0131
+        },
+        {
+          "rank": 34,
+          "variable": "PTSDmeta6",
+          "importance": 0.0123
+        },
+        {
+          "rank": 35,
+          "variable": "GHappiHealth6",
+          "importance": 0.012
+        },
+        {
+          "rank": 36,
+          "variable": "maternal_age",
+          "importance": 0.0116
+        },
+        {
+          "rank": 37,
+          "variable": "preeclampsia",
+          "importance": 0.0114
+        },
+        {
+          "rank": 38,
+          "variable": "MDDeur6",
+          "importance": 0.0104
+        },
+        {
+          "rank": 39,
+          "variable": "DRINKauto",
+          "importance": 0.0101
+        },
+        {
+          "rank": 40,
+          "variable": "ANXIETYauto",
+          "importance": 0.0092
+        },
+        {
+          "rank": 41,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0084
+        },
+        {
+          "rank": 42,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0082
+        },
+        {
+          "rank": 43,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0072
+        },
+        {
+          "rank": 44,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0071
+        },
+        {
+          "rank": 45,
+          "variable": "preg_comp",
+          "importance": 0.0069
+        },
+        {
+          "rank": 46,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0063
+        },
+        {
+          "rank": 47,
+          "variable": "allergies",
+          "importance": 0.0047
+        },
+        {
+          "rank": 48,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0045
+        },
+        {
+          "rank": 49,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0042
+        },
+        {
+          "rank": 50,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0033
+        },
+        {
+          "rank": 51,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.003
+        },
+        {
+          "rank": 52,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.002
+        },
+        {
+          "rank": 53,
+          "variable": "head_injury",
+          "importance": 0.0018
+        },
+        {
+          "rank": 54,
+          "variable": "preterm_birth",
+          "importance": 0.0017
+        },
+        {
+          "rank": 55,
+          "variable": "sex",
+          "importance": 0.0012
+        },
+        {
+          "rank": 56,
+          "variable": "alcohol",
+          "importance": 0.0011
+        },
+        {
+          "rank": 57,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0006
+        },
+        {
+          "rank": 58,
+          "variable": "tobacco",
+          "importance": 0.0005
+        },
+        {
+          "rank": 59,
+          "variable": "marijuana",
+          "importance": 0.0001
+        },
+        {
+          "rank": 60,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0
+        },
+        {
+          "rank": 61,
+          "variable": "ethnic_g_EUR",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "ethnic_g_AFR",
+          "importance": 0
+        },
+        {
+          "rank": 63,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 64,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 67,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "year": "3y",
+      "ate_details": {
+        "estimate": 0.1345,
+        "std_error": 0.0718,
+        "t_stat": 1.8726,
+        "p_value": 0.0611,
+        "ci_95_lower": -0.0063,
+        "ci_95_upper": 0.2753
+      },
+      "se": 0.0718
+    }
+  },
+  "P8_no_parent_psych": {
+    "n": 1244,
+    "n_treated": 622,
+    "n_control": 622,
+    "num_covariates": 62,
+    "elapsed_seconds": 27.91,
+    "ate": 0.5635,
+    "calibration": {
+      "mean_prediction": {
+        "estimate": 1.0089,
+        "std_error": 0.0981,
+        "t_stat": 10.2867,
+        "p_value": 3.5593e-24
+      },
+      "differential_prediction": {
+        "estimate": 1.8228,
+        "std_error": 0.8198,
+        "t_stat": 2.2235,
+        "p_value_one_sided": 0.0132,
+        "p_value_two_sided": 0.0264
+      }
+    },
+    "mde": 2.2954,
+    "heterogeneity_detected_p05": true,
+    "top_variables": [
+      {
+        "rank": 1,
+        "variable": "sleep_prob",
+        "importance": 0.0837
+      },
+      {
+        "rank": 2,
+        "variable": "BMImulti",
+        "importance": 0.0813
+      },
+      {
+        "rank": 3,
+        "variable": "SMOKERauto",
+        "importance": 0.064
+      },
+      {
+        "rank": 4,
+        "variable": "INSOMNIAeur6",
+        "importance": 0.0541
+      },
+      {
+        "rank": 5,
+        "variable": "SCZ_METAauto",
+        "importance": 0.054
+      },
+      {
+        "rank": 6,
+        "variable": "CPeur2",
+        "importance": 0.0429
+      },
+      {
+        "rank": 7,
+        "variable": "ALCDEP_METAauto",
+        "importance": 0.039
+      },
+      {
+        "rank": 8,
+        "variable": "RISKTOLauto",
+        "importance": 0.0369
+      },
+      {
+        "rank": 9,
+        "variable": "DEPmulti",
+        "importance": 0.0347
+      },
+      {
+        "rank": 10,
+        "variable": "IQeur2",
+        "importance": 0.0324
+      },
+      {
+        "rank": 11,
+        "variable": "SNORINGeur1",
+        "importance": 0.032
+      },
+      {
+        "rank": 12,
+        "variable": "NEUROTICISMauto",
+        "importance": 0.0271
+      },
+      {
+        "rank": 13,
+        "variable": "BIPauto",
+        "importance": 0.0264
+      },
+      {
+        "rank": 14,
+        "variable": "EDauto",
+        "importance": 0.0256
+      },
+      {
+        "rank": 15,
+        "variable": "DRINKauto",
+        "importance": 0.025
+      }
+    ],
+    "all_variable_importance": [
+      {
+        "rank": 1,
+        "variable": "sleep_prob",
+        "importance": 0.0837
+      },
+      {
+        "rank": 2,
+        "variable": "BMImulti",
+        "importance": 0.0813
+      },
+      {
+        "rank": 3,
+        "variable": "SMOKERauto",
+        "importance": 0.064
+      },
+      {
+        "rank": 4,
+        "variable": "INSOMNIAeur6",
+        "importance": 0.0541
+      },
+      {
+        "rank": 5,
+        "variable": "SCZ_METAauto",
+        "importance": 0.054
+      },
+      {
+        "rank": 6,
+        "variable": "CPeur2",
+        "importance": 0.0429
+      },
+      {
+        "rank": 7,
+        "variable": "ALCDEP_METAauto",
+        "importance": 0.039
+      },
+      {
+        "rank": 8,
+        "variable": "RISKTOLauto",
+        "importance": 0.0369
+      },
+      {
+        "rank": 9,
+        "variable": "DEPmulti",
+        "importance": 0.0347
+      },
+      {
+        "rank": 10,
+        "variable": "IQeur2",
+        "importance": 0.0324
+      },
+      {
+        "rank": 11,
+        "variable": "SNORINGeur1",
+        "importance": 0.032
+      },
+      {
+        "rank": 12,
+        "variable": "NEUROTICISMauto",
+        "importance": 0.0271
+      },
+      {
+        "rank": 13,
+        "variable": "BIPauto",
+        "importance": 0.0264
+      },
+      {
+        "rank": 14,
+        "variable": "EDauto",
+        "importance": 0.0256
+      },
+      {
+        "rank": 15,
+        "variable": "DRINKauto",
+        "importance": 0.025
+      },
+      {
+        "rank": 16,
+        "variable": "CANNABISauto",
+        "importance": 0.0242
+      },
+      {
+        "rank": 17,
+        "variable": "MDDeur6",
+        "importance": 0.0204
+      },
+      {
+        "rank": 18,
+        "variable": "RISK4PCauto",
+        "importance": 0.0202
+      },
+      {
+        "rank": 19,
+        "variable": "GHappiHealth6",
+        "importance": 0.0186
+      },
+      {
+        "rank": 20,
+        "variable": "birth_weight_lbs",
+        "importance": 0.0182
+      },
+      {
+        "rank": 21,
+        "variable": "OCDauto",
+        "importance": 0.0178
+      },
+      {
+        "rank": 22,
+        "variable": "GHappiMeaneur1",
+        "importance": 0.0174
+      },
+      {
+        "rank": 23,
+        "variable": "CROSSauto",
+        "importance": 0.017
+      },
+      {
+        "rank": 24,
+        "variable": "WORRYauto",
+        "importance": 0.0156
+      },
+      {
+        "rank": 25,
+        "variable": "ANXIETYauto",
+        "importance": 0.015
+      },
+      {
+        "rank": 26,
+        "variable": "Happieur4",
+        "importance": 0.0137
+      },
+      {
+        "rank": 27,
+        "variable": "GHappieur2",
+        "importance": 0.0127
+      },
+      {
+        "rank": 28,
+        "variable": "pollution",
+        "importance": 0.0126
+      },
+      {
+        "rank": 29,
+        "variable": "ASPauto",
+        "importance": 0.0109
+      },
+      {
+        "rank": 30,
+        "variable": "PTSDmeta6",
+        "importance": 0.0103
+      },
+      {
+        "rank": 31,
+        "variable": "breastfeeding",
+        "importance": 0.0094
+      },
+      {
+        "rank": 32,
+        "variable": "ASDauto",
+        "importance": 0.0091
+      },
+      {
+        "rank": 33,
+        "variable": "ADHDeur6",
+        "importance": 0.0087
+      },
+      {
+        "rank": 34,
+        "variable": "maternal_age",
+        "importance": 0.0085
+      },
+      {
+        "rank": 35,
+        "variable": "fes_y_ss_fc",
+        "importance": 0.0083
+      },
+      {
+        "rank": 36,
+        "variable": "preg_comp",
+        "importance": 0.0079
+      },
+      {
+        "rank": 37,
+        "variable": "head_injury",
+        "importance": 0.0078
+      },
+      {
+        "rank": 38,
+        "variable": "neo_illness",
+        "importance": 0.0062
+      },
+      {
+        "rank": 39,
+        "variable": "paternal_age",
+        "importance": 0.006
+      },
+      {
+        "rank": 40,
+        "variable": "interview_age",
+        "importance": 0.0055
+      },
+      {
+        "rank": 41,
+        "variable": "EAeur1",
+        "importance": 0.0039
+      },
+      {
+        "rank": 42,
+        "variable": "demo_comb_income_v2",
+        "importance": 0.003
+      },
+      {
+        "rank": 43,
+        "variable": "allergies",
+        "importance": 0.0024
+      },
+      {
+        "rank": 44,
+        "variable": "crpbi_y_ss_parent",
+        "importance": 0.002
+      },
+      {
+        "rank": 45,
+        "variable": "demo_prnt_ed_v2",
+        "importance": 0.0015
+      },
+      {
+        "rank": 46,
+        "variable": "sex",
+        "importance": 0.0013
+      },
+      {
+        "rank": 47,
+        "variable": "marijuana",
+        "importance": 0.0012
+      },
+      {
+        "rank": 48,
+        "variable": "ethnic_g_EUR",
+        "importance": 0.0006
+      },
+      {
+        "rank": 49,
+        "variable": "demo_prnt_marital_v2_3",
+        "importance": 0.0005
+      },
+      {
+        "rank": 50,
+        "variable": "alcohol",
+        "importance": 0.0005
+      },
+      {
+        "rank": 51,
+        "variable": "demo_prnt_marital_v2_1",
+        "importance": 0.0004
+      },
+      {
+        "rank": 52,
+        "variable": "tobacco",
+        "importance": 0.0004
+      },
+      {
+        "rank": 53,
+        "variable": "preeclampsia",
+        "importance": 0.0004
+      },
+      {
+        "rank": 54,
+        "variable": "preterm_birth",
+        "importance": 0.0003
+      },
+      {
+        "rank": 55,
+        "variable": "demo_prnt_marital_v2_5",
+        "importance": 0.0002
+      },
+      {
+        "rank": 56,
+        "variable": "ethnic_g_AFR",
+        "importance": 0.0001
+      },
+      {
+        "rank": 57,
+        "variable": "demo_prnt_marital_v2_6",
+        "importance": 4e-06
+      },
+      {
+        "rank": 58,
+        "variable": "coc_crack",
+        "importance": 0
+      },
+      {
+        "rank": 59,
+        "variable": "demo_prnt_marital_v2_2",
+        "importance": 0
+      },
+      {
+        "rank": 60,
+        "variable": "demo_prnt_marital_v2_4",
+        "importance": 0
+      },
+      {
+        "rank": 61,
+        "variable": "ethnic_g_AMR",
+        "importance": 0
+      },
+      {
+        "rank": 62,
+        "variable": "ethnic_g_EAS",
+        "importance": 0
+      }
+    ],
+    "model_name": "Multiethnic: Excluding Parental Psychopathology",
+    "excluded_covariates": [
+      "asr_scr_anxdisord_t",
+      "asr_scr_antisocial_t",
+      "famhx_ss_momdad_dprs_p",
+      "famhx_ss_momdad_dg_p"
+    ],
+    "ate_details": {
+      "estimate": 0.5635,
+      "std_error": 0.0414,
+      "t_stat": 13.6133,
+      "p_value": 0,
+      "ci_95_lower": 0.4824,
+      "ci_95_upper": 0.6446
+    },
+    "se": 0.0414
+  },
+  "P11_no_shared_parent_report": {
+    "sleep_and_psych_excluded": {
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "num_covariates": 61,
+      "elapsed_seconds": 26.94,
+      "ate": 0.8096,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0227,
+          "std_error": 0.0623,
+          "t_stat": 16.4169,
+          "p_value": 2.8924e-55
+        },
+        "differential_prediction": {
+          "estimate": -1.128,
+          "std_error": 1.2528,
+          "t_stat": -0.9004,
+          "p_value_one_sided": 0.816,
+          "p_value_two_sided": 0.3681
+        }
+      },
+      "mde": 3.5078,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "BMImulti",
+          "importance": 0.0674
+        },
+        {
+          "rank": 2,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.065
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.0608
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0581
+        },
+        {
+          "rank": 5,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0482
+        },
+        {
+          "rank": 6,
+          "variable": "BIPauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 7,
+          "variable": "SNORINGeur1",
+          "importance": 0.0391
+        },
+        {
+          "rank": 8,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0376
+        },
+        {
+          "rank": 9,
+          "variable": "CPeur2",
+          "importance": 0.0363
+        },
+        {
+          "rank": 10,
+          "variable": "EDauto",
+          "importance": 0.0296
+        },
+        {
+          "rank": 11,
+          "variable": "RISKTOLauto",
+          "importance": 0.0272
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0265
+        },
+        {
+          "rank": 13,
+          "variable": "DRINKauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.025
+        },
+        {
+          "rank": 15,
+          "variable": "PTSDmeta6",
+          "importance": 0.0242
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "BMImulti",
+          "importance": 0.0674
+        },
+        {
+          "rank": 2,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.065
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.0608
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0581
+        },
+        {
+          "rank": 5,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0482
+        },
+        {
+          "rank": 6,
+          "variable": "BIPauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 7,
+          "variable": "SNORINGeur1",
+          "importance": 0.0391
+        },
+        {
+          "rank": 8,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0376
+        },
+        {
+          "rank": 9,
+          "variable": "CPeur2",
+          "importance": 0.0363
+        },
+        {
+          "rank": 10,
+          "variable": "EDauto",
+          "importance": 0.0296
+        },
+        {
+          "rank": 11,
+          "variable": "RISKTOLauto",
+          "importance": 0.0272
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0265
+        },
+        {
+          "rank": 13,
+          "variable": "DRINKauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.025
+        },
+        {
+          "rank": 15,
+          "variable": "PTSDmeta6",
+          "importance": 0.0242
+        },
+        {
+          "rank": 16,
+          "variable": "CANNABISauto",
+          "importance": 0.0241
+        },
+        {
+          "rank": 17,
+          "variable": "GHappieur2",
+          "importance": 0.0237
+        },
+        {
+          "rank": 18,
+          "variable": "ANXIETYauto",
+          "importance": 0.0234
+        },
+        {
+          "rank": 19,
+          "variable": "OCDauto",
+          "importance": 0.0205
+        },
+        {
+          "rank": 20,
+          "variable": "ASPauto",
+          "importance": 0.0196
+        },
+        {
+          "rank": 21,
+          "variable": "CROSSauto",
+          "importance": 0.0194
+        },
+        {
+          "rank": 22,
+          "variable": "RISK4PCauto",
+          "importance": 0.0194
+        },
+        {
+          "rank": 23,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0187
+        },
+        {
+          "rank": 24,
+          "variable": "ASDauto",
+          "importance": 0.018
+        },
+        {
+          "rank": 25,
+          "variable": "WORRYauto",
+          "importance": 0.0169
+        },
+        {
+          "rank": 26,
+          "variable": "IQeur2",
+          "importance": 0.0165
+        },
+        {
+          "rank": 27,
+          "variable": "ADHDeur6",
+          "importance": 0.0161
+        },
+        {
+          "rank": 28,
+          "variable": "breastfeeding",
+          "importance": 0.0152
+        },
+        {
+          "rank": 29,
+          "variable": "Happieur4",
+          "importance": 0.0143
+        },
+        {
+          "rank": 30,
+          "variable": "pollution",
+          "importance": 0.0119
+        },
+        {
+          "rank": 31,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0115
+        },
+        {
+          "rank": 32,
+          "variable": "maternal_age",
+          "importance": 0.0109
+        },
+        {
+          "rank": 33,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0108
+        },
+        {
+          "rank": 34,
+          "variable": "GHappiHealth6",
+          "importance": 0.0084
+        },
+        {
+          "rank": 35,
+          "variable": "neo_illness",
+          "importance": 0.0079
+        },
+        {
+          "rank": 36,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0071
+        },
+        {
+          "rank": 37,
+          "variable": "interview_age",
+          "importance": 0.0068
+        },
+        {
+          "rank": 38,
+          "variable": "EAeur1",
+          "importance": 0.0066
+        },
+        {
+          "rank": 39,
+          "variable": "paternal_age",
+          "importance": 0.0059
+        },
+        {
+          "rank": 40,
+          "variable": "preg_comp",
+          "importance": 0.0059
+        },
+        {
+          "rank": 41,
+          "variable": "sex",
+          "importance": 0.0058
+        },
+        {
+          "rank": 42,
+          "variable": "head_injury",
+          "importance": 0.0049
+        },
+        {
+          "rank": 43,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0048
+        },
+        {
+          "rank": 44,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0026
+        },
+        {
+          "rank": 45,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.002
+        },
+        {
+          "rank": 46,
+          "variable": "alcohol",
+          "importance": 0.0018
+        },
+        {
+          "rank": 47,
+          "variable": "tobacco",
+          "importance": 0.0013
+        },
+        {
+          "rank": 48,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0012
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.001
+        },
+        {
+          "rank": 50,
+          "variable": "allergies",
+          "importance": 0.0008
+        },
+        {
+          "rank": 51,
+          "variable": "preterm_birth",
+          "importance": 0.0003
+        },
+        {
+          "rank": 52,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0003
+        },
+        {
+          "rank": 53,
+          "variable": "marijuana",
+          "importance": 0.0002
+        },
+        {
+          "rank": 54,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0001
+        },
+        {
+          "rank": 55,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 56,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0
+        },
+        {
+          "rank": 57,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 2e-06
+        },
+        {
+          "rank": 58,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 1e-06
+        },
+        {
+          "rank": 59,
+          "variable": "ethnic_g_AMR",
+          "importance": 1e-06
+        },
+        {
+          "rank": 60,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 61,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "model_name": "Multiethnic: Excluding Sleep Problems & Parental Psychopathology",
+      "excluded_covariates": [
+        "sleep_prob",
+        "asr_scr_anxdisord_t",
+        "asr_scr_antisocial_t",
+        "famhx_ss_momdad_dprs_p",
+        "famhx_ss_momdad_dg_p"
+      ],
+      "ate_details": {
+        "estimate": 0.8096,
+        "std_error": 0.0443,
+        "t_stat": 18.2626,
+        "p_value": 0,
+        "ci_95_lower": 0.7227,
+        "ci_95_upper": 0.8965
+      },
+      "se": 0.0443
+    },
+    "all_parent_report_excluded": {
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "num_covariates": 39,
+      "elapsed_seconds": 28.29,
+      "ate": 0.8336,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 0.9985,
+          "std_error": 0.0599,
+          "t_stat": 16.6713,
+          "p_value": 9.0772e-57
+        },
+        "differential_prediction": {
+          "estimate": 1.0717,
+          "std_error": 0.9809,
+          "t_stat": 1.0926,
+          "p_value_one_sided": 0.1374,
+          "p_value_two_sided": 0.2748
+        }
+      },
+      "mde": 2.7465,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "BMImulti",
+          "importance": 0.1107
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.1075
+        },
+        {
+          "rank": 3,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0696
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0535
+        },
+        {
+          "rank": 5,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0529
+        },
+        {
+          "rank": 6,
+          "variable": "CPeur2",
+          "importance": 0.0458
+        },
+        {
+          "rank": 7,
+          "variable": "SNORINGeur1",
+          "importance": 0.0455
+        },
+        {
+          "rank": 8,
+          "variable": "BIPauto",
+          "importance": 0.0437
+        },
+        {
+          "rank": 9,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0402
+        },
+        {
+          "rank": 10,
+          "variable": "RISKTOLauto",
+          "importance": 0.0332
+        },
+        {
+          "rank": 11,
+          "variable": "GHappieur2",
+          "importance": 0.0262
+        },
+        {
+          "rank": 12,
+          "variable": "PTSDmeta6",
+          "importance": 0.0246
+        },
+        {
+          "rank": 13,
+          "variable": "ANXIETYauto",
+          "importance": 0.0245
+        },
+        {
+          "rank": 14,
+          "variable": "ASDauto",
+          "importance": 0.0244
+        },
+        {
+          "rank": 15,
+          "variable": "DRINKauto",
+          "importance": 0.0241
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "BMImulti",
+          "importance": 0.1107
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.1075
+        },
+        {
+          "rank": 3,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0696
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0535
+        },
+        {
+          "rank": 5,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0529
+        },
+        {
+          "rank": 6,
+          "variable": "CPeur2",
+          "importance": 0.0458
+        },
+        {
+          "rank": 7,
+          "variable": "SNORINGeur1",
+          "importance": 0.0455
+        },
+        {
+          "rank": 8,
+          "variable": "BIPauto",
+          "importance": 0.0437
+        },
+        {
+          "rank": 9,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0402
+        },
+        {
+          "rank": 10,
+          "variable": "RISKTOLauto",
+          "importance": 0.0332
+        },
+        {
+          "rank": 11,
+          "variable": "GHappieur2",
+          "importance": 0.0262
+        },
+        {
+          "rank": 12,
+          "variable": "PTSDmeta6",
+          "importance": 0.0246
+        },
+        {
+          "rank": 13,
+          "variable": "ANXIETYauto",
+          "importance": 0.0245
+        },
+        {
+          "rank": 14,
+          "variable": "ASDauto",
+          "importance": 0.0244
+        },
+        {
+          "rank": 15,
+          "variable": "DRINKauto",
+          "importance": 0.0241
+        },
+        {
+          "rank": 16,
+          "variable": "EDauto",
+          "importance": 0.022
+        },
+        {
+          "rank": 17,
+          "variable": "DEPmulti",
+          "importance": 0.0217
+        },
+        {
+          "rank": 18,
+          "variable": "CROSSauto",
+          "importance": 0.0199
+        },
+        {
+          "rank": 19,
+          "variable": "OCDauto",
+          "importance": 0.0196
+        },
+        {
+          "rank": 20,
+          "variable": "ASPauto",
+          "importance": 0.0187
+        },
+        {
+          "rank": 21,
+          "variable": "RISK4PCauto",
+          "importance": 0.0186
+        },
+        {
+          "rank": 22,
+          "variable": "CANNABISauto",
+          "importance": 0.0182
+        },
+        {
+          "rank": 23,
+          "variable": "MDDeur6",
+          "importance": 0.0161
+        },
+        {
+          "rank": 24,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.015
+        },
+        {
+          "rank": 25,
+          "variable": "ADHDeur6",
+          "importance": 0.015
+        },
+        {
+          "rank": 26,
+          "variable": "IQeur2",
+          "importance": 0.015
+        },
+        {
+          "rank": 27,
+          "variable": "WORRYauto",
+          "importance": 0.0145
+        },
+        {
+          "rank": 28,
+          "variable": "Happieur4",
+          "importance": 0.0138
+        },
+        {
+          "rank": 29,
+          "variable": "pollution",
+          "importance": 0.008
+        },
+        {
+          "rank": 30,
+          "variable": "EAeur1",
+          "importance": 0.0077
+        },
+        {
+          "rank": 31,
+          "variable": "GHappiHealth6",
+          "importance": 0.0075
+        },
+        {
+          "rank": 32,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0054
+        },
+        {
+          "rank": 33,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0052
+        },
+        {
+          "rank": 34,
+          "variable": "interview_age",
+          "importance": 0.0049
+        },
+        {
+          "rank": 35,
+          "variable": "sex",
+          "importance": 0.0034
+        },
+        {
+          "rank": 36,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.0031
+        },
+        {
+          "rank": 37,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0006
+        },
+        {
+          "rank": 38,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 39,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "model_name": "Multiethnic: Excluding All Parent-Reported Covariates",
+      "excluded_covariates": [
+        "sleep_prob",
+        "asr_scr_anxdisord_t",
+        "asr_scr_antisocial_t",
+        "famhx_ss_momdad_dprs_p",
+        "famhx_ss_momdad_dg_p",
+        "preeclampsia",
+        "preg_comp",
+        "alcohol",
+        "tobacco",
+        "marijuana",
+        "coc_crack",
+        "preterm_birth",
+        "birth_weight_lbs",
+        "neo_illness",
+        "breastfeeding",
+        "allergies",
+        "head_injury",
+        "maternal_age",
+        "paternal_age",
+        "demo_comb_income_v2",
+        "demo_prnt_ed_v2",
+        "demo_prnt_marital_v2_1",
+        "demo_prnt_marital_v2_2",
+        "demo_prnt_marital_v2_3",
+        "demo_prnt_marital_v2_4",
+        "demo_prnt_marital_v2_5",
+        "demo_prnt_marital_v2_6"
+      ],
+      "ate_details": {
+        "estimate": 0.8336,
+        "std_error": 0.041,
+        "t_stat": 20.3345,
+        "p_value": 0,
+        "ci_95_lower": 0.7532,
+        "ci_95_upper": 0.9139
+      },
+      "se": 0.041
+    },
+    "primary_summary": {
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "num_covariates": 61,
+      "elapsed_seconds": 26.94,
+      "ate": 0.8096,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0227,
+          "std_error": 0.0623,
+          "t_stat": 16.4169,
+          "p_value": 2.8924e-55
+        },
+        "differential_prediction": {
+          "estimate": -1.128,
+          "std_error": 1.2528,
+          "t_stat": -0.9004,
+          "p_value_one_sided": 0.816,
+          "p_value_two_sided": 0.3681
+        }
+      },
+      "mde": 3.5078,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "BMImulti",
+          "importance": 0.0674
+        },
+        {
+          "rank": 2,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.065
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.0608
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0581
+        },
+        {
+          "rank": 5,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0482
+        },
+        {
+          "rank": 6,
+          "variable": "BIPauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 7,
+          "variable": "SNORINGeur1",
+          "importance": 0.0391
+        },
+        {
+          "rank": 8,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0376
+        },
+        {
+          "rank": 9,
+          "variable": "CPeur2",
+          "importance": 0.0363
+        },
+        {
+          "rank": 10,
+          "variable": "EDauto",
+          "importance": 0.0296
+        },
+        {
+          "rank": 11,
+          "variable": "RISKTOLauto",
+          "importance": 0.0272
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0265
+        },
+        {
+          "rank": 13,
+          "variable": "DRINKauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.025
+        },
+        {
+          "rank": 15,
+          "variable": "PTSDmeta6",
+          "importance": 0.0242
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "BMImulti",
+          "importance": 0.0674
+        },
+        {
+          "rank": 2,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.065
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.0608
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0581
+        },
+        {
+          "rank": 5,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0482
+        },
+        {
+          "rank": 6,
+          "variable": "BIPauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 7,
+          "variable": "SNORINGeur1",
+          "importance": 0.0391
+        },
+        {
+          "rank": 8,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0376
+        },
+        {
+          "rank": 9,
+          "variable": "CPeur2",
+          "importance": 0.0363
+        },
+        {
+          "rank": 10,
+          "variable": "EDauto",
+          "importance": 0.0296
+        },
+        {
+          "rank": 11,
+          "variable": "RISKTOLauto",
+          "importance": 0.0272
+        },
+        {
+          "rank": 12,
+          "variable": "DEPmulti",
+          "importance": 0.0265
+        },
+        {
+          "rank": 13,
+          "variable": "DRINKauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 14,
+          "variable": "MDDeur6",
+          "importance": 0.025
+        },
+        {
+          "rank": 15,
+          "variable": "PTSDmeta6",
+          "importance": 0.0242
+        },
+        {
+          "rank": 16,
+          "variable": "CANNABISauto",
+          "importance": 0.0241
+        },
+        {
+          "rank": 17,
+          "variable": "GHappieur2",
+          "importance": 0.0237
+        },
+        {
+          "rank": 18,
+          "variable": "ANXIETYauto",
+          "importance": 0.0234
+        },
+        {
+          "rank": 19,
+          "variable": "OCDauto",
+          "importance": 0.0205
+        },
+        {
+          "rank": 20,
+          "variable": "ASPauto",
+          "importance": 0.0196
+        },
+        {
+          "rank": 21,
+          "variable": "CROSSauto",
+          "importance": 0.0194
+        },
+        {
+          "rank": 22,
+          "variable": "RISK4PCauto",
+          "importance": 0.0194
+        },
+        {
+          "rank": 23,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0187
+        },
+        {
+          "rank": 24,
+          "variable": "ASDauto",
+          "importance": 0.018
+        },
+        {
+          "rank": 25,
+          "variable": "WORRYauto",
+          "importance": 0.0169
+        },
+        {
+          "rank": 26,
+          "variable": "IQeur2",
+          "importance": 0.0165
+        },
+        {
+          "rank": 27,
+          "variable": "ADHDeur6",
+          "importance": 0.0161
+        },
+        {
+          "rank": 28,
+          "variable": "breastfeeding",
+          "importance": 0.0152
+        },
+        {
+          "rank": 29,
+          "variable": "Happieur4",
+          "importance": 0.0143
+        },
+        {
+          "rank": 30,
+          "variable": "pollution",
+          "importance": 0.0119
+        },
+        {
+          "rank": 31,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0115
+        },
+        {
+          "rank": 32,
+          "variable": "maternal_age",
+          "importance": 0.0109
+        },
+        {
+          "rank": 33,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0108
+        },
+        {
+          "rank": 34,
+          "variable": "GHappiHealth6",
+          "importance": 0.0084
+        },
+        {
+          "rank": 35,
+          "variable": "neo_illness",
+          "importance": 0.0079
+        },
+        {
+          "rank": 36,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0071
+        },
+        {
+          "rank": 37,
+          "variable": "interview_age",
+          "importance": 0.0068
+        },
+        {
+          "rank": 38,
+          "variable": "EAeur1",
+          "importance": 0.0066
+        },
+        {
+          "rank": 39,
+          "variable": "paternal_age",
+          "importance": 0.0059
+        },
+        {
+          "rank": 40,
+          "variable": "preg_comp",
+          "importance": 0.0059
+        },
+        {
+          "rank": 41,
+          "variable": "sex",
+          "importance": 0.0058
+        },
+        {
+          "rank": 42,
+          "variable": "head_injury",
+          "importance": 0.0049
+        },
+        {
+          "rank": 43,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0048
+        },
+        {
+          "rank": 44,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0026
+        },
+        {
+          "rank": 45,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.002
+        },
+        {
+          "rank": 46,
+          "variable": "alcohol",
+          "importance": 0.0018
+        },
+        {
+          "rank": 47,
+          "variable": "tobacco",
+          "importance": 0.0013
+        },
+        {
+          "rank": 48,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0012
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.001
+        },
+        {
+          "rank": 50,
+          "variable": "allergies",
+          "importance": 0.0008
+        },
+        {
+          "rank": 51,
+          "variable": "preterm_birth",
+          "importance": 0.0003
+        },
+        {
+          "rank": 52,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0003
+        },
+        {
+          "rank": 53,
+          "variable": "marijuana",
+          "importance": 0.0002
+        },
+        {
+          "rank": 54,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0001
+        },
+        {
+          "rank": 55,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 56,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0
+        },
+        {
+          "rank": 57,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 2e-06
+        },
+        {
+          "rank": 58,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 1e-06
+        },
+        {
+          "rank": 59,
+          "variable": "ethnic_g_AMR",
+          "importance": 1e-06
+        },
+        {
+          "rank": 60,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 61,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "model_name": "Multiethnic: Excluding Sleep Problems & Parental Psychopathology",
+      "excluded_covariates": [
+        "sleep_prob",
+        "asr_scr_anxdisord_t",
+        "asr_scr_antisocial_t",
+        "famhx_ss_momdad_dprs_p",
+        "famhx_ss_momdad_dg_p"
+      ],
+      "ate_details": {
+        "estimate": 0.8096,
+        "std_error": 0.0443,
+        "t_stat": 18.2626,
+        "p_value": 0,
+        "ci_95_lower": 0.7227,
+        "ci_95_upper": 0.8965
+      },
+      "se": 0.0443
+    },
+    "ate": 0.8096,
+    "se": 0.0443,
+    "parent_psych_excluded": {
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "num_covariates": 62,
+      "elapsed_seconds": 27.91,
+      "ate": 0.5635,
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0089,
+          "std_error": 0.0981,
+          "t_stat": 10.2867,
+          "p_value": 3.5593e-24
+        },
+        "differential_prediction": {
+          "estimate": 1.8228,
+          "std_error": 0.8198,
+          "t_stat": 2.2235,
+          "p_value_one_sided": 0.0132,
+          "p_value_two_sided": 0.0264
+        }
+      },
+      "mde": 2.2954,
+      "heterogeneity_detected_p05": true,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0837
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0813
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.064
+        },
+        {
+          "rank": 4,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0541
+        },
+        {
+          "rank": 5,
+          "variable": "SCZ_METAauto",
+          "importance": 0.054
+        },
+        {
+          "rank": 6,
+          "variable": "CPeur2",
+          "importance": 0.0429
+        },
+        {
+          "rank": 7,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.039
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0369
+        },
+        {
+          "rank": 9,
+          "variable": "DEPmulti",
+          "importance": 0.0347
+        },
+        {
+          "rank": 10,
+          "variable": "IQeur2",
+          "importance": 0.0324
+        },
+        {
+          "rank": 11,
+          "variable": "SNORINGeur1",
+          "importance": 0.032
+        },
+        {
+          "rank": 12,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0271
+        },
+        {
+          "rank": 13,
+          "variable": "BIPauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 14,
+          "variable": "EDauto",
+          "importance": 0.0256
+        },
+        {
+          "rank": 15,
+          "variable": "DRINKauto",
+          "importance": 0.025
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0837
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0813
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.064
+        },
+        {
+          "rank": 4,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0541
+        },
+        {
+          "rank": 5,
+          "variable": "SCZ_METAauto",
+          "importance": 0.054
+        },
+        {
+          "rank": 6,
+          "variable": "CPeur2",
+          "importance": 0.0429
+        },
+        {
+          "rank": 7,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.039
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0369
+        },
+        {
+          "rank": 9,
+          "variable": "DEPmulti",
+          "importance": 0.0347
+        },
+        {
+          "rank": 10,
+          "variable": "IQeur2",
+          "importance": 0.0324
+        },
+        {
+          "rank": 11,
+          "variable": "SNORINGeur1",
+          "importance": 0.032
+        },
+        {
+          "rank": 12,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0271
+        },
+        {
+          "rank": 13,
+          "variable": "BIPauto",
+          "importance": 0.0264
+        },
+        {
+          "rank": 14,
+          "variable": "EDauto",
+          "importance": 0.0256
+        },
+        {
+          "rank": 15,
+          "variable": "DRINKauto",
+          "importance": 0.025
+        },
+        {
+          "rank": 16,
+          "variable": "CANNABISauto",
+          "importance": 0.0242
+        },
+        {
+          "rank": 17,
+          "variable": "MDDeur6",
+          "importance": 0.0204
+        },
+        {
+          "rank": 18,
+          "variable": "RISK4PCauto",
+          "importance": 0.0202
+        },
+        {
+          "rank": 19,
+          "variable": "GHappiHealth6",
+          "importance": 0.0186
+        },
+        {
+          "rank": 20,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0182
+        },
+        {
+          "rank": 21,
+          "variable": "OCDauto",
+          "importance": 0.0178
+        },
+        {
+          "rank": 22,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0174
+        },
+        {
+          "rank": 23,
+          "variable": "CROSSauto",
+          "importance": 0.017
+        },
+        {
+          "rank": 24,
+          "variable": "WORRYauto",
+          "importance": 0.0156
+        },
+        {
+          "rank": 25,
+          "variable": "ANXIETYauto",
+          "importance": 0.015
+        },
+        {
+          "rank": 26,
+          "variable": "Happieur4",
+          "importance": 0.0137
+        },
+        {
+          "rank": 27,
+          "variable": "GHappieur2",
+          "importance": 0.0127
+        },
+        {
+          "rank": 28,
+          "variable": "pollution",
+          "importance": 0.0126
+        },
+        {
+          "rank": 29,
+          "variable": "ASPauto",
+          "importance": 0.0109
+        },
+        {
+          "rank": 30,
+          "variable": "PTSDmeta6",
+          "importance": 0.0103
+        },
+        {
+          "rank": 31,
+          "variable": "breastfeeding",
+          "importance": 0.0094
+        },
+        {
+          "rank": 32,
+          "variable": "ASDauto",
+          "importance": 0.0091
+        },
+        {
+          "rank": 33,
+          "variable": "ADHDeur6",
+          "importance": 0.0087
+        },
+        {
+          "rank": 34,
+          "variable": "maternal_age",
+          "importance": 0.0085
+        },
+        {
+          "rank": 35,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0083
+        },
+        {
+          "rank": 36,
+          "variable": "preg_comp",
+          "importance": 0.0079
+        },
+        {
+          "rank": 37,
+          "variable": "head_injury",
+          "importance": 0.0078
+        },
+        {
+          "rank": 38,
+          "variable": "neo_illness",
+          "importance": 0.0062
+        },
+        {
+          "rank": 39,
+          "variable": "paternal_age",
+          "importance": 0.006
+        },
+        {
+          "rank": 40,
+          "variable": "interview_age",
+          "importance": 0.0055
+        },
+        {
+          "rank": 41,
+          "variable": "EAeur1",
+          "importance": 0.0039
+        },
+        {
+          "rank": 42,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.003
+        },
+        {
+          "rank": 43,
+          "variable": "allergies",
+          "importance": 0.0024
+        },
+        {
+          "rank": 44,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.002
+        },
+        {
+          "rank": 45,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0015
+        },
+        {
+          "rank": 46,
+          "variable": "sex",
+          "importance": 0.0013
+        },
+        {
+          "rank": 47,
+          "variable": "marijuana",
+          "importance": 0.0012
+        },
+        {
+          "rank": 48,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.0006
+        },
+        {
+          "rank": 49,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0005
+        },
+        {
+          "rank": 50,
+          "variable": "alcohol",
+          "importance": 0.0005
+        },
+        {
+          "rank": 51,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0004
+        },
+        {
+          "rank": 52,
+          "variable": "tobacco",
+          "importance": 0.0004
+        },
+        {
+          "rank": 53,
+          "variable": "preeclampsia",
+          "importance": 0.0004
+        },
+        {
+          "rank": 54,
+          "variable": "preterm_birth",
+          "importance": 0.0003
+        },
+        {
+          "rank": 55,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0002
+        },
+        {
+          "rank": 56,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0001
+        },
+        {
+          "rank": 57,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 4e-06
+        },
+        {
+          "rank": 58,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 59,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 60,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 61,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "ethnic_g_EAS",
+          "importance": 0
+        }
+      ],
+      "model_name": "Multiethnic: Excluding Parental Psychopathology (Relocated to R3-3 / P11)",
+      "excluded_covariates": [
+        "asr_scr_anxdisord_t",
+        "asr_scr_antisocial_t",
+        "famhx_ss_momdad_dprs_p",
+        "famhx_ss_momdad_dg_p"
+      ],
+      "ate_details": {
+        "estimate": 0.5635,
+        "std_error": 0.0414,
+        "t_stat": 13.6133,
+        "p_value": 0,
+        "ci_95_lower": 0.4824,
+        "ci_95_upper": 0.6446
+      },
+      "se": 0.0414
+    }
+  },
+  "P8_measured_child_bmi": {
+    "bmi_substituting_pgs": {
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "num_covariates": 66,
+      "elapsed_seconds": 29.69,
+      "ate": 0.5395,
+      "se": 0.034,
+      "ate_details": {
+        "estimate": 0.5395,
+        "std_error": 0.034,
+        "t_stat": 15.8846,
+        "p_value": 0,
+        "ci_95_lower": 0.473,
+        "ci_95_upper": 0.6061
+      },
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0077,
+          "std_error": 0.1131,
+          "t_stat": 8.9131,
+          "p_value": 8.6532e-19
+        },
+        "differential_prediction": {
+          "estimate": 1.7936,
+          "std_error": 1.0607,
+          "t_stat": 1.6909,
+          "p_value_one_sided": 0.0456,
+          "p_value_two_sided": 0.0911
+        }
+      },
+      "mde": 2.97,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0955
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0653
+        },
+        {
+          "rank": 3,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0474
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0433
+        },
+        {
+          "rank": 5,
+          "variable": "WORRYauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 6,
+          "variable": "MDDeur6",
+          "importance": 0.0411
+        },
+        {
+          "rank": 7,
+          "variable": "CANNABISauto",
+          "importance": 0.0386
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0384
+        },
+        {
+          "rank": 9,
+          "variable": "EDauto",
+          "importance": 0.0352
+        },
+        {
+          "rank": 10,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.034
+        },
+        {
+          "rank": 11,
+          "variable": "DRINKauto",
+          "importance": 0.0333
+        },
+        {
+          "rank": 12,
+          "variable": "OCDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 13,
+          "variable": "IQeur2",
+          "importance": 0.0285
+        },
+        {
+          "rank": 14,
+          "variable": "CPeur2",
+          "importance": 0.0284
+        },
+        {
+          "rank": 15,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0252
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0955
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0653
+        },
+        {
+          "rank": 3,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0474
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0433
+        },
+        {
+          "rank": 5,
+          "variable": "WORRYauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 6,
+          "variable": "MDDeur6",
+          "importance": 0.0411
+        },
+        {
+          "rank": 7,
+          "variable": "CANNABISauto",
+          "importance": 0.0386
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0384
+        },
+        {
+          "rank": 9,
+          "variable": "EDauto",
+          "importance": 0.0352
+        },
+        {
+          "rank": 10,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.034
+        },
+        {
+          "rank": 11,
+          "variable": "DRINKauto",
+          "importance": 0.0333
+        },
+        {
+          "rank": 12,
+          "variable": "OCDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 13,
+          "variable": "IQeur2",
+          "importance": 0.0285
+        },
+        {
+          "rank": 14,
+          "variable": "CPeur2",
+          "importance": 0.0284
+        },
+        {
+          "rank": 15,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0252
+        },
+        {
+          "rank": 16,
+          "variable": "DEPmulti",
+          "importance": 0.0241
+        },
+        {
+          "rank": 17,
+          "variable": "RISK4PCauto",
+          "importance": 0.0216
+        },
+        {
+          "rank": 18,
+          "variable": "SNORINGeur1",
+          "importance": 0.0204
+        },
+        {
+          "rank": 19,
+          "variable": "PTSDmeta6",
+          "importance": 0.0174
+        },
+        {
+          "rank": 20,
+          "variable": "CROSSauto",
+          "importance": 0.0172
+        },
+        {
+          "rank": 21,
+          "variable": "GHappiHealth6",
+          "importance": 0.0167
+        },
+        {
+          "rank": 22,
+          "variable": "ANXIETYauto",
+          "importance": 0.0156
+        },
+        {
+          "rank": 23,
+          "variable": "maternal_age",
+          "importance": 0.0146
+        },
+        {
+          "rank": 24,
+          "variable": "Happieur4",
+          "importance": 0.0145
+        },
+        {
+          "rank": 25,
+          "variable": "BIPauto",
+          "importance": 0.0141
+        },
+        {
+          "rank": 26,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0137
+        },
+        {
+          "rank": 27,
+          "variable": "GHappieur2",
+          "importance": 0.0136
+        },
+        {
+          "rank": 28,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0124
+        },
+        {
+          "rank": 29,
+          "variable": "bmi",
+          "importance": 0.0123
+        },
+        {
+          "rank": 30,
+          "variable": "ADHDeur6",
+          "importance": 0.0115
+        },
+        {
+          "rank": 31,
+          "variable": "breastfeeding",
+          "importance": 0.0115
+        },
+        {
+          "rank": 32,
+          "variable": "ASDauto",
+          "importance": 0.0107
+        },
+        {
+          "rank": 33,
+          "variable": "ASPauto",
+          "importance": 0.0105
+        },
+        {
+          "rank": 34,
+          "variable": "head_injury",
+          "importance": 0.0104
+        },
+        {
+          "rank": 35,
+          "variable": "neo_illness",
+          "importance": 0.0098
+        },
+        {
+          "rank": 36,
+          "variable": "paternal_age",
+          "importance": 0.0088
+        },
+        {
+          "rank": 37,
+          "variable": "EAeur1",
+          "importance": 0.0083
+        },
+        {
+          "rank": 38,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0083
+        },
+        {
+          "rank": 39,
+          "variable": "pollution",
+          "importance": 0.0073
+        },
+        {
+          "rank": 40,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0057
+        },
+        {
+          "rank": 41,
+          "variable": "alcohol",
+          "importance": 0.0056
+        },
+        {
+          "rank": 42,
+          "variable": "allergies",
+          "importance": 0.0056
+        },
+        {
+          "rank": 43,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0054
+        },
+        {
+          "rank": 44,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0042
+        },
+        {
+          "rank": 45,
+          "variable": "interview_age",
+          "importance": 0.0041
+        },
+        {
+          "rank": 46,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0026
+        },
+        {
+          "rank": 47,
+          "variable": "sex",
+          "importance": 0.002
+        },
+        {
+          "rank": 48,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0019
+        },
+        {
+          "rank": 49,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0017
+        },
+        {
+          "rank": 50,
+          "variable": "preg_comp",
+          "importance": 0.0015
+        },
+        {
+          "rank": 51,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0013
+        },
+        {
+          "rank": 52,
+          "variable": "marijuana",
+          "importance": 0.0012
+        },
+        {
+          "rank": 53,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0011
+        },
+        {
+          "rank": 54,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.0008
+        },
+        {
+          "rank": 55,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0006
+        },
+        {
+          "rank": 56,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0003
+        },
+        {
+          "rank": 57,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0.0002
+        },
+        {
+          "rank": 58,
+          "variable": "preterm_birth",
+          "importance": 0.0002
+        },
+        {
+          "rank": 59,
+          "variable": "tobacco",
+          "importance": 0.0002
+        },
+        {
+          "rank": 60,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0001
+        },
+        {
+          "rank": 61,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "ethnic_g_EAS",
+          "importance": 3e-06
+        },
+        {
+          "rank": 63,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 64,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        }
+      ],
+      "model_name": "Multiethnic: Substituting BMI PGS with Measured Child BMI",
+      "specification": "bmi_substituting_pgs",
+      "substituted_covariate": "BMImulti",
+      "added_covariate": "bmi"
+    },
+    "bmi_plus_pgs": {
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "num_covariates": 67,
+      "elapsed_seconds": 30.32,
+      "ate": 0.5386,
+      "se": 0.0334,
+      "ate_details": {
+        "estimate": 0.5386,
+        "std_error": 0.0334,
+        "t_stat": 16.1471,
+        "p_value": 0,
+        "ci_95_lower": 0.4732,
+        "ci_95_upper": 0.604
+      },
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0145,
+          "std_error": 0.1098,
+          "t_stat": 9.239,
+          "p_value": 5.23e-20
+        },
+        "differential_prediction": {
+          "estimate": 2.1548,
+          "std_error": 0.8926,
+          "t_stat": 2.414,
+          "p_value_one_sided": 0.008,
+          "p_value_two_sided": 0.0159
+        }
+      },
+      "mde": 2.4994,
+      "heterogeneity_detected_p05": true,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0914
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0714
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.0698
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0454
+        },
+        {
+          "rank": 5,
+          "variable": "WORRYauto",
+          "importance": 0.0448
+        },
+        {
+          "rank": 6,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0394
+        },
+        {
+          "rank": 7,
+          "variable": "MDDeur6",
+          "importance": 0.0373
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0357
+        },
+        {
+          "rank": 9,
+          "variable": "CANNABISauto",
+          "importance": 0.0347
+        },
+        {
+          "rank": 10,
+          "variable": "DRINKauto",
+          "importance": 0.0317
+        },
+        {
+          "rank": 11,
+          "variable": "EDauto",
+          "importance": 0.0307
+        },
+        {
+          "rank": 12,
+          "variable": "OCDauto",
+          "importance": 0.0295
+        },
+        {
+          "rank": 13,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0291
+        },
+        {
+          "rank": 14,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0277
+        },
+        {
+          "rank": 15,
+          "variable": "CPeur2",
+          "importance": 0.0257
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0914
+        },
+        {
+          "rank": 2,
+          "variable": "BMImulti",
+          "importance": 0.0714
+        },
+        {
+          "rank": 3,
+          "variable": "SMOKERauto",
+          "importance": 0.0698
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0454
+        },
+        {
+          "rank": 5,
+          "variable": "WORRYauto",
+          "importance": 0.0448
+        },
+        {
+          "rank": 6,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0394
+        },
+        {
+          "rank": 7,
+          "variable": "MDDeur6",
+          "importance": 0.0373
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0357
+        },
+        {
+          "rank": 9,
+          "variable": "CANNABISauto",
+          "importance": 0.0347
+        },
+        {
+          "rank": 10,
+          "variable": "DRINKauto",
+          "importance": 0.0317
+        },
+        {
+          "rank": 11,
+          "variable": "EDauto",
+          "importance": 0.0307
+        },
+        {
+          "rank": 12,
+          "variable": "OCDauto",
+          "importance": 0.0295
+        },
+        {
+          "rank": 13,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.0291
+        },
+        {
+          "rank": 14,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0277
+        },
+        {
+          "rank": 15,
+          "variable": "CPeur2",
+          "importance": 0.0257
+        },
+        {
+          "rank": 16,
+          "variable": "IQeur2",
+          "importance": 0.0234
+        },
+        {
+          "rank": 17,
+          "variable": "DEPmulti",
+          "importance": 0.0208
+        },
+        {
+          "rank": 18,
+          "variable": "RISK4PCauto",
+          "importance": 0.0188
+        },
+        {
+          "rank": 19,
+          "variable": "SNORINGeur1",
+          "importance": 0.0177
+        },
+        {
+          "rank": 20,
+          "variable": "neo_illness",
+          "importance": 0.0165
+        },
+        {
+          "rank": 21,
+          "variable": "GHappiHealth6",
+          "importance": 0.0156
+        },
+        {
+          "rank": 22,
+          "variable": "maternal_age",
+          "importance": 0.0151
+        },
+        {
+          "rank": 23,
+          "variable": "PTSDmeta6",
+          "importance": 0.015
+        },
+        {
+          "rank": 24,
+          "variable": "CROSSauto",
+          "importance": 0.0146
+        },
+        {
+          "rank": 25,
+          "variable": "ANXIETYauto",
+          "importance": 0.0141
+        },
+        {
+          "rank": 26,
+          "variable": "ASDauto",
+          "importance": 0.0129
+        },
+        {
+          "rank": 27,
+          "variable": "Happieur4",
+          "importance": 0.0126
+        },
+        {
+          "rank": 28,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0118
+        },
+        {
+          "rank": 29,
+          "variable": "BIPauto",
+          "importance": 0.0115
+        },
+        {
+          "rank": 30,
+          "variable": "breastfeeding",
+          "importance": 0.0112
+        },
+        {
+          "rank": 31,
+          "variable": "GHappieur2",
+          "importance": 0.0109
+        },
+        {
+          "rank": 32,
+          "variable": "ADHDeur6",
+          "importance": 0.0096
+        },
+        {
+          "rank": 33,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0095
+        },
+        {
+          "rank": 34,
+          "variable": "bmi",
+          "importance": 0.0092
+        },
+        {
+          "rank": 35,
+          "variable": "head_injury",
+          "importance": 0.009
+        },
+        {
+          "rank": 36,
+          "variable": "ASPauto",
+          "importance": 0.0088
+        },
+        {
+          "rank": 37,
+          "variable": "EAeur1",
+          "importance": 0.0082
+        },
+        {
+          "rank": 38,
+          "variable": "paternal_age",
+          "importance": 0.0081
+        },
+        {
+          "rank": 39,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0063
+        },
+        {
+          "rank": 40,
+          "variable": "pollution",
+          "importance": 0.0059
+        },
+        {
+          "rank": 41,
+          "variable": "allergies",
+          "importance": 0.0049
+        },
+        {
+          "rank": 42,
+          "variable": "alcohol",
+          "importance": 0.0046
+        },
+        {
+          "rank": 43,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0043
+        },
+        {
+          "rank": 44,
+          "variable": "interview_age",
+          "importance": 0.0042
+        },
+        {
+          "rank": 45,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0037
+        },
+        {
+          "rank": 46,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0031
+        },
+        {
+          "rank": 47,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.002
+        },
+        {
+          "rank": 48,
+          "variable": "marijuana",
+          "importance": 0.0018
+        },
+        {
+          "rank": 49,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0017
+        },
+        {
+          "rank": 50,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0015
+        },
+        {
+          "rank": 51,
+          "variable": "preg_comp",
+          "importance": 0.0012
+        },
+        {
+          "rank": 52,
+          "variable": "sex",
+          "importance": 0.0012
+        },
+        {
+          "rank": 53,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0011
+        },
+        {
+          "rank": 54,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.001
+        },
+        {
+          "rank": 55,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.0006
+        },
+        {
+          "rank": 56,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0006
+        },
+        {
+          "rank": 57,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0.0002
+        },
+        {
+          "rank": 58,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0002
+        },
+        {
+          "rank": 59,
+          "variable": "tobacco",
+          "importance": 0.0002
+        },
+        {
+          "rank": 60,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0001
+        },
+        {
+          "rank": 61,
+          "variable": "preterm_birth",
+          "importance": 0.0001
+        },
+        {
+          "rank": 62,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 63,
+          "variable": "ethnic_g_EAS",
+          "importance": 3e-06
+        },
+        {
+          "rank": 64,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 67,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        }
+      ],
+      "model_name": "Multiethnic: Including Both BMI PGS and Measured Child BMI",
+      "specification": "bmi_plus_pgs",
+      "added_covariate": "bmi"
+    },
+    "primary_summary": {
+      "n": 1244,
+      "n_treated": 622,
+      "n_control": 622,
+      "num_covariates": 66,
+      "elapsed_seconds": 29.69,
+      "ate": 0.5395,
+      "se": 0.034,
+      "ate_details": {
+        "estimate": 0.5395,
+        "std_error": 0.034,
+        "t_stat": 15.8846,
+        "p_value": 0,
+        "ci_95_lower": 0.473,
+        "ci_95_upper": 0.6061
+      },
+      "calibration": {
+        "mean_prediction": {
+          "estimate": 1.0077,
+          "std_error": 0.1131,
+          "t_stat": 8.9131,
+          "p_value": 8.6532e-19
+        },
+        "differential_prediction": {
+          "estimate": 1.7936,
+          "std_error": 1.0607,
+          "t_stat": 1.6909,
+          "p_value_one_sided": 0.0456,
+          "p_value_two_sided": 0.0911
+        }
+      },
+      "mde": 2.97,
+      "heterogeneity_detected_p05": false,
+      "top_variables": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0955
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0653
+        },
+        {
+          "rank": 3,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0474
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0433
+        },
+        {
+          "rank": 5,
+          "variable": "WORRYauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 6,
+          "variable": "MDDeur6",
+          "importance": 0.0411
+        },
+        {
+          "rank": 7,
+          "variable": "CANNABISauto",
+          "importance": 0.0386
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0384
+        },
+        {
+          "rank": 9,
+          "variable": "EDauto",
+          "importance": 0.0352
+        },
+        {
+          "rank": 10,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.034
+        },
+        {
+          "rank": 11,
+          "variable": "DRINKauto",
+          "importance": 0.0333
+        },
+        {
+          "rank": 12,
+          "variable": "OCDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 13,
+          "variable": "IQeur2",
+          "importance": 0.0285
+        },
+        {
+          "rank": 14,
+          "variable": "CPeur2",
+          "importance": 0.0284
+        },
+        {
+          "rank": 15,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0252
+        }
+      ],
+      "all_variable_importance": [
+        {
+          "rank": 1,
+          "variable": "sleep_prob",
+          "importance": 0.0955
+        },
+        {
+          "rank": 2,
+          "variable": "SMOKERauto",
+          "importance": 0.0653
+        },
+        {
+          "rank": 3,
+          "variable": "INSOMNIAeur6",
+          "importance": 0.0474
+        },
+        {
+          "rank": 4,
+          "variable": "SCZ_METAauto",
+          "importance": 0.0433
+        },
+        {
+          "rank": 5,
+          "variable": "WORRYauto",
+          "importance": 0.0422
+        },
+        {
+          "rank": 6,
+          "variable": "MDDeur6",
+          "importance": 0.0411
+        },
+        {
+          "rank": 7,
+          "variable": "CANNABISauto",
+          "importance": 0.0386
+        },
+        {
+          "rank": 8,
+          "variable": "RISKTOLauto",
+          "importance": 0.0384
+        },
+        {
+          "rank": 9,
+          "variable": "EDauto",
+          "importance": 0.0352
+        },
+        {
+          "rank": 10,
+          "variable": "ALCDEP_METAauto",
+          "importance": 0.034
+        },
+        {
+          "rank": 11,
+          "variable": "DRINKauto",
+          "importance": 0.0333
+        },
+        {
+          "rank": 12,
+          "variable": "OCDauto",
+          "importance": 0.0319
+        },
+        {
+          "rank": 13,
+          "variable": "IQeur2",
+          "importance": 0.0285
+        },
+        {
+          "rank": 14,
+          "variable": "CPeur2",
+          "importance": 0.0284
+        },
+        {
+          "rank": 15,
+          "variable": "NEUROTICISMauto",
+          "importance": 0.0252
+        },
+        {
+          "rank": 16,
+          "variable": "DEPmulti",
+          "importance": 0.0241
+        },
+        {
+          "rank": 17,
+          "variable": "RISK4PCauto",
+          "importance": 0.0216
+        },
+        {
+          "rank": 18,
+          "variable": "SNORINGeur1",
+          "importance": 0.0204
+        },
+        {
+          "rank": 19,
+          "variable": "PTSDmeta6",
+          "importance": 0.0174
+        },
+        {
+          "rank": 20,
+          "variable": "CROSSauto",
+          "importance": 0.0172
+        },
+        {
+          "rank": 21,
+          "variable": "GHappiHealth6",
+          "importance": 0.0167
+        },
+        {
+          "rank": 22,
+          "variable": "ANXIETYauto",
+          "importance": 0.0156
+        },
+        {
+          "rank": 23,
+          "variable": "maternal_age",
+          "importance": 0.0146
+        },
+        {
+          "rank": 24,
+          "variable": "Happieur4",
+          "importance": 0.0145
+        },
+        {
+          "rank": 25,
+          "variable": "BIPauto",
+          "importance": 0.0141
+        },
+        {
+          "rank": 26,
+          "variable": "GHappiMeaneur1",
+          "importance": 0.0137
+        },
+        {
+          "rank": 27,
+          "variable": "GHappieur2",
+          "importance": 0.0136
+        },
+        {
+          "rank": 28,
+          "variable": "fes_y_ss_fc",
+          "importance": 0.0124
+        },
+        {
+          "rank": 29,
+          "variable": "bmi",
+          "importance": 0.0123
+        },
+        {
+          "rank": 30,
+          "variable": "ADHDeur6",
+          "importance": 0.0115
+        },
+        {
+          "rank": 31,
+          "variable": "breastfeeding",
+          "importance": 0.0115
+        },
+        {
+          "rank": 32,
+          "variable": "ASDauto",
+          "importance": 0.0107
+        },
+        {
+          "rank": 33,
+          "variable": "ASPauto",
+          "importance": 0.0105
+        },
+        {
+          "rank": 34,
+          "variable": "head_injury",
+          "importance": 0.0104
+        },
+        {
+          "rank": 35,
+          "variable": "neo_illness",
+          "importance": 0.0098
+        },
+        {
+          "rank": 36,
+          "variable": "paternal_age",
+          "importance": 0.0088
+        },
+        {
+          "rank": 37,
+          "variable": "EAeur1",
+          "importance": 0.0083
+        },
+        {
+          "rank": 38,
+          "variable": "birth_weight_lbs",
+          "importance": 0.0083
+        },
+        {
+          "rank": 39,
+          "variable": "pollution",
+          "importance": 0.0073
+        },
+        {
+          "rank": 40,
+          "variable": "asr_scr_antisocial_t",
+          "importance": 0.0057
+        },
+        {
+          "rank": 41,
+          "variable": "alcohol",
+          "importance": 0.0056
+        },
+        {
+          "rank": 42,
+          "variable": "allergies",
+          "importance": 0.0056
+        },
+        {
+          "rank": 43,
+          "variable": "asr_scr_anxdisord_t",
+          "importance": 0.0054
+        },
+        {
+          "rank": 44,
+          "variable": "crpbi_y_ss_parent",
+          "importance": 0.0042
+        },
+        {
+          "rank": 45,
+          "variable": "interview_age",
+          "importance": 0.0041
+        },
+        {
+          "rank": 46,
+          "variable": "demo_prnt_marital_v2_3",
+          "importance": 0.0026
+        },
+        {
+          "rank": 47,
+          "variable": "sex",
+          "importance": 0.002
+        },
+        {
+          "rank": 48,
+          "variable": "demo_prnt_ed_v2",
+          "importance": 0.0019
+        },
+        {
+          "rank": 49,
+          "variable": "demo_comb_income_v2",
+          "importance": 0.0017
+        },
+        {
+          "rank": 50,
+          "variable": "preg_comp",
+          "importance": 0.0015
+        },
+        {
+          "rank": 51,
+          "variable": "famhx_ss_momdad_dprs_p",
+          "importance": 0.0013
+        },
+        {
+          "rank": 52,
+          "variable": "marijuana",
+          "importance": 0.0012
+        },
+        {
+          "rank": 53,
+          "variable": "famhx_ss_momdad_dg_p",
+          "importance": 0.0011
+        },
+        {
+          "rank": 54,
+          "variable": "ethnic_g_EUR",
+          "importance": 0.0008
+        },
+        {
+          "rank": 55,
+          "variable": "demo_prnt_marital_v2_1",
+          "importance": 0.0006
+        },
+        {
+          "rank": 56,
+          "variable": "demo_prnt_marital_v2_5",
+          "importance": 0.0003
+        },
+        {
+          "rank": 57,
+          "variable": "demo_prnt_marital_v2_6",
+          "importance": 0.0002
+        },
+        {
+          "rank": 58,
+          "variable": "preterm_birth",
+          "importance": 0.0002
+        },
+        {
+          "rank": 59,
+          "variable": "tobacco",
+          "importance": 0.0002
+        },
+        {
+          "rank": 60,
+          "variable": "ethnic_g_AFR",
+          "importance": 0.0001
+        },
+        {
+          "rank": 61,
+          "variable": "preeclampsia",
+          "importance": 0
+        },
+        {
+          "rank": 62,
+          "variable": "ethnic_g_EAS",
+          "importance": 3e-06
+        },
+        {
+          "rank": 63,
+          "variable": "coc_crack",
+          "importance": 0
+        },
+        {
+          "rank": 64,
+          "variable": "demo_prnt_marital_v2_2",
+          "importance": 0
+        },
+        {
+          "rank": 65,
+          "variable": "demo_prnt_marital_v2_4",
+          "importance": 0
+        },
+        {
+          "rank": 66,
+          "variable": "ethnic_g_AMR",
+          "importance": 0
+        }
+      ],
+      "model_name": "Multiethnic: Substituting BMI PGS with Measured Child BMI",
+      "specification": "bmi_substituting_pgs",
+      "substituted_covariate": "BMImulti",
+      "added_covariate": "bmi"
+    }
+  }
+}
