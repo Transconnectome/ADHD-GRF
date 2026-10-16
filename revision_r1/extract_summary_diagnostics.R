@@ -1,11 +1,10 @@
 #!/usr/bin/env Rscript
 # ==============================================================================
-# Script: analysis/extract_summary_diagnostics.R
-# Purpose: Reproducibly extract and verify all 11 non-refit pending items
-#          (Analysis–Analysis, Analysis, Analysis–Analysis) from data/all_results_correlation_2.RData,
-#          and generate the structured JSON artifact analysis/summary_diagnostics.json.
-# Project: Translational Psychiatry MS  (ADHD-GRF R1 Revision)
-# Author: Milestone M1 Worker (worker_m1)
+# Script: revision_r1/extract_summary_diagnostics.R
+# Purpose: Reproducibly extract and verify summary diagnostics and preprocessing
+#          specifications from data/all_results_correlation_2.RData, and generate
+#          the structured JSON artifact revision_r1/results/summary_diagnostics.json.
+# Project: Translational Psychiatry (ADHD-GRF R1 Revision)
 # ==============================================================================
 
 suppressPackageStartupMessages({
@@ -14,10 +13,10 @@ suppressPackageStartupMessages({
 })
 
 cat("==============================================================================\n")
-cat("Starting extraction of non-refit pending items (Analysis–Analysis, Analysis, Analysis–Analysis)\n")
+cat("Starting extraction of summary diagnostics and preprocessing specifications\n")
 cat("==============================================================================\n")
 
-rdata_path <- "data/all_results_correlation_2.RData"
+rdata_path <- Sys.getenv("ADHD_GRF_RDATA_PATH", unset = "data/all_results_correlation_2.RData")
 if (!file.exists(rdata_path)) {
   stop(sprintf("Fatal error: Workspace file not found at '%s'", rdata_path))
 }
@@ -158,22 +157,22 @@ calc_cate_ci_stats <- function(forest, sample_n = NULL) {
   )
 }
 
-spec_multi <- calc_cate_ci_stats(multi_env_gen$forest)
-spec_eur_post <- calc_cate_ci_stats(eur_env_gen$forest)
-spec_eur_obs <- calc_cate_ci_stats(eur_env_gen$forest, sample_n = 982)
+cate_multi <- calc_cate_ci_stats(multi_env_gen$forest)
+cate_eur_post <- calc_cate_ci_stats(eur_env_gen$forest)
+cate_eur_obs <- calc_cate_ci_stats(eur_env_gen$forest, sample_n = 982)
 
 cate_ci_pos_pct <- list(
-  multiethnic = spec_multi,
-  european_post_smote = spec_eur_post,
-  european_pre_smote_observed = spec_eur_obs
+  multiethnic = cate_multi,
+  european_post_smote = cate_eur_post,
+  european_pre_smote_observed = cate_eur_obs
 )
 
 cat(sprintf("  Multiethnic: %d / %d (%.2f%%) individual CATE 95%% CIs strictly > 0\n",
-            spec_multi$ci_gt_zero_count, spec_multi$n, spec_multi$ci_gt_zero_pct))
+            cate_multi$ci_gt_zero_count, cate_multi$n, cate_multi$ci_gt_zero_pct))
 cat(sprintf("  European post-SMOTE: %d / %d (%.2f%%) individual CATE 95%% CIs strictly > 0\n",
-            spec_eur_post$ci_gt_zero_count, spec_eur_post$n, spec_eur_post$ci_gt_zero_pct))
+            cate_eur_post$ci_gt_zero_count, cate_eur_post$n, cate_eur_post$ci_gt_zero_pct))
 cat(sprintf("  European pre-SMOTE observed: %d / %d (%.2f%%) individual CATE 95%% CIs strictly > 0\n",
-            spec_eur_obs$ci_gt_zero_count, spec_eur_obs$n, spec_eur_obs$ci_gt_zero_pct))
+            cate_eur_obs$ci_gt_zero_count, cate_eur_obs$n, cate_eur_obs$ci_gt_zero_pct))
 
 # ------------------------------------------------------------------------------
 # Item Analysis: PDP Quartile Contrasts (Q1–Q3 and Q0–Q4)
@@ -206,26 +205,26 @@ extract_pdp_contrasts <- function(pdp_df) {
   contrasts
 }
 
-spec_multi <- extract_pdp_contrasts(univ.sim_multi)
-spec_eur <- extract_pdp_contrasts(univ.sim_eur)
-spec_multi_1y <- extract_pdp_contrasts(univ.sim_multi_1y)
+pdp_multi <- extract_pdp_contrasts(univ.sim_multi)
+pdp_eur <- extract_pdp_contrasts(univ.sim_eur)
+pdp_multi_1y <- extract_pdp_contrasts(univ.sim_multi_1y)
 
 pdp_contrasts <- list(
-  multiethnic_baseline = spec_multi,
-  european_baseline = spec_eur,
-  multiethnic_1y = spec_multi_1y
+  multiethnic_baseline = pdp_multi,
+  european_baseline = pdp_eur,
+  multiethnic_1y = pdp_multi_1y
 )
 
 cat(sprintf("  Multiethnic sleep_prob: Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            spec_multi$sleep_prob$q1_q3_contrast, spec_multi$sleep_prob$q0_q4_contrast))
+            pdp_multi$sleep_prob$q1_q3_contrast, pdp_multi$sleep_prob$q0_q4_contrast))
 cat(sprintf("  Multiethnic SMOKERauto: Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            spec_multi$SMOKERauto$q1_q3_contrast, spec_multi$SMOKERauto$q0_q4_contrast))
+            pdp_multi$SMOKERauto$q1_q3_contrast, pdp_multi$SMOKERauto$q0_q4_contrast))
 cat(sprintf("  Multiethnic BMImulti:   Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            spec_multi$BMImulti$q1_q3_contrast, spec_multi$BMImulti$q0_q4_contrast))
+            pdp_multi$BMImulti$q1_q3_contrast, pdp_multi$BMImulti$q0_q4_contrast))
 cat(sprintf("  European sleep_prob:    Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            spec_eur$sleep_prob$q1_q3_contrast, spec_eur$sleep_prob$q0_q4_contrast))
+            pdp_eur$sleep_prob$q1_q3_contrast, pdp_eur$sleep_prob$q0_q4_contrast))
 cat(sprintf("  European SMOKERauto:    Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            spec_eur$SMOKERauto$q1_q3_contrast, spec_eur$SMOKERauto$q0_q4_contrast))
+            pdp_eur$SMOKERauto$q1_q3_contrast, pdp_eur$SMOKERauto$q0_q4_contrast))
 
 # ------------------------------------------------------------------------------
 # Item Analysis: Complete Technical Specification of Preprocessing Architecture
@@ -383,7 +382,7 @@ pgs_discovery_rho <- list(
     interpretation = "European sample shows weak, non-significant rank correlation (rho = 0.139, p = 0.471), refuting GWAS discovery power artifact conjecture."
   ),
   cp_gwas_n_used = 257841,
-  excluded_pgs = "anxiety (ANXIETYauto: discovery GWAS N unconfirmed in source list)"
+  excluded_pgs = "anxiety (ANXIETYauto: discovery GWAS N not reported in source table)"
 )
 
 cat(sprintf("  Multiethnic: rho = %.4f (p = %.4f, S = %d, k = %d)\n",
@@ -398,7 +397,7 @@ cat(sprintf("  European:    rho = %.4f (p = %.4f, S = %d, k = %d)\n",
             pgs_discovery_rho$european$n_pgs_tested))
 
 # ------------------------------------------------------------------------------
-# Item Analysis: Table S13 30 PGS Label Confirmation and Formatting Cleanup
+# Item Analysis: Table S13 30 PGS Label Mapping
 # ------------------------------------------------------------------------------
 cat("\n--- [Analysis] Confirming Table S13 30 PGS Label Mapping ---\n")
 
@@ -406,11 +405,6 @@ covariate_labels <- list(
   total_pgs_count = 30,
   mapped_pgs_count = 30,
   discovery_source = "Joo et al. (2025) Nat Commun 16:8467 Supplementary Data 1",
-  formatting_artifacts_identified = list(
-    "Line 3652 in Supplementary_R1.md: 'mapping to be confirmed'",
-    "Line 3654 in Supplementary_R1.md: 'unconfirmed — no anxiety trait in the source list'",
-    "Line 3658 in Supplementary_R1.md: 'mapping to be confirmed'"
-  ),
   cp_vs_ea_correction = "Cognitive Performance (CP) GWAS discovery N in Joo et al. SD1 was misreported as 1,131,881 (the EA N); true Lee et al. (2018) CP discovery N is 257,841.",
   pgs_traits = lapply(seq_len(nrow(pgs_mapping)), function(i) {
     list(
@@ -507,7 +501,7 @@ package_versions <- list(
   caret = "6.0-93",
   impute = "1.72.3",
   DMwR = "0.4.1",
-  source_file = "analysis/first_author/readme.md"
+  source_file = "README.md"
 )
 
 cat("  grf: 2.3.2, caret: 6.0-93, impute: 1.72.3, DMwR: 0.4.1\n")
@@ -515,7 +509,7 @@ cat("  grf: 2.3.2, caret: 6.0-93, impute: 1.72.3, DMwR: 0.4.1\n")
 # ------------------------------------------------------------------------------
 # Assemble Master JSON Output
 # ------------------------------------------------------------------------------
-results_p1_p15 <- list(
+summary_diagnostics <- list(
   cbcl_sd = cbcl_sd,
   cate_ci_pos_pct = cate_ci_pos_pct,
   pdp_contrasts = pdp_contrasts,
@@ -529,9 +523,9 @@ results_p1_p15 <- list(
   package_versions = package_versions
 )
 
-output_json_path <- "analysis/summary_diagnostics.json"
+output_json_path <- Sys.getenv("ADHD_GRF_SUMMARY_JSON", unset = "revision_r1/results/summary_diagnostics.json")
 cat("\nWriting structured results to:", output_json_path, "...\n")
-write_json(results_p1_p15, output_json_path, pretty = TRUE, auto_unbox = TRUE)
+write_json(summary_diagnostics, output_json_path, pretty = TRUE, auto_unbox = TRUE)
 cat("Output successfully written! File size:", file.size(output_json_path), "bytes\n")
 cat("==============================================================================\n")
 cat("Extraction completed successfully with 100% verification.\n")

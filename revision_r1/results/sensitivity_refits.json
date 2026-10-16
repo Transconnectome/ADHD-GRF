@@ -1,7 +1,7 @@
 {
   "metadata": {
     "generated_at": "2026-10-15T11:41:49Z",
-    "script": "analysis/run_refit_grf_models.R",
+    "script": "revision_r1/run_refit_grf_models.R",
     "r_version": "R version 4.4.3 (2025-02-28)",
     "grf_version": "2.3.2",
     "ensemble_seeds": [
@@ -16,7 +16,7 @@
     "target_sample": "all",
     "ate_method": "AIPW",
     "bmi_refit_updated_at": "2026-10-16T01:00:33Z",
-    "bmi_refit_script": "analysis/run_bmi_sensitivity_refit.R"
+    "bmi_refit_script": "revision_r1/run_bmi_sensitivity_refit.R"
   },
   "primary_reference": {
     "multiethnic_primary": {
@@ -923,7 +923,7 @@
       "se": 0.0557
     }
   },
-  "P10_longitudinal_1y_2y_3y": {
+  "longitudinal_1y_2y_3y": {
     "model_1y": {
       "n": 1173,
       "n_treated": 582,
@@ -5678,7 +5678,7 @@
           "importance": 0
         }
       ],
-      "model_name": "Multiethnic: Excluding Parental Psychopathology (Relocated to shared-informant sensitivity / Analysis)",
+      "model_name": "Multiethnic: Excluding Parental Psychopathology",
       "excluded_covariates": [
         "asr_scr_anxdisord_t",
         "asr_scr_antisocial_t",

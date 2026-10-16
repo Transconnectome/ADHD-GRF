@@ -1,16 +1,16 @@
 #!/usr/bin/env Rscript
 # ==============================================================================
-# Script: analysis/run_bmi_sensitivity_refit.R
+# Script: revision_r1/run_bmi_sensitivity_refit.R
 # Purpose: Reproducible execution of Table S14 Causal Forest
 #          sensitivity re-fitting analyses for Translational Psychiatry R1 revision:
 #          - Specification (a) (bmi_substituting_pgs): Replace BMI PGS (BMImulti) with measured
 #                  baseline child BMI (66 covariates).
 #          - Specification (b) (bmi_plus_pgs): Include both measured baseline child BMI and
 #                  BMI PGS (BMImulti) simultaneously (67 covariates).
-#          - Relocate parental psychopathology refit to shared-informant sensitivity analysis.
+#          - Include parental psychopathology exclusion in shared-informant sensitivity analysis.
 # Outputs:
-#   - Updates analysis/sensitivity_refits.json with measured_child_bmi
-#   - Generates analysis/table_s14_bmi.md (formatted Supplementary Table S14)
+#   - Updates revision_r1/results/sensitivity_refits.json with measured_child_bmi
+#   - Generates revision_r1/results/table_s14_bmi.md (formatted Supplementary Table S14)
 # Governance: Strictly enforces ABCD NDA compliance - saves only aggregate statistics.
 # ==============================================================================
 
@@ -24,18 +24,11 @@ cat("Starting Measured Child BMI Sensitivity Re-fitting (Table S14)\n")
 cat("Timestamp:", format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"), "\n")
 cat("==============================================================================\n")
 
-# Path configuration (supports running inside Docker container mounted at /work or on host)
-repo_root <- if (dir.exists("/work/data")) {
-  "/work"
-} else if (dir.exists("/home/juke/git/ADHD-GRF_paper/data")) {
-  "/home/juke/git/ADHD-GRF_paper"
-} else {
-  getwd()
-}
-
-rdata_path <- file.path(repo_root, "data", "all_results_correlation_2.RData")
-json_output_path <- file.path(repo_root, "analysis", "sensitivity_refits.json")
-table_s14_path <- file.path(repo_root, "analysis", "table_s14_bmi.md")
+# Path configuration
+repo_root <- Sys.getenv("ADHD_GRF_REPO_ROOT", unset = getwd())
+rdata_path <- Sys.getenv("ADHD_GRF_RDATA_PATH", unset = file.path(repo_root, "data", "all_results_correlation_2.RData"))
+json_output_path <- Sys.getenv("ADHD_GRF_REFIT_JSON", unset = file.path(repo_root, "revision_r1", "results", "sensitivity_refits.json"))
+table_s14_path <- Sys.getenv("ADHD_GRF_TABLE_S14_MD", unset = file.path(repo_root, "revision_r1", "results", "table_s14_bmi.md"))
 
 if (!file.exists(rdata_path)) {
   stop("Input RData file not found at: ", rdata_path)
@@ -257,17 +250,17 @@ existing_json$measured_child_bmi <- list(
   primary_summary = bmi_a_results
 )
 
-# 2. Relocate parental psychopathology exclusion model to no_shared_parent_report
+# 2. Include parental psychopathology exclusion model under no_shared_parent_report
 if (!is.null(existing_json$no_parent_psych)) {
-  old_p8 <- existing_json$no_parent_psych
-  old_p8$model_name <- "Multiethnic: Excluding Parental Psychopathology (Relocated to shared-informant sensitivity / Analysis)"
-  existing_json$no_shared_parent_report$parent_psych_excluded <- old_p8
-  cat("  Parental psychopathology refit successfully relocated to no_shared_parent_report$parent_psych_excluded.\n")
+  parent_psych_model <- existing_json$no_parent_psych
+  parent_psych_model$model_name <- "Multiethnic: Excluding Parental Psychopathology"
+  existing_json$no_shared_parent_report$parent_psych_excluded <- parent_psych_model
+  cat("  Parental psychopathology refit recorded under no_shared_parent_report$parent_psych_excluded.\n")
 }
 
 # 3. Update metadata
 existing_json$metadata$bmi_refit_updated_at <- format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
-existing_json$metadata$bmi_refit_script <- "analysis/run_bmi_sensitivity_refit.R"
+existing_json$metadata$bmi_refit_script <- "revision_r1/run_bmi_sensitivity_refit.R"
 
 # Write updated JSON
 writeLines(toJSON(existing_json, pretty = TRUE, auto_unbox = TRUE), json_output_path)

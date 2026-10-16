@@ -290,17 +290,12 @@
       "interpretation": "European sample shows weak, non-significant rank correlation (rho = 0.139, p = 0.471), refuting GWAS discovery power artifact conjecture."
     },
     "cp_gwas_n_used": 257841,
-    "excluded_pgs": "anxiety (ANXIETYauto: discovery GWAS N unconfirmed in source list)"
+    "excluded_pgs": "anxiety (ANXIETYauto: discovery GWAS N not reported in source table)"
   },
   "covariate_labels": {
     "total_pgs_count": 30,
     "mapped_pgs_count": 30,
     "discovery_source": "Joo et al. (2025) Nat Commun 16:8467 Supplementary Data 1",
-    "formatting_artifacts_identified": [
-      "Line 3652 in Supplementary_R1.md: 'mapping to be confirmed'",
-      "Line 3654 in Supplementary_R1.md: 'unconfirmed — no anxiety trait in the source list'",
-      "Line 3658 in Supplementary_R1.md: 'mapping to be confirmed'"
-    ],
     "cp_vs_ea_correction": "Cognitive Performance (CP) GWAS discovery N in Joo et al. SD1 was misreported as 1,131,881 (the EA N); true Lee et al. (2018) CP discovery N is 257,841.",
     "pgs_traits": [
       {
@@ -545,6 +540,6 @@
     "caret": "6.0-93",
     "impute": "1.72.3",
     "DMwR": "0.4.1",
-    "source_file": "analysis/first_author/readme.md"
+    "source_file": "README.md"
   }
 }

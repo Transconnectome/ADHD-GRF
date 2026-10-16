@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # ==============================================================================
-# Script: analysis/run_refit_grf_models.R
+# Script: revision_r1/run_refit_grf_models.R
 # Purpose: Reproducible execution of Causal Forest sensitivity re-fitting analyses
 #          for Translational Psychiatry R1 revision:
 #          - Non-oversampled European sample (363:363 matched & 363:5743 full)
@@ -8,8 +8,8 @@
 #          - Multiethnic model excluding parental psychopathology
 #          - Multiethnic model excluding shared parent-report covariates
 # Outputs:
-#   - analysis/sensitivity_refits.json (structured machine-readable results)
-#   - analysis/table_s16_european.md (Supplementary Table S16 formatted markdown)
+#   - revision_r1/results/sensitivity_refits.json (structured machine-readable results)
+#   - revision_r1/results/table_s16_european.md (Supplementary Table S16 formatted markdown)
 # Governance: Strictly enforces ABCD NDA compliance - saves only aggregate statistics.
 # ==============================================================================
 
@@ -23,17 +23,11 @@ cat("Starting Causal Forest Sensitivity Re-fitting (Sensitivity Refits)\n")
 cat("Timestamp:", format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"), "\n")
 cat("==============================================================================\n")
 
-# Path configuration (supports running inside container mounted at /work or on host)
-repo_root <- if (dir.exists("/work/data")) {
-  "/work"
-} else if (dir.exists("/home/juke/git/ADHD-GRF_paper/data")) {
-  "/home/juke/git/ADHD-GRF_paper"
-} else {
-  getwd()
-}
-rdata_path <- file.path(repo_root, "data", "all_results_correlation_2.RData")
-json_output_path <- file.path(repo_root, "analysis", "sensitivity_refits.json")
-table_s16_path <- file.path(repo_root, "analysis", "table_s16_european.md")
+# Path configuration
+repo_root <- Sys.getenv("ADHD_GRF_REPO_ROOT", unset = getwd())
+rdata_path <- Sys.getenv("ADHD_GRF_RDATA_PATH", unset = file.path(repo_root, "data", "all_results_correlation_2.RData"))
+json_output_path <- Sys.getenv("ADHD_GRF_REFIT_JSON", unset = file.path(repo_root, "revision_r1", "results", "sensitivity_refits.json"))
+table_s16_path <- Sys.getenv("ADHD_GRF_TABLE_S16_MD", unset = file.path(repo_root, "revision_r1", "results", "table_s16_european.md"))
 
 if (!file.exists(rdata_path)) {
   stop("Input RData file not found at: ", rdata_path)
@@ -241,21 +235,21 @@ ct_f_matched <- ct_f[sample(nrow(ct_f), sum(tr_eur$sex == 1)), ]
 ct_matched <- rbind(ct_m_matched, ct_f_matched)
 spec_matched_df <- rbind(tr_eur, ct_matched)
 
-spec_a_Y <- as.vector(scale(spec_matched_df$child_adhd))
-spec_a_W <- spec_matched_df$parent_adhd
-spec_a_site <- as.factor(spec_matched_df$site_id_l)
-spec_a_X <- subset(spec_matched_df, select = !(names(spec_matched_df) %in% c("parent_adhd", "child_adhd", "site_id_l", "row_id", "subjectkey")))
+eur_a_Y <- as.vector(scale(spec_matched_df$child_adhd))
+eur_a_W <- spec_matched_df$parent_adhd
+eur_a_site <- as.factor(spec_matched_df$site_id_l)
+eur_a_X <- subset(spec_matched_df, select = !(names(spec_matched_df) %in% c("parent_adhd", "child_adhd", "site_id_l", "row_id", "subjectkey")))
 
-spec_a_results <- fit_causal_forest_ensemble(spec_a_X, spec_a_Y, spec_a_W, spec_a_site)
-spec_a_results$model_name <- "European Non-Oversampled: Sex-Matched Controls"
-spec_a_results$sampling_seed <- 1
+eur_a_results <- fit_causal_forest_ensemble(eur_a_X, eur_a_Y, eur_a_W, eur_a_site)
+eur_a_results$model_name <- "European Non-Oversampled: Sex-Matched Controls"
+eur_a_results$sampling_seed <- 1
 
-cat(sprintf("  Specification (a) ATE: %.4f (SE: %.4f, p: %.4e)\n", spec_a_results$ate$estimate, spec_a_results$ate$std_error, spec_a_results$ate$p_value))
+cat(sprintf("  Specification (a) ATE: %.4f (SE: %.4f, p: %.4e)\n", eur_a_results$ate$estimate, eur_a_results$ate$std_error, eur_a_results$ate$p_value))
 cat(sprintf("  Specification (a) Differential prediction: %.4f (SE: %.4f, t: %.4f, p_two_sided: %.4f)\n", 
-            spec_a_results$calibration$differential_prediction$estimate,
-            spec_a_results$calibration$differential_prediction$std_error,
-            spec_a_results$calibration$differential_prediction$t_stat,
-            spec_a_results$calibration$differential_prediction$p_value_two_sided))
+            eur_a_results$calibration$differential_prediction$estimate,
+            eur_a_results$calibration$differential_prediction$std_error,
+            eur_a_results$calibration$differential_prediction$t_stat,
+            eur_a_results$calibration$differential_prediction$p_value_two_sided))
 
 # (b) Full controls (363 treated : 5,743 controls, N = 6,106)
 cat("\nFitting Specification (b): Full controls (363 treated : 5,743 controls)...\n")
@@ -263,24 +257,24 @@ f_eur_valid <- full_data_eur[!is.na(full_data_eur$parent_adhd) & !is.na(full_dat
 eur_cols <- intersect(names(data_eur_env_gen), names(full_data_eur))
 eur_full_df <- f_eur_valid[, eur_cols]
 
-spec_b_Y <- as.vector(scale(eur_full_df$child_adhd))
-spec_b_W <- eur_full_df$parent_adhd
-spec_b_site <- as.factor(eur_full_df$site_id_l)
-spec_b_X <- subset(eur_full_df, select = !(names(eur_full_df) %in% c("parent_adhd", "child_adhd", "site_id_l", "row_id", "subjectkey")))
+eur_b_Y <- as.vector(scale(eur_full_df$child_adhd))
+eur_b_W <- eur_full_df$parent_adhd
+eur_b_site <- as.factor(eur_full_df$site_id_l)
+eur_b_X <- subset(eur_full_df, select = !(names(eur_full_df) %in% c("parent_adhd", "child_adhd", "site_id_l", "row_id", "subjectkey")))
 
-spec_b_results <- fit_causal_forest_ensemble(spec_b_X, spec_b_Y, spec_b_W, spec_b_site)
-spec_b_results$model_name <- "European Non-Oversampled: Full Controls"
+eur_b_results <- fit_causal_forest_ensemble(eur_b_X, eur_b_Y, eur_b_W, eur_b_site)
+eur_b_results$model_name <- "European Non-Oversampled: Full Controls"
 
-cat(sprintf("  Specification (b) ATE: %.4f (SE: %.4f, p: %.4e)\n", spec_b_results$ate$estimate, spec_b_results$ate$std_error, spec_b_results$ate$p_value))
+cat(sprintf("  Specification (b) ATE: %.4f (SE: %.4f, p: %.4e)\n", eur_b_results$ate$estimate, eur_b_results$ate$std_error, eur_b_results$ate$p_value))
 cat(sprintf("  Specification (b) Differential prediction: %.4f (SE: %.4f, t: %.4f, p_two_sided: %.4f)\n", 
-            spec_b_results$calibration$differential_prediction$estimate,
-            spec_b_results$calibration$differential_prediction$std_error,
-            spec_b_results$calibration$differential_prediction$t_stat,
-            spec_b_results$calibration$differential_prediction$p_value_two_sided))
+            eur_b_results$calibration$differential_prediction$estimate,
+            eur_b_results$calibration$differential_prediction$std_error,
+            eur_b_results$calibration$differential_prediction$t_stat,
+            eur_b_results$calibration$differential_prediction$p_value_two_sided))
 
 eur_non_oversampled <- list(
-  sex_matched = spec_a_results,
-  full_controls = spec_b_results
+  sex_matched = eur_a_results,
+  full_controls = eur_b_results
 )
 
 # ==============================================================================
@@ -318,7 +312,7 @@ spec_1y <- fit_longitudinal_model(data_multi_env_gen_1y, "1y")
 spec_2y <- fit_longitudinal_model(data_multi_env_gen_2y, "2y")
 spec_3y <- fit_longitudinal_model(data_multi_env_gen_3y, "3y")
 
-P10_longitudinal_1y_2y_3y <- list(
+longitudinal_1y_2y_3y <- list(
   model_1y = spec_1y,
   model_2y = spec_2y,
   model_3y = spec_3y,
@@ -362,17 +356,17 @@ spec_site <- as.factor(spec_data$site_id_l)
 spec_drop <- c("subjectkey", "child_adhd", "parent_adhd", "site_id_l", psych_covs)
 spec_X <- subset(spec_data, select = !(names(spec_data) %in% spec_drop))
 
-spec_results <- fit_causal_forest_ensemble(spec_X, spec_Y, spec_W, spec_site)
-spec_results$model_name <- "Multiethnic: Excluding Parental Psychopathology"
-spec_results$excluded_covariates <- psych_covs
+no_psych_results <- fit_causal_forest_ensemble(spec_X, spec_Y, spec_W, spec_site)
+no_psych_results$model_name <- "Multiethnic: Excluding Parental Psychopathology"
+no_psych_results$excluded_covariates <- psych_covs
 
-cat(sprintf("  Analysis ATE: %.4f (SE: %.4f, p: %.4e)\n", spec_results$ate$estimate, spec_results$ate$std_error, spec_results$ate$p_value))
+cat(sprintf("  Analysis ATE: %.4f (SE: %.4f, p: %.4e)\n", no_psych_results$ate$estimate, no_psych_results$ate$std_error, no_psych_results$ate$p_value))
 cat(sprintf("  Analysis Differential prediction: %.4f (SE: %.4f, p_two_sided: %.4f)\n", 
-            spec_results$calibration$differential_prediction$estimate,
-            spec_results$calibration$differential_prediction$std_error,
-            spec_results$calibration$differential_prediction$p_value_two_sided))
+            no_psych_results$calibration$differential_prediction$estimate,
+            no_psych_results$calibration$differential_prediction$std_error,
+            no_psych_results$calibration$differential_prediction$p_value_two_sided))
 
-no_parent_psych <- spec_results
+no_parent_psych <- no_psych_results
 
 # ==============================================================================
 # 4. Model Excluding Shared Parent-Report Covariates
@@ -382,12 +376,12 @@ cat("4. Multiethnic Model Excluding Shared Parent-Report Covariates\n")
 cat("==============================================================================\n")
 
 # Specification (i): Excluding leading shared informant variables (sleep problems + parental psychopathology)
-spec_drop_a <- c("subjectkey", "child_adhd", "parent_adhd", "site_id_l",
-                "sleep_prob", psych_covs)
-spec_a_X <- subset(data_multi_env_gen, select = !(names(data_multi_env_gen) %in% spec_drop_a))
-spec_a_results <- fit_causal_forest_ensemble(spec_a_X, spec_Y, spec_W, spec_site)
-spec_a_results$model_name <- "Multiethnic: Excluding Sleep Problems & Parental Psychopathology"
-spec_a_results$excluded_covariates <- c("sleep_prob", psych_covs)
+shared_drop_a <- c("subjectkey", "child_adhd", "parent_adhd", "site_id_l",
+                   "sleep_prob", psych_covs)
+shared_a_X <- subset(data_multi_env_gen, select = !(names(data_multi_env_gen) %in% shared_drop_a))
+shared_a_results <- fit_causal_forest_ensemble(shared_a_X, spec_Y, spec_W, spec_site)
+shared_a_results$model_name <- "Multiethnic: Excluding Sleep Problems & Parental Psychopathology"
+shared_a_results$excluded_covariates <- c("sleep_prob", psych_covs)
 
 # Specification (ii): Excluding all parent-reported covariates (retaining child report, geocoded, genetics, demographics)
 all_parent_report_covs <- c(
@@ -399,19 +393,19 @@ all_parent_report_covs <- c(
   "demo_prnt_marital_v2_1", "demo_prnt_marital_v2_2", "demo_prnt_marital_v2_3",
   "demo_prnt_marital_v2_4", "demo_prnt_marital_v2_5", "demo_prnt_marital_v2_6"
 )
-spec_drop_b <- c("subjectkey", "child_adhd", "parent_adhd", "site_id_l", all_parent_report_covs)
-spec_b_X <- subset(data_multi_env_gen, select = !(names(data_multi_env_gen) %in% spec_drop_b))
-spec_b_results <- fit_causal_forest_ensemble(spec_b_X, spec_Y, spec_W, spec_site)
-spec_b_results$model_name <- "Multiethnic: Excluding All Parent-Reported Covariates"
-spec_b_results$excluded_covariates <- all_parent_report_covs
+shared_drop_b <- c("subjectkey", "child_adhd", "parent_adhd", "site_id_l", all_parent_report_covs)
+shared_b_X <- subset(data_multi_env_gen, select = !(names(data_multi_env_gen) %in% shared_drop_b))
+shared_b_results <- fit_causal_forest_ensemble(shared_b_X, spec_Y, spec_W, spec_site)
+shared_b_results$model_name <- "Multiethnic: Excluding All Parent-Reported Covariates"
+shared_b_results$excluded_covariates <- all_parent_report_covs
 
-cat(sprintf("  Specification (i) ATE: %.4f (SE: %.4f, p: %.4e)\n", spec_a_results$ate$estimate, spec_a_results$ate$std_error, spec_a_results$ate$p_value))
-cat(sprintf("  Specification (ii) ATE: %.4f (SE: %.4f, p: %.4e)\n", spec_b_results$ate$estimate, spec_b_results$ate$std_error, spec_b_results$ate$p_value))
+cat(sprintf("  Specification (i) ATE: %.4f (SE: %.4f, p: %.4e)\n", shared_a_results$ate$estimate, shared_a_results$ate$std_error, shared_a_results$ate$p_value))
+cat(sprintf("  Specification (ii) ATE: %.4f (SE: %.4f, p: %.4e)\n", shared_b_results$ate$estimate, shared_b_results$ate$std_error, shared_b_results$ate$p_value))
 
 no_shared_parent_report <- list(
-  sleep_and_psych_excluded = spec_a_results,
-  all_parent_report_excluded = spec_b_results,
-  primary_summary = spec_a_results
+  sleep_and_psych_excluded = shared_a_results,
+  all_parent_report_excluded = shared_b_results,
+  primary_summary = shared_a_results
 )
 
 # ==============================================================================
@@ -429,19 +423,19 @@ add_ate_se_to_model <- function(m) {
   m
 }
 
-spec_a_json <- add_ate_se_to_model(spec_a_results)
-spec_b_json <- add_ate_se_to_model(spec_b_results)
-spec_json <- add_ate_se_to_model(spec_results)
+eur_a_json <- add_ate_se_to_model(eur_a_results)
+eur_b_json <- add_ate_se_to_model(eur_b_results)
+no_psych_json <- add_ate_se_to_model(no_psych_results)
 spec_1y_json <- add_ate_se_to_model(spec_1y)
 spec_2y_json <- add_ate_se_to_model(spec_2y)
 spec_3y_json <- add_ate_se_to_model(spec_3y)
-spec_a_json <- add_ate_se_to_model(spec_a_results)
-spec_b_json <- add_ate_se_to_model(spec_b_results)
+shared_a_json <- add_ate_se_to_model(shared_a_results)
+shared_b_json <- add_ate_se_to_model(shared_b_results)
 
 final_results_json <- list(
   metadata = list(
     generated_at = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
-    script = "analysis/run_refit_grf_models.R",
+    script = "revision_r1/run_refit_grf_models.R",
     r_version = R.version.string,
     grf_version = as.character(packageVersion("grf")),
     ensemble_seeds = ENSEMBLE_SEEDS,
@@ -452,26 +446,26 @@ final_results_json <- list(
   ),
   primary_reference = primary_ref,
   eur_non_oversampled = list(
-    sex_matched = spec_a_json,
-    full_controls = spec_b_json
+    sex_matched = eur_a_json,
+    full_controls = eur_b_json
   ),
-  P10_longitudinal_1y_2y_3y = list(
+  longitudinal_1y_2y_3y = list(
     "1y" = spec_1y_json,
     "2y" = spec_2y_json,
     "3y" = spec_3y_json,
     model_1y = spec_1y_json,
     model_2y = spec_2y_json,
     model_3y = spec_3y_json,
-    unadjusted_reference = P10_longitudinal_1y_2y_3y$unadjusted_reference
+    unadjusted_reference = longitudinal_1y_2y_3y$unadjusted_reference
   ),
-  no_parent_psych = spec_json,
+  no_parent_psych = no_psych_json,
   no_shared_parent_report = list(
-    ate = spec_a_json$ate,
-    se = spec_a_json$se,
-    ate_details = spec_a_json$ate_details,
-    sleep_and_psych_excluded = spec_a_json,
-    all_parent_report_excluded = spec_b_json,
-    primary_summary = spec_a_json
+    ate = shared_a_json$ate,
+    se = shared_a_json$se,
+    ate_details = shared_a_json$ate_details,
+    sleep_and_psych_excluded = shared_a_json,
+    all_parent_report_excluded = shared_b_json,
+    primary_summary = shared_a_json
   )
 )
 
@@ -586,34 +580,34 @@ s16_md <- sprintf(s16_template,
   format_p(primary_ref$european_smote_secondary$calibration$differential_prediction$p_value),
 
   # Specification (a) row
-  format(spec_a_results$n, big.mark = ","), format(spec_a_results$n_treated, big.mark = ","), format(spec_a_results$n_control, big.mark = ","),
-  spec_a_results$ate$estimate, spec_a_results$ate$std_error,
-  spec_a_results$ate$ci_95_lower, spec_a_results$ate$ci_95_upper,
-  format_p(spec_a_results$ate$p_value),
-  spec_a_results$calibration$mean_prediction$estimate, spec_a_results$calibration$mean_prediction$std_error,
-  spec_a_results$calibration$differential_prediction$estimate, spec_a_results$calibration$differential_prediction$std_error,
-  format_p(spec_a_results$calibration$differential_prediction$p_value_two_sided),
+  format(eur_a_results$n, big.mark = ","), format(eur_a_results$n_treated, big.mark = ","), format(eur_a_results$n_control, big.mark = ","),
+  eur_a_results$ate$estimate, eur_a_results$ate$std_error,
+  eur_a_results$ate$ci_95_lower, eur_a_results$ate$ci_95_upper,
+  format_p(eur_a_results$ate$p_value),
+  eur_a_results$calibration$mean_prediction$estimate, eur_a_results$calibration$mean_prediction$std_error,
+  eur_a_results$calibration$differential_prediction$estimate, eur_a_results$calibration$differential_prediction$std_error,
+  format_p(eur_a_results$calibration$differential_prediction$p_value_two_sided),
 
   # Specification (b) row
-  format(spec_b_results$n, big.mark = ","), format(spec_b_results$n_treated, big.mark = ","), format(spec_b_results$n_control, big.mark = ","),
-  spec_b_results$ate$estimate, spec_b_results$ate$std_error,
-  spec_b_results$ate$ci_95_lower, spec_b_results$ate$ci_95_upper,
-  format_p(spec_b_results$ate$p_value),
-  spec_b_results$calibration$mean_prediction$estimate, spec_b_results$calibration$mean_prediction$std_error,
-  spec_b_results$calibration$differential_prediction$estimate, spec_b_results$calibration$differential_prediction$std_error,
-  format_p(spec_b_results$calibration$differential_prediction$p_value_two_sided),
+  format(eur_b_results$n, big.mark = ","), format(eur_b_results$n_treated, big.mark = ","), format(eur_b_results$n_control, big.mark = ","),
+  eur_b_results$ate$estimate, eur_b_results$ate$std_error,
+  eur_b_results$ate$ci_95_lower, eur_b_results$ate$ci_95_upper,
+  format_p(eur_b_results$ate$p_value),
+  eur_b_results$calibration$mean_prediction$estimate, eur_b_results$calibration$mean_prediction$std_error,
+  eur_b_results$calibration$differential_prediction$estimate, eur_b_results$calibration$differential_prediction$std_error,
+  format_p(eur_b_results$calibration$differential_prediction$p_value_two_sided),
 
   # Notes
-  spec_a_results$calibration$differential_prediction$estimate,
-  spec_a_results$calibration$differential_prediction$std_error,
-  format_p(spec_a_results$calibration$differential_prediction$p_value_two_sided),
-  spec_a_results$mde,
-  spec_b_results$ate$estimate,
-  spec_b_results$ate$std_error,
-  format_p(spec_b_results$ate$p_value),
-  spec_b_results$calibration$differential_prediction$estimate,
-  spec_b_results$calibration$differential_prediction$std_error,
-  format_p(spec_b_results$calibration$differential_prediction$p_value_two_sided),
+  eur_a_results$calibration$differential_prediction$estimate,
+  eur_a_results$calibration$differential_prediction$std_error,
+  format_p(eur_a_results$calibration$differential_prediction$p_value_two_sided),
+  eur_a_results$mde,
+  eur_b_results$ate$estimate,
+  eur_b_results$ate$std_error,
+  format_p(eur_b_results$ate$p_value),
+  eur_b_results$calibration$differential_prediction$estimate,
+  eur_b_results$calibration$differential_prediction$std_error,
+  format_p(eur_b_results$calibration$differential_prediction$p_value_two_sided),
   as.character(packageVersion("grf"))
 )
 
