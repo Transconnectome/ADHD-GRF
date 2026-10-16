@@ -1,16 +1,16 @@
 #!/usr/bin/env Rscript
 # ==============================================================================
-# Script: analysis/run_p8_bmi_refit.R
-# Purpose: Reproducible execution of true P8 (R2-3 / Table S14) Causal Forest
+# Script: analysis/run_bmi_sensitivity_refit.R
+# Purpose: Reproducible execution of Table S14 Causal Forest
 #          sensitivity re-fitting analyses for Translational Psychiatry R1 revision:
-#          - P8(a) (bmi_substituting_pgs): Replace BMI PGS (BMImulti) with measured
+#          - Specification (a) (bmi_substituting_pgs): Replace BMI PGS (BMImulti) with measured
 #                  baseline child BMI (66 covariates).
-#          - P8(b) (bmi_plus_pgs): Include both measured baseline child BMI and
+#          - Specification (b) (bmi_plus_pgs): Include both measured baseline child BMI and
 #                  BMI PGS (BMImulti) simultaneously (67 covariates).
-#          - Relocate parental psychopathology refit (formerly P8) to P11 (R3-3).
+#          - Relocate parental psychopathology refit to shared-informant sensitivity analysis.
 # Outputs:
-#   - Updates analysis/results_refit_p8_p10_p11_p12.json with P8_measured_child_bmi
-#   - Generates analysis/table_s14_p8.md (formatted Supplementary Table S14)
+#   - Updates analysis/sensitivity_refits.json with measured_child_bmi
+#   - Generates analysis/table_s14_bmi.md (formatted Supplementary Table S14)
 # Governance: Strictly enforces ABCD NDA compliance - saves only aggregate statistics.
 # ==============================================================================
 
@@ -20,7 +20,7 @@ suppressPackageStartupMessages({
 })
 
 cat("==============================================================================\n")
-cat("Starting True P8 Measured Child BMI Sensitivity Re-fitting (R2-3 / Table S14)\n")
+cat("Starting Measured Child BMI Sensitivity Re-fitting (Table S14)\n")
 cat("Timestamp:", format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"), "\n")
 cat("==============================================================================\n")
 
@@ -34,8 +34,8 @@ repo_root <- if (dir.exists("/work/data")) {
 }
 
 rdata_path <- file.path(repo_root, "data", "all_results_correlation_2.RData")
-json_output_path <- file.path(repo_root, "analysis", "results_refit_p8_p10_p11_p12.json")
-table_s14_path <- file.path(repo_root, "analysis", "table_s14_p8.md")
+json_output_path <- file.path(repo_root, "analysis", "sensitivity_refits.json")
+table_s14_path <- file.path(repo_root, "analysis", "table_s14_bmi.md")
 
 if (!file.exists(rdata_path)) {
   stop("Input RData file not found at: ", rdata_path)
@@ -178,65 +178,65 @@ cat(sprintf("Child BMI extracted for %d subjects: Min = %.2f, 1st Qu = %.2f, Med
             max(bmi_vec, na.rm=TRUE), sum(is.na(bmi_vec))))
 
 # Outcome, treatment, and clustering
-p8_Y <- as.vector(scale(data_multi_env_gen$child_adhd))
-p8_W <- data_multi_env_gen$parent_adhd
-p8_site <- as.factor(data_multi_env_gen$site_id_l)
+spec_Y <- as.vector(scale(data_multi_env_gen$child_adhd))
+spec_W <- data_multi_env_gen$parent_adhd
+spec_site <- as.factor(data_multi_env_gen$site_id_l)
 
 drop_base <- c("subjectkey", "child_adhd", "parent_adhd", "site_id_l")
 base_X <- subset(data_multi_env_gen, select = !(names(data_multi_env_gen) %in% drop_base))
 
 # ==============================================================================
-# 1. P8(a): Substituting BMI PGS with Measured Child BMI
+# 1. Specification (a): Substituting BMI PGS with Measured Child BMI
 # ==============================================================================
 cat("\n==============================================================================\n")
-cat("1. Fitting P8(a): Substituting BMImulti with Measured Child BMI\n")
+cat("1. Fitting Specification (a): Substituting BMImulti with Measured Child BMI\n")
 cat("==============================================================================\n")
 
-p8a_X <- subset(base_X, select = !(names(base_X) %in% "BMImulti"))
-p8a_X$bmi <- bmi_vec
-cat("P8(a) covariate matrix:", nrow(p8a_X), "rows x", ncol(p8a_X), "columns (BMImulti excluded, bmi included)\n")
+bmi_a_X <- subset(base_X, select = !(names(base_X) %in% "BMImulti"))
+bmi_a_X$bmi <- bmi_vec
+cat("Specification (a) covariate matrix:", nrow(bmi_a_X), "rows x", ncol(bmi_a_X), "columns (BMImulti excluded, bmi included)\n")
 
-p8a_results <- fit_causal_forest_ensemble(p8a_X, p8_Y, p8_W, p8_site)
-p8a_results$model_name <- "Multiethnic: Substituting BMI PGS with Measured Child BMI"
-p8a_results$specification <- "bmi_substituting_pgs"
-p8a_results$substituted_covariate <- "BMImulti"
-p8a_results$added_covariate <- "bmi"
+bmi_a_results <- fit_causal_forest_ensemble(bmi_a_X, spec_Y, spec_W, spec_site)
+bmi_a_results$model_name <- "Multiethnic: Substituting BMI PGS with Measured Child BMI"
+bmi_a_results$specification <- "bmi_substituting_pgs"
+bmi_a_results$substituted_covariate <- "BMImulti"
+bmi_a_results$added_covariate <- "bmi"
 
-cat(sprintf("  P8(a) ATE: %.4f (SE: %.4f, 95%% CI: [%.4f, %.4f], p: %.4e)\n",
-            p8a_results$ate_details$estimate, p8a_results$ate_details$std_error,
-            p8a_results$ate_details$ci_95_lower, p8a_results$ate_details$ci_95_upper,
-            p8a_results$ate_details$p_value))
-cat(sprintf("  P8(a) CATE Diff slope: %.4f (SE: %.4f, t: %.4f, p_two_sided: %.4f)\n",
-            p8a_results$calibration$differential_prediction$estimate,
-            p8a_results$calibration$differential_prediction$std_error,
-            p8a_results$calibration$differential_prediction$t_stat,
-            p8a_results$calibration$differential_prediction$p_value_two_sided))
+cat(sprintf("  Specification (a) ATE: %.4f (SE: %.4f, 95%% CI: [%.4f, %.4f], p: %.4e)\n",
+            bmi_a_results$ate_details$estimate, bmi_a_results$ate_details$std_error,
+            bmi_a_results$ate_details$ci_95_lower, bmi_a_results$ate_details$ci_95_upper,
+            bmi_a_results$ate_details$p_value))
+cat(sprintf("  Specification (a) CATE Diff slope: %.4f (SE: %.4f, t: %.4f, p_two_sided: %.4f)\n",
+            bmi_a_results$calibration$differential_prediction$estimate,
+            bmi_a_results$calibration$differential_prediction$std_error,
+            bmi_a_results$calibration$differential_prediction$t_stat,
+            bmi_a_results$calibration$differential_prediction$p_value_two_sided))
 
 # ==============================================================================
-# 2. P8(b): Including Both BMI PGS and Measured Child BMI
+# 2. Specification (b): Including Both BMI PGS and Measured Child BMI
 # ==============================================================================
 cat("\n==============================================================================\n")
-cat("2. Fitting P8(b): Including Both BMImulti and Measured Child BMI\n")
+cat("2. Fitting Specification (b): Including Both BMImulti and Measured Child BMI\n")
 cat("==============================================================================\n")
 
-p8b_X <- base_X
-p8b_X$bmi <- bmi_vec
-cat("P8(b) covariate matrix:", nrow(p8b_X), "rows x", ncol(p8b_X), "columns (both BMImulti and bmi included)\n")
+bmi_b_X <- base_X
+bmi_b_X$bmi <- bmi_vec
+cat("Specification (b) covariate matrix:", nrow(bmi_b_X), "rows x", ncol(bmi_b_X), "columns (both BMImulti and bmi included)\n")
 
-p8b_results <- fit_causal_forest_ensemble(p8b_X, p8_Y, p8_W, p8_site)
-p8b_results$model_name <- "Multiethnic: Including Both BMI PGS and Measured Child BMI"
-p8b_results$specification <- "bmi_plus_pgs"
-p8b_results$added_covariate <- "bmi"
+bmi_b_results <- fit_causal_forest_ensemble(bmi_b_X, spec_Y, spec_W, spec_site)
+bmi_b_results$model_name <- "Multiethnic: Including Both BMI PGS and Measured Child BMI"
+bmi_b_results$specification <- "bmi_plus_pgs"
+bmi_b_results$added_covariate <- "bmi"
 
-cat(sprintf("  P8(b) ATE: %.4f (SE: %.4f, 95%% CI: [%.4f, %.4f], p: %.4e)\n",
-            p8b_results$ate_details$estimate, p8b_results$ate_details$std_error,
-            p8b_results$ate_details$ci_95_lower, p8b_results$ate_details$ci_95_upper,
-            p8b_results$ate_details$p_value))
-cat(sprintf("  P8(b) CATE Diff slope: %.4f (SE: %.4f, t: %.4f, p_two_sided: %.4f)\n",
-            p8b_results$calibration$differential_prediction$estimate,
-            p8b_results$calibration$differential_prediction$std_error,
-            p8b_results$calibration$differential_prediction$t_stat,
-            p8b_results$calibration$differential_prediction$p_value_two_sided))
+cat(sprintf("  Specification (b) ATE: %.4f (SE: %.4f, 95%% CI: [%.4f, %.4f], p: %.4e)\n",
+            bmi_b_results$ate_details$estimate, bmi_b_results$ate_details$std_error,
+            bmi_b_results$ate_details$ci_95_lower, bmi_b_results$ate_details$ci_95_upper,
+            bmi_b_results$ate_details$p_value))
+cat(sprintf("  Specification (b) CATE Diff slope: %.4f (SE: %.4f, t: %.4f, p_two_sided: %.4f)\n",
+            bmi_b_results$calibration$differential_prediction$estimate,
+            bmi_b_results$calibration$differential_prediction$std_error,
+            bmi_b_results$calibration$differential_prediction$t_stat,
+            bmi_b_results$calibration$differential_prediction$p_value_two_sided))
 
 # ==============================================================================
 # Update Machine-Readable JSON Artifact
@@ -250,24 +250,24 @@ if (file.exists(json_output_path)) {
   stop("Existing refit JSON file not found at: ", json_output_path)
 }
 
-# 1. Record true measured child BMI refits under P8_measured_child_bmi
-existing_json$P8_measured_child_bmi <- list(
-  bmi_substituting_pgs = p8a_results,
-  bmi_plus_pgs = p8b_results,
-  primary_summary = p8a_results
+# 1. Record true measured child BMI refits under measured_child_bmi
+existing_json$measured_child_bmi <- list(
+  bmi_substituting_pgs = bmi_a_results,
+  bmi_plus_pgs = bmi_b_results,
+  primary_summary = bmi_a_results
 )
 
-# 2. Relocate parental psychopathology exclusion model to P11_no_shared_parent_report
-if (!is.null(existing_json$P8_no_parent_psych)) {
-  old_p8 <- existing_json$P8_no_parent_psych
-  old_p8$model_name <- "Multiethnic: Excluding Parental Psychopathology (Relocated to R3-3 / P11)"
-  existing_json$P11_no_shared_parent_report$parent_psych_excluded <- old_p8
-  cat("  Parental psychopathology refit successfully relocated to P11_no_shared_parent_report$parent_psych_excluded.\n")
+# 2. Relocate parental psychopathology exclusion model to no_shared_parent_report
+if (!is.null(existing_json$no_parent_psych)) {
+  old_p8 <- existing_json$no_parent_psych
+  old_p8$model_name <- "Multiethnic: Excluding Parental Psychopathology (Relocated to R3-3 / Analysis)"
+  existing_json$no_shared_parent_report$parent_psych_excluded <- old_p8
+  cat("  Parental psychopathology refit successfully relocated to no_shared_parent_report$parent_psych_excluded.\n")
 }
 
 # 3. Update metadata
-existing_json$metadata$p8_updated_at <- format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
-existing_json$metadata$p8_script <- "analysis/run_p8_bmi_refit.R"
+existing_json$metadata$bmi_refit_updated_at <- format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
+existing_json$metadata$bmi_refit_script <- "analysis/run_bmi_sensitivity_refit.R"
 
 # Write updated JSON
 writeLines(toJSON(existing_json, pretty = TRUE, auto_unbox = TRUE), json_output_path)
@@ -326,7 +326,7 @@ table_s14_template <- r"---(# Supplementary Table S14: Sensitivity Refits for Me
 <td style="text-align: center;">%.2f (%.2f, %s)</td>
 </tr>
 <tr>
-<td colspan="7" style="text-align: left; background-color: #f2f2f2;"><strong>P8 (R2-3): Measured Child BMI Sensitivity Refits</strong></td>
+<td colspan="7" style="text-align: left; background-color: #f2f2f2;"><strong>Measured Child BMI Sensitivity Refits</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;">(a) Substituting BMI PGS with measured baseline child BMI (66 covariates)</td>
@@ -368,28 +368,28 @@ s14_md <- sprintf(
   ref_multi$calibration$mean_prediction$estimate, ref_multi$calibration$mean_prediction$std_error,
   ref_multi$calibration$differential_prediction$estimate, ref_multi$calibration$differential_prediction$std_error,
   format_p(ref_multi$calibration$differential_prediction$p_value),
-  # P8(a)
-  p8a_results$ate_details$estimate, p8a_results$ate_details$std_error,
-  p8a_results$ate_details$ci_95_lower, p8a_results$ate_details$ci_95_upper,
-  format_p(p8a_results$ate_details$p_value),
-  p8a_results$calibration$mean_prediction$estimate, p8a_results$calibration$mean_prediction$std_error,
-  p8a_results$calibration$differential_prediction$estimate, p8a_results$calibration$differential_prediction$std_error,
-  format_p(p8a_results$calibration$differential_prediction$p_value_two_sided),
-  # P8(b)
-  p8b_results$ate_details$estimate, p8b_results$ate_details$std_error,
-  p8b_results$ate_details$ci_95_lower, p8b_results$ate_details$ci_95_upper,
-  format_p(p8b_results$ate_details$p_value),
-  p8b_results$calibration$mean_prediction$estimate, p8b_results$calibration$mean_prediction$std_error,
-  p8b_results$calibration$differential_prediction$estimate, p8b_results$calibration$differential_prediction$std_error,
-  format_p(p8b_results$calibration$differential_prediction$p_value_two_sided),
+  # Specification (a)
+  bmi_a_results$ate_details$estimate, bmi_a_results$ate_details$std_error,
+  bmi_a_results$ate_details$ci_95_lower, bmi_a_results$ate_details$ci_95_upper,
+  format_p(bmi_a_results$ate_details$p_value),
+  bmi_a_results$calibration$mean_prediction$estimate, bmi_a_results$calibration$mean_prediction$std_error,
+  bmi_a_results$calibration$differential_prediction$estimate, bmi_a_results$calibration$differential_prediction$std_error,
+  format_p(bmi_a_results$calibration$differential_prediction$p_value_two_sided),
+  # Specification (b)
+  bmi_b_results$ate_details$estimate, bmi_b_results$ate_details$std_error,
+  bmi_b_results$ate_details$ci_95_lower, bmi_b_results$ate_details$ci_95_upper,
+  format_p(bmi_b_results$ate_details$p_value),
+  bmi_b_results$calibration$mean_prediction$estimate, bmi_b_results$calibration$mean_prediction$std_error,
+  bmi_b_results$calibration$differential_prediction$estimate, bmi_b_results$calibration$differential_prediction$std_error,
+  format_p(bmi_b_results$calibration$differential_prediction$p_value_two_sided),
   # Notes top 5
-  format_top5(p8a_results$top_variables),
-  format_top5(p8b_results$top_variables)
+  format_top5(bmi_a_results$top_variables),
+  format_top5(bmi_b_results$top_variables)
 )
 
 writeLines(s14_md, table_s14_path)
 cat("Table S14 written successfully to:", table_s14_path, "\n")
 
 cat("\n==============================================================================\n")
-cat("P8 Measured Child BMI Sensitivity Re-fitting Complete.\n")
+cat("Analysis Measured Child BMI Sensitivity Re-fitting Complete.\n")
 cat("==============================================================================\n")

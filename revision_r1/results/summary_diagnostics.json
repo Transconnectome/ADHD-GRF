@@ -1,5 +1,5 @@
 {
-  "P1_cbcl_sd": {
+  "cbcl_sd": {
     "multiethnic": {
       "sample_name": "Multiethnic (data_multi_env_gen)",
       "n_total": 1244,
@@ -54,7 +54,7 @@
       "sd_exposed": 8.3282
     }
   },
-  "P2_cate_ci_pos_pct": {
+  "cate_ci_pos_pct": {
     "multiethnic": {
       "n": 1244,
       "ci_gt_zero_count": 1233,
@@ -83,7 +83,7 @@
       "ci_excludes_zero_pct": 94.501
     }
   },
-  "P3_pdp_contrasts": {
+  "pdp_contrasts": {
     "multiethnic_baseline": {
       "sleep_prob": {
         "feature": "sleep_prob",
@@ -212,7 +212,7 @@
       }
     }
   },
-  "P4_preprocessing_spec": {
+  "preprocessing_spec": {
     "multiethnic": {
       "sample_dataset": "data_multi_env_gen",
       "n_total": 1244,
@@ -249,7 +249,7 @@
       "description": "European sample (N=1,239) contains 619 complete-case downsampled controls + 363 original exposed + 257 DMwR::SMOTE synthetic exposed rows (=620 exposed total)."
     }
   },
-  "P5_eur_corr_sample": {
+  "eur_corr_sample": {
     "eur_corr": {
       "dataset_name": "eur_corr",
       "n_rows": 725,
@@ -274,7 +274,7 @@
       "source_explanation": "The N=1,072 Multiethnic correlation dataset matches Table S10 degrees of freedom r(1070) exactly."
     }
   },
-  "P6_pgs_discovery_rho": {
+  "pgs_discovery_rho": {
     "multiethnic": {
       "n_pgs_tested": 29,
       "spearman_rho": 0.2581,
@@ -292,7 +292,7 @@
     "cp_gwas_n_used": 257841,
     "excluded_pgs": "anxiety (ANXIETYauto: discovery GWAS N unconfirmed in source list)"
   },
-  "P7_labels": {
+  "covariate_labels": {
     "total_pgs_count": 30,
     "mapped_pgs_count": 30,
     "discovery_source": "Joo et al. (2025) Nat Commun 16:8467 Supplementary Data 1",
@@ -515,7 +515,7 @@
       }
     ]
   },
-  "P9_waves": {
+  "longitudinal_waves": {
     "baseline_eventname": "baseline_year_1_arm_1",
     "baseline_covariates_filter_confirmed": true,
     "tables_checked": ["pdem02", "acspsw03", "dhx01", "abcd_mx01", "abcd_lt01", "abcd_ssphp01", "abcd_sscey01", "abcd_fhxssp01", "abcd_asrs01", "abcd_rhds01", "abcd_ant01", "abcd_cbcls01"],
@@ -523,7 +523,7 @@
     "post_baseline_covariates_used": false,
     "summary": "All baseline predictors and covariates were measured strictly at baseline_year_1_arm_1. No post-baseline covariates were used."
   },
-  "P13_fdr_family": {
+  "fdr_family": {
     "n_tests_per_family": 98,
     "tested_brain_structures": 98,
     "eur_fdr_max_abs_diff": 0,
@@ -533,14 +533,14 @@
     "pooling_across_analyses": false,
     "summary": "FDR and Bonferroni corrections in Tables S10 and S11 were computed across exactly 98 brain regions per analysis column, not pooled across analyses or sex strata."
   },
-  "P14_trees": {
+  "tree_convergence": {
     "trees_tested": [100, 500, 1000, 2000, 5000, 10000],
     "primary_num_trees": 5000,
     "was_200_trees_run": false,
     "workspace_objects_found": ["eur_env_gen_10000tr", "eur_env_gen_1000tr", "eur_env_gen_100tr", "eur_env_gen_2000tr", "eur_env_gen_500tr", "multi_env_gen_10000tr", "multi_env_gen_1000tr", "multi_env_gen_100tr", "multi_env_gen_2000tr", "multi_env_gen_500tr"],
     "summary": "200-tree sensitivity model was never executed; text mentioning 200 trees was a typographical error. Complete set of tested trees is 100, 500, 1000, 2000, 5000, 10000."
   },
-  "P15_package_versions": {
+  "package_versions": {
     "grf": "2.3.2",
     "caret": "6.0-93",
     "impute": "1.72.3",

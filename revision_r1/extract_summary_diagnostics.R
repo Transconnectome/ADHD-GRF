@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 # ==============================================================================
-# Script: analysis/extract_non_refit_p_items.R
+# Script: analysis/extract_summary_diagnostics.R
 # Purpose: Reproducibly extract and verify all 11 non-refit pending items
-#          (P1–P7, P9, P13–P15) from data/all_results_correlation_2.RData,
-#          and generate the structured JSON artifact analysis/results_p1_p15.json.
-# Project: Translational Psychiatry MS 2025TP001985 (ADHD-GRF R1 Revision)
+#          (Analysis–Analysis, Analysis, Analysis–Analysis) from data/all_results_correlation_2.RData,
+#          and generate the structured JSON artifact analysis/summary_diagnostics.json.
+# Project: Translational Psychiatry MS  (ADHD-GRF R1 Revision)
 # Author: Milestone M1 Worker (worker_m1)
 # ==============================================================================
 
@@ -14,7 +14,7 @@ suppressPackageStartupMessages({
 })
 
 cat("==============================================================================\n")
-cat("Starting extraction of non-refit pending items (P1–P7, P9, P13–P15)\n")
+cat("Starting extraction of non-refit pending items (Analysis–Analysis, Analysis, Analysis–Analysis)\n")
 cat("==============================================================================\n")
 
 rdata_path <- "data/all_results_correlation_2.RData"
@@ -27,16 +27,16 @@ load(rdata_path)
 cat("Workspace loaded successfully. Total objects in memory:", length(ls()), "\n\n")
 
 # ------------------------------------------------------------------------------
-# Item P1: Raw / Analytic CBCL ADHD DSM-5 t-Score Means, SDs, and ATE Conversion
+# Item Analysis: Raw / Analytic CBCL ADHD DSM-5 t-Score Means, SDs, and ATE Conversion
 # ------------------------------------------------------------------------------
-cat("--- [P1] Extracting CBCL ADHD DSM-5 t-Score Statistics ---\n")
+cat("--- [Analysis] Extracting CBCL ADHD DSM-5 t-Score Statistics ---\n")
 
 # 1. Multiethnic Sample (N = 1,244)
 m_adhd <- data_multi_env_gen$child_adhd
 m_ct_adhd <- m_adhd[data_multi_env_gen$parent_adhd == 0]
 m_tr_adhd <- m_adhd[data_multi_env_gen$parent_adhd == 1]
 
-p1_multi <- list(
+spec_multi <- list(
   sample_name = "Multiethnic (data_multi_env_gen)",
   n_total = length(m_adhd),
   mean_total = round(mean(m_adhd), 4),
@@ -56,7 +56,7 @@ e_adhd <- data_eur_env_gen$child_adhd
 e_ct_adhd <- e_adhd[data_eur_env_gen$parent_adhd == 0]
 e_tr_adhd <- e_adhd[data_eur_env_gen$parent_adhd == 1]
 
-p1_eur_post <- list(
+spec_eur_post <- list(
   sample_name = "European post-SMOTE (data_eur_env_gen)",
   n_total = length(e_adhd),
   mean_total = round(mean(e_adhd), 4),
@@ -77,7 +77,7 @@ e_obs_adhd <- e_obs_df$child_adhd
 e_obs_ct <- e_obs_adhd[e_obs_df$parent_adhd == 0]
 e_obs_tr <- e_obs_adhd[e_obs_df$parent_adhd == 1]
 
-p1_eur_obs <- list(
+spec_eur_obs <- list(
   sample_name = "European pre-SMOTE observed (first 982 rows of data_eur_env_gen)",
   n_total = length(e_obs_adhd),
   mean_total = round(mean(e_obs_adhd), 4),
@@ -97,7 +97,7 @@ full_adhd <- full_nonmiss$child_adhd
 full_ct <- full_adhd[!is.na(full_nonmiss$parent_adhd) & full_nonmiss$parent_adhd == 0]
 full_tr <- full_adhd[!is.na(full_nonmiss$parent_adhd) & full_nonmiss$parent_adhd == 1]
 
-p1_full <- list(
+spec_full <- list(
   sample_name = "Full ABCD analytic cohort (non-missing child_adhd)",
   n_total = length(full_adhd),
   mean_total = round(mean(full_adhd), 4),
@@ -110,23 +110,23 @@ p1_full <- list(
   sd_exposed = round(sd(full_tr), 4)
 )
 
-P1_cbcl_sd <- list(
-  multiethnic = p1_multi,
-  european_post_smote = p1_eur_post,
-  european_pre_smote_observed = p1_eur_obs,
-  full_sample = p1_full
+cbcl_sd <- list(
+  multiethnic = spec_multi,
+  european_post_smote = spec_eur_post,
+  european_pre_smote_observed = spec_eur_obs,
+  full_sample = spec_full
 )
 
-cat(sprintf("  Multiethnic SD: %.4f (Control: %.4f, Exposed: %.4f)\n", p1_multi$sd_total, p1_multi$sd_control, p1_multi$sd_exposed))
-cat(sprintf("  European post-SMOTE SD: %.4f (Control: %.4f, Exposed: %.4f)\n", p1_eur_post$sd_total, p1_eur_post$sd_control, p1_eur_post$sd_exposed))
-cat(sprintf("  European pre-SMOTE observed SD: %.4f (Control: %.4f, Exposed: %.4f)\n", p1_eur_obs$sd_total, p1_eur_obs$sd_control, p1_eur_obs$sd_exposed))
-cat(sprintf("  Full sample SD: %.4f (Control: %.4f, Exposed: %.4f)\n", p1_full$sd_total, p1_full$sd_control, p1_full$sd_exposed))
-cat(sprintf("  Multiethnic ATE = %.3f SD -> %.3f CBCL points\n", p1_multi$ate_sd_units, p1_multi$ate_cbcl_points))
+cat(sprintf("  Multiethnic SD: %.4f (Control: %.4f, Exposed: %.4f)\n", spec_multi$sd_total, spec_multi$sd_control, spec_multi$sd_exposed))
+cat(sprintf("  European post-SMOTE SD: %.4f (Control: %.4f, Exposed: %.4f)\n", spec_eur_post$sd_total, spec_eur_post$sd_control, spec_eur_post$sd_exposed))
+cat(sprintf("  European pre-SMOTE observed SD: %.4f (Control: %.4f, Exposed: %.4f)\n", spec_eur_obs$sd_total, spec_eur_obs$sd_control, spec_eur_obs$sd_exposed))
+cat(sprintf("  Full sample SD: %.4f (Control: %.4f, Exposed: %.4f)\n", spec_full$sd_total, spec_full$sd_control, spec_full$sd_exposed))
+cat(sprintf("  Multiethnic ATE = %.3f SD -> %.3f CBCL points\n", spec_multi$ate_sd_units, spec_multi$ate_cbcl_points))
 
 # ------------------------------------------------------------------------------
-# Item P2: Individual CATE 95% Confidence Intervals Excluding Zero
+# Item Analysis: Individual CATE 95% Confidence Intervals Excluding Zero
 # ------------------------------------------------------------------------------
-cat("\n--- [P2] Extracting Individual CATE 95% Confidence Intervals ---\n")
+cat("\n--- [Analysis] Extracting Individual CATE 95% Confidence Intervals ---\n")
 
 calc_cate_ci_stats <- function(forest, sample_n = NULL) {
   preds <- predict(forest, estimate.variance = TRUE)
@@ -158,27 +158,27 @@ calc_cate_ci_stats <- function(forest, sample_n = NULL) {
   )
 }
 
-p2_multi <- calc_cate_ci_stats(multi_env_gen$forest)
-p2_eur_post <- calc_cate_ci_stats(eur_env_gen$forest)
-p2_eur_obs <- calc_cate_ci_stats(eur_env_gen$forest, sample_n = 982)
+spec_multi <- calc_cate_ci_stats(multi_env_gen$forest)
+spec_eur_post <- calc_cate_ci_stats(eur_env_gen$forest)
+spec_eur_obs <- calc_cate_ci_stats(eur_env_gen$forest, sample_n = 982)
 
-P2_cate_ci_pos_pct <- list(
-  multiethnic = p2_multi,
-  european_post_smote = p2_eur_post,
-  european_pre_smote_observed = p2_eur_obs
+cate_ci_pos_pct <- list(
+  multiethnic = spec_multi,
+  european_post_smote = spec_eur_post,
+  european_pre_smote_observed = spec_eur_obs
 )
 
 cat(sprintf("  Multiethnic: %d / %d (%.2f%%) individual CATE 95%% CIs strictly > 0\n",
-            p2_multi$ci_gt_zero_count, p2_multi$n, p2_multi$ci_gt_zero_pct))
+            spec_multi$ci_gt_zero_count, spec_multi$n, spec_multi$ci_gt_zero_pct))
 cat(sprintf("  European post-SMOTE: %d / %d (%.2f%%) individual CATE 95%% CIs strictly > 0\n",
-            p2_eur_post$ci_gt_zero_count, p2_eur_post$n, p2_eur_post$ci_gt_zero_pct))
+            spec_eur_post$ci_gt_zero_count, spec_eur_post$n, spec_eur_post$ci_gt_zero_pct))
 cat(sprintf("  European pre-SMOTE observed: %d / %d (%.2f%%) individual CATE 95%% CIs strictly > 0\n",
-            p2_eur_obs$ci_gt_zero_count, p2_eur_obs$n, p2_eur_obs$ci_gt_zero_pct))
+            spec_eur_obs$ci_gt_zero_count, spec_eur_obs$n, spec_eur_obs$ci_gt_zero_pct))
 
 # ------------------------------------------------------------------------------
-# Item P3: PDP Quartile Contrasts (Q1–Q3 and Q0–Q4)
+# Item Analysis: PDP Quartile Contrasts (Q1–Q3 and Q0–Q4)
 # ------------------------------------------------------------------------------
-cat("\n--- [P3] Extracting Partial Dependence Plot (PDP) Contrasts ---\n")
+cat("\n--- [Analysis] Extracting Partial Dependence Plot (PDP) Contrasts ---\n")
 
 extract_pdp_contrasts <- function(pdp_df) {
   contrasts <- list()
@@ -206,33 +206,33 @@ extract_pdp_contrasts <- function(pdp_df) {
   contrasts
 }
 
-p3_multi <- extract_pdp_contrasts(univ.sim_multi)
-p3_eur <- extract_pdp_contrasts(univ.sim_eur)
-p3_multi_1y <- extract_pdp_contrasts(univ.sim_multi_1y)
+spec_multi <- extract_pdp_contrasts(univ.sim_multi)
+spec_eur <- extract_pdp_contrasts(univ.sim_eur)
+spec_multi_1y <- extract_pdp_contrasts(univ.sim_multi_1y)
 
-P3_pdp_contrasts <- list(
-  multiethnic_baseline = p3_multi,
-  european_baseline = p3_eur,
-  multiethnic_1y = p3_multi_1y
+pdp_contrasts <- list(
+  multiethnic_baseline = spec_multi,
+  european_baseline = spec_eur,
+  multiethnic_1y = spec_multi_1y
 )
 
 cat(sprintf("  Multiethnic sleep_prob: Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            p3_multi$sleep_prob$q1_q3_contrast, p3_multi$sleep_prob$q0_q4_contrast))
+            spec_multi$sleep_prob$q1_q3_contrast, spec_multi$sleep_prob$q0_q4_contrast))
 cat(sprintf("  Multiethnic SMOKERauto: Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            p3_multi$SMOKERauto$q1_q3_contrast, p3_multi$SMOKERauto$q0_q4_contrast))
+            spec_multi$SMOKERauto$q1_q3_contrast, spec_multi$SMOKERauto$q0_q4_contrast))
 cat(sprintf("  Multiethnic BMImulti:   Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            p3_multi$BMImulti$q1_q3_contrast, p3_multi$BMImulti$q0_q4_contrast))
+            spec_multi$BMImulti$q1_q3_contrast, spec_multi$BMImulti$q0_q4_contrast))
 cat(sprintf("  European sleep_prob:    Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            p3_eur$sleep_prob$q1_q3_contrast, p3_eur$sleep_prob$q0_q4_contrast))
+            spec_eur$sleep_prob$q1_q3_contrast, spec_eur$sleep_prob$q0_q4_contrast))
 cat(sprintf("  European SMOKERauto:    Q1-Q3 = %.5f, Q0-Q4 = %.5f\n",
-            p3_eur$SMOKERauto$q1_q3_contrast, p3_eur$SMOKERauto$q0_q4_contrast))
+            spec_eur$SMOKERauto$q1_q3_contrast, spec_eur$SMOKERauto$q0_q4_contrast))
 
 # ------------------------------------------------------------------------------
-# Item P4: Complete Technical Specification of Preprocessing Architecture
+# Item Analysis: Complete Technical Specification of Preprocessing Architecture
 # ------------------------------------------------------------------------------
-cat("\n--- [P4] Documenting Complete Preprocessing Architecture ---\n")
+cat("\n--- [Analysis] Documenting Complete Preprocessing Architecture ---\n")
 
-P4_preprocessing_spec <- list(
+preprocessing_spec <- list(
   multiethnic = list(
     sample_dataset = "data_multi_env_gen",
     n_total = 1244,
@@ -270,9 +270,9 @@ cat("  Multiethnic: KNN (k=10) + sex-matched downsampling, 0 synthetic observati
 cat("  European: 619 controls + 363 original treated + 257 DMwR::SMOTE synthetic treated (=620 treated).\n")
 
 # ------------------------------------------------------------------------------
-# Item P5: Table S11 European Correlation Sample Definition (N = 725)
+# Item Analysis: Table S11 European Correlation Sample Definition (N = 725)
 # ------------------------------------------------------------------------------
-cat("\n--- [P5] Mapping Table S11 Sample Definition (N = 725) ---\n")
+cat("\n--- [Analysis] Mapping Table S11 Sample Definition (N = 725) ---\n")
 
 eur_corr_unique <- length(unique(eur_corr$subjectkey))
 eur_corr_dup <- sum(duplicated(eur_corr$subjectkey))
@@ -282,7 +282,7 @@ eur_corr_f <- sum(eur_corr$sex == 1)
 multi_corr_unique <- length(unique(multi_corr$subjectkey))
 multi_corr_dup <- sum(duplicated(multi_corr$subjectkey))
 
-P5_eur_corr_sample <- list(
+eur_corr_sample <- list(
   eur_corr = list(
     dataset_name = "eur_corr",
     n_rows = nrow(eur_corr),
@@ -314,9 +314,9 @@ cat(sprintf("  multi_corr: %d rows (%d unique subjects, %d duplicate)\n",
             nrow(multi_corr), multi_corr_unique, multi_corr_dup))
 
 # ------------------------------------------------------------------------------
-# Item P6: Variable Importance vs. Discovery GWAS Sample Size Rank Correlations
+# Item Analysis: Variable Importance vs. Discovery GWAS Sample Size Rank Correlations
 # ------------------------------------------------------------------------------
-cat("\n--- [P6] Computing PGS Variable Importance vs. Discovery N Rank Correlations ---\n")
+cat("\n--- [Analysis] Computing PGS Variable Importance vs. Discovery N Rank Correlations ---\n")
 
 # 30 PGS Table S13 definition and discovery sample sizes:
 # Cognitive Performance (CP) discovery N is 257,841 (Lee et al. 2018 CP GWAS),
@@ -367,7 +367,7 @@ valid_pgs <- !is.na(pgs_mapping$discovery_N)
 cor_multi <- cor.test(pgs_mapping$discovery_N[valid_pgs], pgs_mapping$multi_importance[valid_pgs], method = "spearman")
 cor_eur <- cor.test(pgs_mapping$discovery_N[valid_pgs], pgs_mapping$eur_importance[valid_pgs], method = "spearman")
 
-P6_pgs_discovery_rho <- list(
+pgs_discovery_rho <- list(
   multiethnic = list(
     n_pgs_tested = sum(valid_pgs),
     spearman_rho = round(as.numeric(cor_multi$estimate), 7),
@@ -387,22 +387,22 @@ P6_pgs_discovery_rho <- list(
 )
 
 cat(sprintf("  Multiethnic: rho = %.4f (p = %.4f, S = %d, k = %d)\n",
-            P6_pgs_discovery_rho$multiethnic$spearman_rho,
-            P6_pgs_discovery_rho$multiethnic$spearman_p,
-            P6_pgs_discovery_rho$multiethnic$s_statistic,
-            P6_pgs_discovery_rho$multiethnic$n_pgs_tested))
+            pgs_discovery_rho$multiethnic$spearman_rho,
+            pgs_discovery_rho$multiethnic$spearman_p,
+            pgs_discovery_rho$multiethnic$s_statistic,
+            pgs_discovery_rho$multiethnic$n_pgs_tested))
 cat(sprintf("  European:    rho = %.4f (p = %.4f, S = %d, k = %d)\n",
-            P6_pgs_discovery_rho$european$spearman_rho,
-            P6_pgs_discovery_rho$european$spearman_p,
-            P6_pgs_discovery_rho$european$s_statistic,
-            P6_pgs_discovery_rho$european$n_pgs_tested))
+            pgs_discovery_rho$european$spearman_rho,
+            pgs_discovery_rho$european$spearman_p,
+            pgs_discovery_rho$european$s_statistic,
+            pgs_discovery_rho$european$n_pgs_tested))
 
 # ------------------------------------------------------------------------------
-# Item P7: Table S13 30 PGS Label Confirmation and Formatting Cleanup
+# Item Analysis: Table S13 30 PGS Label Confirmation and Formatting Cleanup
 # ------------------------------------------------------------------------------
-cat("\n--- [P7] Confirming Table S13 30 PGS Label Mapping ---\n")
+cat("\n--- [Analysis] Confirming Table S13 30 PGS Label Mapping ---\n")
 
-P7_labels <- list(
+covariate_labels <- list(
   total_pgs_count = 30,
   mapped_pgs_count = 30,
   discovery_source = "Joo et al. (2025) Nat Commun 16:8467 Supplementary Data 1",
@@ -426,11 +426,11 @@ P7_labels <- list(
 cat("  30 PGS traits successfully mapped and verified.\n")
 
 # ------------------------------------------------------------------------------
-# Item P9: Covariate Measurement Waves Confirmation (All at baseline_year_1_arm_1)
+# Item Analysis: Covariate Measurement Waves Confirmation (All at baseline_year_1_arm_1)
 # ------------------------------------------------------------------------------
-cat("\n--- [P9] Confirming Covariate Measurement Waves ---\n")
+cat("\n--- [Analysis] Confirming Covariate Measurement Waves ---\n")
 
-P9_waves <- list(
+longitudinal_waves <- list(
   baseline_eventname = "baseline_year_1_arm_1",
   baseline_covariates_filter_confirmed = TRUE,
   tables_checked = c(
@@ -446,9 +446,9 @@ P9_waves <- list(
 cat("  All baseline covariates confirmed strictly at 'baseline_year_1_arm_1'.\n")
 
 # ------------------------------------------------------------------------------
-# Item P13: FDR Correction Family (98 tests per analysis family)
+# Item Analysis: FDR Correction Family (98 tests per analysis family)
 # ------------------------------------------------------------------------------
-cat("\n--- [P13] Confirming FDR Correction Family (98 Tests) ---\n")
+cat("\n--- [Analysis] Confirming FDR Correction Family (98 Tests) ---\n")
 
 eur_fdr_calc <- p.adjust(corr_results_eur$p_value, method = "fdr")
 eur_fdr_diff <- max(abs(eur_fdr_calc - corr_results_eur$fdr_p))
@@ -462,7 +462,7 @@ multi_fdr_diff <- max(abs(multi_fdr_calc - corr_results_multi$fdr_p))
 multi_bonf_calc <- p.adjust(corr_results_multi$p_value, method = "bonferroni")
 multi_bonf_diff <- max(abs(multi_bonf_calc - corr_results_multi$bonferroni_p))
 
-P13_fdr_family <- list(
+fdr_family <- list(
   n_tests_per_family = nrow(corr_results_eur),
   tested_brain_structures = nrow(corr_results_eur),
   eur_fdr_max_abs_diff = as.numeric(eur_fdr_diff),
@@ -479,13 +479,13 @@ cat(sprintf("  corr_results_multi: %d tests, max FDR difference = %.8f\n",
             nrow(corr_results_multi), multi_fdr_diff))
 
 # ------------------------------------------------------------------------------
-# Item P14: 200-Tree Sensitivity Status (Confirmed never run)
+# Item Analysis: 200-Tree Sensitivity Status (Confirmed never run)
 # ------------------------------------------------------------------------------
-cat("\n--- [P14] Confirming Tree Sensitivity Conditions ---\n")
+cat("\n--- [Analysis] Confirming Tree Sensitivity Conditions ---\n")
 
 sensitivity_tree_objects <- grep("eur_env_gen_.*tr|multi_env_gen_.*tr", ls(), value = TRUE)
 
-P14_trees <- list(
+tree_convergence <- list(
   trees_tested = c(100, 500, 1000, 2000, 5000, 10000),
   primary_num_trees = 5000,
   was_200_trees_run = FALSE,
@@ -498,11 +498,11 @@ cat(sprintf("  Tree objects found (%d): %s\n",
 cat("  200-tree model confirmed never executed.\n")
 
 # ------------------------------------------------------------------------------
-# Item P15: Exact Software Package Versions
+# Item Analysis: Exact Software Package Versions
 # ------------------------------------------------------------------------------
-cat("\n--- [P15] Documenting Software Package Versions ---\n")
+cat("\n--- [Analysis] Documenting Software Package Versions ---\n")
 
-P15_package_versions <- list(
+package_versions <- list(
   grf = "2.3.2",
   caret = "6.0-93",
   impute = "1.72.3",
@@ -516,20 +516,20 @@ cat("  grf: 2.3.2, caret: 6.0-93, impute: 1.72.3, DMwR: 0.4.1\n")
 # Assemble Master JSON Output
 # ------------------------------------------------------------------------------
 results_p1_p15 <- list(
-  P1_cbcl_sd = P1_cbcl_sd,
-  P2_cate_ci_pos_pct = P2_cate_ci_pos_pct,
-  P3_pdp_contrasts = P3_pdp_contrasts,
-  P4_preprocessing_spec = P4_preprocessing_spec,
-  P5_eur_corr_sample = P5_eur_corr_sample,
-  P6_pgs_discovery_rho = P6_pgs_discovery_rho,
-  P7_labels = P7_labels,
-  P9_waves = P9_waves,
-  P13_fdr_family = P13_fdr_family,
-  P14_trees = P14_trees,
-  P15_package_versions = P15_package_versions
+  cbcl_sd = cbcl_sd,
+  cate_ci_pos_pct = cate_ci_pos_pct,
+  pdp_contrasts = pdp_contrasts,
+  preprocessing_spec = preprocessing_spec,
+  eur_corr_sample = eur_corr_sample,
+  pgs_discovery_rho = pgs_discovery_rho,
+  covariate_labels = covariate_labels,
+  longitudinal_waves = longitudinal_waves,
+  fdr_family = fdr_family,
+  tree_convergence = tree_convergence,
+  package_versions = package_versions
 )
 
-output_json_path <- "analysis/results_p1_p15.json"
+output_json_path <- "analysis/summary_diagnostics.json"
 cat("\nWriting structured results to:", output_json_path, "...\n")
 write_json(results_p1_p15, output_json_path, pretty = TRUE, auto_unbox = TRUE)
 cat("Output successfully written! File size:", file.size(output_json_path), "bytes\n")

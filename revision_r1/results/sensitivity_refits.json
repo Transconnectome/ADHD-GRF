@@ -3,7 +3,7 @@
     "generated_at": "2026-10-15T11:41:49Z",
     "script": "analysis/run_refit_grf_models.R",
     "r_version": "R version 4.4.3 (2025-02-28)",
-    "grf_version": "2.6.1",
+    "grf_version": "2.3.2",
     "ensemble_seeds": [
       101,
       102,
@@ -15,8 +15,8 @@
     "total_trees": 25000,
     "target_sample": "all",
     "ate_method": "AIPW",
-    "p8_updated_at": "2026-10-16T01:00:33Z",
-    "p8_script": "analysis/run_p8_bmi_refit.R"
+    "bmi_refit_updated_at": "2026-10-16T01:00:33Z",
+    "bmi_refit_script": "analysis/run_bmi_sensitivity_refit.R"
   },
   "primary_reference": {
     "multiethnic_primary": {
@@ -72,7 +72,7 @@
       }
     }
   },
-  "P12_eur_non_oversampled": {
+  "eur_non_oversampled": {
     "sex_matched": {
       "n": 726,
       "n_treated": 363,
@@ -3642,7 +3642,7 @@
       "se": 0.0718
     }
   },
-  "P8_no_parent_psych": {
+  "no_parent_psych": {
     "n": 1244,
     "n_treated": 622,
     "n_control": 622,
@@ -4072,7 +4072,7 @@
     },
     "se": 0.0414
   },
-  "P11_no_shared_parent_report": {
+  "no_shared_parent_report": {
     "sleep_and_psych_excluded": {
       "n": 1244,
       "n_treated": 622,
@@ -5678,7 +5678,7 @@
           "importance": 0
         }
       ],
-      "model_name": "Multiethnic: Excluding Parental Psychopathology (Relocated to R3-3 / P11)",
+      "model_name": "Multiethnic: Excluding Parental Psychopathology (Relocated to R3-3 / Analysis)",
       "excluded_covariates": [
         "asr_scr_anxdisord_t",
         "asr_scr_antisocial_t",
@@ -5696,7 +5696,7 @@
       "se": 0.0414
     }
   },
-  "P8_measured_child_bmi": {
+  "measured_child_bmi": {
     "bmi_substituting_pgs": {
       "n": 1244,
       "n_treated": 622,

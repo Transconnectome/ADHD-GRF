@@ -47,7 +47,7 @@
 <td style="text-align: center;">2.55 (0.67, < .001)</td>
 </tr>
 <tr>
-<td colspan="7" style="text-align: left; background-color: #f2f2f2;"><strong>P12 (R3-5): Non-Oversampled European Sensitivity Refits (Original 363 Exposed Children)</strong></td>
+<td colspan="7" style="text-align: left; background-color: #f2f2f2;"><strong>Non-Oversampled European Sensitivity Refits (Original 363 Exposed Children)</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;">(a) Sex-matched unexposed group (downsampled 206 M : 157 F)</td>
@@ -71,7 +71,7 @@
 </table>
 
 ### Key Methodological Notes:
-1. **P12(a) Sex-Matched Specification**: Comprises the original 363 exposed children of European ancestry together with a sex-matched draw of 363 unexposed children (matching the 206 male / 157 female ratio of the exposed group, random seed 1), total *N* = 726. In this sample, the differential forest prediction slope was 1.8439 (SE = 0.9253, two-sided *p* = 0.047), which is nominally significant at alpha = 0.05 but below the minimum detectable effect threshold (MDE = 2.5908 at 80% power).
-2. **P12(b) Full Control Specification**: Comprises the original 363 exposed children together with all 5,743 available unexposed European children (*N* = 6,106). In this full sample, the average treatment effect is 0.5298 (SE = 0.0557, *p* < .001), and differential prediction slope is 1.1038 (SE = 0.5395, two-sided *p* = 0.041).
-3. **Data Governance & Reproducibility**: All models were fitted using R package `grf` (version 2.6.1) with 25,000 trees across 5 independent seeds with study site clustering. No individual-level ABCD data are exposed.
+1. **Specification (a) Sex-Matched Specification**: Comprises the original 363 exposed children of European ancestry together with a sex-matched draw of 363 unexposed children (matching the 206 male / 157 female ratio of the exposed group, random seed 1), total *N* = 726. In this sample, the differential forest prediction slope was 1.8439 (SE = 0.9253, two-sided *p* = 0.047), which is nominally significant at alpha = 0.05 but below the minimum detectable effect threshold (MDE = 2.5908 at 80% power).
+2. **Specification (b) Full Control Specification**: Comprises the original 363 exposed children together with all 5,743 available unexposed European children (*N* = 6,106). In this full sample, the average treatment effect is 0.5298 (SE = 0.0557, *p* < .001), and differential prediction slope is 1.1038 (SE = 0.5395, two-sided *p* = 0.041).
+3. **Data Governance & Reproducibility**: All models were fitted using R package `grf` (version 2.3.2) with 25,000 trees across 5 independent seeds with study site clustering. No individual-level ABCD data are exposed.
 

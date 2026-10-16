@@ -38,7 +38,7 @@
 <td style="text-align: center;">2.17 (0.73, 0.002)</td>
 </tr>
 <tr>
-<td colspan="7" style="text-align: left; background-color: #f2f2f2;"><strong>P8 (R2-3): Measured Child BMI Sensitivity Refits</strong></td>
+<td colspan="7" style="text-align: left; background-color: #f2f2f2;"><strong>Measured Child BMI Sensitivity Refits</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;">(a) Substituting BMI PGS with measured baseline child BMI (66 covariates)</td>

@@ -29,10 +29,10 @@ The scripts in this repository implement generalized random forest (GRF; Athey, 
 | `Analysis2.R` | Complete primary pipeline: ABCD Release 4.0 table loading (`baseline_year_1_arm_1` and longitudinal waves), variable construction, near-zero-variance filtering (`caret` v6.0-93), $k$-nearest-neighbor imputation (`impute` v1.72.3, $k = 10$), sex-matched control downsampling (`set.seed(1)`), European SMOTE oversampling (`DMwR` v0.4.1), 25,000-tree causal forest fitting (`5 seeds × 5,000 trees`, clustered on `site_id_l`), permutation importance testing, partial dependence computation, and regional brain volume correlation tests (`Tables S4–S11`). |
 | `Visualization.R` | Script generating Figure 1 (ATE, calibration test, and longitudinal trajectory plots) and Figure 2 (top 20 variable importance bar plots and partial dependence curves). |
 | `Code.R` | Standalone template script for fitting the 25,000-tree causal forest, 500-permutation variable importance threshold, and partial dependence curves on a single prepared analytic data frame (`data_multi_env_gen`). |
-| `revision_r1/extract_non_refit_p_items.R` | Reproducible extraction of raw/analytic CBCL $t$-score standard deviations, out-of-bag individual CATE 95% confidence intervals, partial dependence quartile contrasts (`Q1–Q3`, `Q0–Q4`), PGS discovery sample size rank correlations, and sample verification. |
+| `revision_r1/extract_summary_diagnostics.R` | Reproducible extraction of raw/analytic CBCL $t$-score standard deviations, out-of-bag individual CATE 95% confidence intervals, partial dependence quartile contrasts (`Q1–Q3`, `Q0–Q4`), PGS discovery sample size rank correlations, and sample verification. |
 | `revision_r1/run_refit_grf_models.R` | Reproducible causal forest sensitivity refits for non-oversampled European samples (`Table S16`), baseline-adjusted longitudinal outcomes (`Table S15`), and shared-informant covariate exclusions. |
-| `revision_r1/run_p8_bmi_refit.R` | Reproducible causal forest sensitivity refits evaluating measured baseline child BMI alongside or in place of the BMI polygenic score (`Table S14`). |
-| `revision_r1/results/` | Aggregate machine-readable JSON summaries and Markdown tables (`results_p1_p15.json`, `results_refit_p8_p10_p11_p12.json`, `table_s14_p8.md`, `table_s16_p12.md`). |
+| `revision_r1/run_bmi_sensitivity_refit.R` | Reproducible causal forest sensitivity refits evaluating measured baseline child BMI alongside or in place of the BMI polygenic score (`Table S14`). |
+| `revision_r1/results/` | Aggregate machine-readable JSON summaries and Markdown tables (`summary_diagnostics.json`, `sensitivity_refits.json`, `table_s14_bmi.md`, `table_s16_european.md`). |
 
 ---
 
