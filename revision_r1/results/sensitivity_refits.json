@@ -5678,7 +5678,7 @@
           "importance": 0
         }
       ],
-      "model_name": "Multiethnic: Excluding Parental Psychopathology (Relocated to R3-3 / Analysis)",
+      "model_name": "Multiethnic: Excluding Parental Psychopathology (Relocated to shared-informant sensitivity / Analysis)",
       "excluded_covariates": [
         "asr_scr_anxdisord_t",
         "asr_scr_antisocial_t",

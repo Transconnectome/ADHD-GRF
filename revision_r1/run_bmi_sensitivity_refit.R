@@ -260,7 +260,7 @@ existing_json$measured_child_bmi <- list(
 # 2. Relocate parental psychopathology exclusion model to no_shared_parent_report
 if (!is.null(existing_json$no_parent_psych)) {
   old_p8 <- existing_json$no_parent_psych
-  old_p8$model_name <- "Multiethnic: Excluding Parental Psychopathology (Relocated to R3-3 / Analysis)"
+  old_p8$model_name <- "Multiethnic: Excluding Parental Psychopathology (Relocated to shared-informant sensitivity / Analysis)"
   existing_json$no_shared_parent_report$parent_psych_excluded <- old_p8
   cat("  Parental psychopathology refit successfully relocated to no_shared_parent_report$parent_psych_excluded.\n")
 }
